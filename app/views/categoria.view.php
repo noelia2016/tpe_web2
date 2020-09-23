@@ -1,14 +1,17 @@
 <?php
 
-class HabitacionView {
+class CategoriaView {
 
-    function mostrarHabitaciones($habitaciones) {
-        
+    /** 
+        Muestra el listado de categorias existentes 
+    **/
+    function mostrarCategorias($categorias) {
         include 'templates/header.php';
+
         echo "<ul class='list-group mt-5'>";
-        foreach($habitaciones as $hab) {
+        foreach($categorias as $cat) {
             echo "<li class='list-group-item'>
-                    $hab->nro | $hab->capacidad | $hab->estado                    
+                    $cat->nombre | $cat->descripcion
                 </li>";
         }
         echo "</ul>";
@@ -16,5 +19,5 @@ class HabitacionView {
     
         include 'templates/footer.php';
     }
-
+    
 }

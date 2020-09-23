@@ -1,6 +1,6 @@
 <?php
 
-class HabitacionModel {
+class CategoriaModel {
     
     private $db;
 
@@ -18,18 +18,18 @@ class HabitacionModel {
     }
 
     /**
-     * Devuelve todas las habitaciones de la base de datos.
+     * Devuelve todas las categorias de habitaciones que existen.
      */
     function getAll() {
 
-        // Se envia la consulta
-        $query = $this->db->prepare('SELECT * FROM habitacion');
+        // Enviar la consulta 
+        $query = $this->db->prepare('SELECT * FROM categoria');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 
-        $habitaciones = $query->fetchAll(PDO::FETCH_OBJ);
+        $categorias = $query->fetchAll(PDO::FETCH_OBJ); 
 
-        return $habitaciones;
+        return $categorias;
     }
 
 }
