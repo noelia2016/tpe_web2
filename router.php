@@ -11,7 +11,7 @@
         $action = 'home'; // acción por defecto si no envían
     }
 
-    // parsea la accion Ej: suma/1/2 --> ['suma', 1, 2]
+    // parsea la acción y los parámetros 
     $params = explode('/', $action);
 
     // determina que camino seguir según la acción
@@ -20,6 +20,10 @@
             $controller = new HabitacionController();
             $controller->mostrarHabitaciones();
             break;
+        case 'admhab': 
+            $controller = new HabitacionController();
+            $controller->mostrarHabitaciones();
+            break;    
         default:
             echo('404 Page not found');
             break;

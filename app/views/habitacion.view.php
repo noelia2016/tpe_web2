@@ -2,7 +2,7 @@
 
 class HabitacionView {
 
-    function mostrarHabitaciones($habitaciones) {
+   /*   function mostrarHabitaciones($habitaciones) {
         
         include 'templates/header.php';
         echo "<ul class='list-group mt-5'>";
@@ -16,5 +16,6 @@ class HabitacionView {
     
         include 'templates/footer.php';
     }
+    */
 
 }

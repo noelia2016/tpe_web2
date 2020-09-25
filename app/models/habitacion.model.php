@@ -20,7 +20,7 @@ class HabitacionModel {
     /**
      * Devuelve todas las habitaciones de la base de datos.
      */
-    function getAll() {
+    function obtenerHabitaciones() {
 
         // Se envia la consulta
         $query = $this->db->prepare('SELECT * FROM habitacion');
