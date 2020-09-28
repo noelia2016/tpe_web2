@@ -1,5 +1,7 @@
 <?php
 
+require_once('libs/smarty/libs/Smarty.class.php');
+
 class HabitacionView {
 
     function mostrarHabitaciones($habitaciones) {
@@ -16,5 +18,6 @@ class HabitacionView {
     
         include 'templates/footer.php';
     }
+    
 
 }

@@ -1,12 +1,20 @@
 <?php
 
+require_once('libs/smarty/libs/Smarty.class.php');
+
 class CategoriaView {
 
     /** 
         Muestra el listado de categorias existentes 
     **/
     function mostrarCategorias($categorias) {
-        include 'templates/header.php';
+        /*$smarty = new Smarty();
+
+        $smarty->assign('msg', $msg);
+    
+        $smarty->display('templates/categorias.tpl');+/
+        
+        include 'templates/header.php';*/
 
         echo "<ul class='list-group mt-5'>";
         foreach($categorias as $cat) {
