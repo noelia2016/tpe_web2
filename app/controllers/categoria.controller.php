@@ -16,12 +16,25 @@ class CategoriaController {
     /**
      * Imprime la lista de categorias que hay de habitaciones
      */
-    function mostrarHabitaciones() {
+    function mostrarCategorias() {
         // obtiene las diferentes categorias del modelo
         $categorias = $this->model->getAll();
 
        // actualizo la vista
        $this->view->mostrarCategorias($categorias);
+        
+    }
+    
+    /**
+     * Imprime los detalles de la categoria con las habitaciones que dispone
+     */
+    function mostrarCategoria($id) {
+        // obtiene las diferentes categorias del modelo
+        $categoria = $this->model->obtenerCategoria($id);
+        $habitaciones = $this->model->obtenerHabitacionesdeCategoria($id);
+
+       // actualizo la vista
+       $this->view->mostrarCategoria($categoria, $habitaciones);
         
     }
 

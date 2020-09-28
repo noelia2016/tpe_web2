@@ -1,0 +1,83 @@
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (master)
+$ git branch noe-rama
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (master)
+$ git checkout noe-rama
+Switched to branch 'noe-rama'
+M       README.md
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git branch
+  master
+* noe-rama
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> noe-rama
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git branch --set-upstream-to=origin/<branch> noe-rama
+bash: branch: No such file or directory
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git branch --set-upstream-to=origin/noe-rama
+error: the requested upstream branch 'origin/noe-rama' does not exist
+hint:
+hint: If you are planning on basing your work on an upstream
+hint: branch that already exists at the remote, you may need to
+hint: run "git fetch" to retrieve it.
+hint:
+hint: If you are planning to push out a new local branch that
+hint: will track its remote counterpart, you may want to use
+hint: "git push -u" to set the upstream config as you push.
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git push -u
+fatal: The current branch noe-rama has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin noe-rama
+
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git push --set-upstream orgin noe-rama
+fatal: 'orgin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git push --set-upstream origin noe-rama
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'noe-rama' on GitHub by visiting:
+remote:      https://github.com/noelia2016/tpe_web2/pull/new/noe-rama
+remote:
+To https://github.com/noelia2016/tpe_web2.git
+ * [new branch]      noe-rama -> noe-rama
+Branch 'noe-rama' set up to track remote branch 'noe-rama' from 'origin'.
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git checkuot master
+git: 'checkuot' is not a git command. See 'git --help'.
+
+The most similar command is
+        checkout
+
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git checkout master
+Switched to branch 'master'
+M       README.md
+Your branch is up to date with 'origin/master'.
+

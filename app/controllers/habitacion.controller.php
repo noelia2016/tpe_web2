@@ -17,11 +17,23 @@ class HabitacionController {
      * Imprime la lista de categorias que hay de habitaciones
      */
     function mostrarHabitaciones() {
-        // obtiene las habitaciones del modelo
-        $habitaciones = $this->model->getAll();
+       // obtiene las habitaciones del modelo
+       $habitaciones = $this->model->getAll();
 
        // actualizo la vista
        $this->view->mostrarHabitaciones($habitaciones);
+        
+    }
+    
+    /**
+     * Imprime los detalles de la habitacion
+     */
+    function mostrarHabitacion($id) {
+       
+       $habitacion = $this->model->mostrarHabitacion($id);
+
+       // actualizo la vista
+       $this->view->mostrarDetalleHabitacion($habitacion);
         
     }
 

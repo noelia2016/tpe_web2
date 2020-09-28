@@ -31,5 +31,16 @@ class HabitacionModel {
 
         return $habitaciones;
     }
+    
+    function mostrarHabitacion($id){
+        // Enviar la consulta 
+        $query = $this->db->prepare('SELECT * FROM habitacion where id = ?');
+        $query->execute([$id]);
+
+        // Obtengo la respuesta con un fetchAll 
+        $habitacion = $query->fetchAll(PDO::FETCH_OBJ); 
+
+        return $habitacion;
+    }
 
 }

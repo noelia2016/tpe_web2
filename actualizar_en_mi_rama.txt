@@ -1,0 +1,565 @@
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (master)
+$ git checkout noe-rama
+Switched to branch 'noe-rama'
+M       app/controllers/habitacion.controller.php
+M       app/views/categoria.view.php
+M       app/views/habitacion.view.php
+M       router.php
+M       templates/header.php
+Your branch is up to date with 'origin/noe-rama'.
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git status
+On branch noe-rama
+Your branch is up to date with 'origin/noe-rama'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   app/controllers/habitacion.controller.php
+        modified:   app/views/categoria.view.php
+        modified:   app/views/habitacion.view.php
+        modified:   router.php
+        modified:   templates/header.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        app/controllers/home.controller.php
+        app/controllers/usuario.controller.php
+        app/models/usuario.model.php
+        app/views/home.view.php
+        app/views/usuario.view.php
+        css/
+        documentos_Noe/
+        img/
+        js/
+        libs/
+        templates/carrusel.tpl
+        templates/footer.tpl
+        templates/form_login.tpl
+        templates/form_registro.tpl
+        templates/header.tpl
+        templates/home.tpl
+        templates/servicios.tpl
+        templates_c/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git add .
+warning: LF will be replaced by CRLF in router.php.
+The file will have its original line endings in your working directory
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git status
+On branch noe-rama
+Your branch is up to date with 'origin/noe-rama'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   app/controllers/habitacion.controller.php
+        new file:   app/controllers/home.controller.php
+        new file:   app/controllers/usuario.controller.php
+        new file:   app/models/usuario.model.php
+        modified:   app/views/categoria.view.php
+        modified:   app/views/habitacion.view.php
+        new file:   app/views/home.view.php
+        new file:   app/views/usuario.view.php
+        new file:   css/style.css
+        new file:   documentos_Noe/Creacion de rama a nivel local.png
+        new file:   documentos_Noe/Experiencia propia.docx
+        new file:   documentos_Noe/log_Noe.txt
+        new file:   documentos_Noe/sugerencia_pull_en_rama.png
+        new file:   img/img1.jpg
+        new file:   img/img2.jpg
+        new file:   img/img3.jpg
+        new file:   js/validar_formulario.js
+        new file:   libs/.gitkeep
+        new file:   libs/smarty/libs/Autoloader.php
+        new file:   libs/smarty/libs/Smarty.class.php
+        new file:   libs/smarty/libs/SmartyBC.class.php
+        new file:   libs/smarty/libs/bootstrap.php
+        new file:   libs/smarty/libs/debug.tpl
+        new file:   libs/smarty/libs/plugins/block.textformat.php
+        new file:   libs/smarty/libs/plugins/function.counter.php
+        new file:   libs/smarty/libs/plugins/function.cycle.php
+        new file:   libs/smarty/libs/plugins/function.fetch.php
+        new file:   libs/smarty/libs/plugins/function.html_checkboxes.php
+        new file:   libs/smarty/libs/plugins/function.html_image.php
+        new file:   libs/smarty/libs/plugins/function.html_options.php
+        new file:   libs/smarty/libs/plugins/function.html_radios.php
+        new file:   libs/smarty/libs/plugins/function.html_select_date.php
+        new file:   libs/smarty/libs/plugins/function.html_select_time.php
+        new file:   libs/smarty/libs/plugins/function.html_table.php
+        new file:   libs/smarty/libs/plugins/function.mailto.php
+        new file:   libs/smarty/libs/plugins/function.math.php
+        new file:   libs/smarty/libs/plugins/modifier.capitalize.php
+        new file:   libs/smarty/libs/plugins/modifier.date_format.php
+        new file:   libs/smarty/libs/plugins/modifier.debug_print_var.php
+        new file:   libs/smarty/libs/plugins/modifier.escape.php
+        new file:   libs/smarty/libs/plugins/modifier.mb_wordwrap.php
+        new file:   libs/smarty/libs/plugins/modifier.regex_replace.php
+        new file:   libs/smarty/libs/plugins/modifier.replace.php
+        new file:   libs/smarty/libs/plugins/modifier.spacify.php
+        new file:   libs/smarty/libs/plugins/modifier.truncate.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.cat.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_characters.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_paragraphs.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_sentences.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_words.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.default.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.escape.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.from_charset.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.indent.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.lower.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.noprint.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.string_format.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.strip.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.strip_tags.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.to_charset.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.unescape.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.upper.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.wordwrap.php
+        new file:   libs/smarty/libs/plugins/outputfilter.trimwhitespace.php
+        new file:   libs/smarty/libs/plugins/shared.escape_special_chars.php
+        new file:   libs/smarty/libs/plugins/shared.literal_compiler_param.php
+        new file:   libs/smarty/libs/plugins/shared.make_timestamp.php
+        new file:   libs/smarty/libs/plugins/shared.mb_str_replace.php
+        new file:   libs/smarty/libs/plugins/shared.mb_unicode.php
+        new file:   libs/smarty/libs/plugins/variablefilter.htmlspecialchars.php
+        new file:   libs/smarty/libs/sysplugins/smarty_cacheresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_cacheresource_custom.php
+        new file:   libs/smarty/libs/sysplugins/smarty_cacheresource_keyvaluestore.php
+        new file:   libs/smarty/libs/sysplugins/smarty_data.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_block.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_cacheresource_file.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_append.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_assign.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_block.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_block_child.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_block_parent.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_break.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_call.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_capture.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_child.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_config_load.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_continue.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_debug.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_eval.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_extends.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_for.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_foreach.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_if.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_include.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_include_php.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_insert.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_ldelim.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_make_nocache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_nocache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_parent.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_block_plugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_foreachsection.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_function_plugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_modifier.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_object_block_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_object_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_php.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_print_expression.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_registered_block.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_registered_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_special_variable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_rdelim.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_section.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_setfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_shared_inheritance.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_while.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compilebase.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_config_file_compiler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_configfilelexer.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_configfileparser.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_data.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_debug.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_errorhandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_extension_handler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_addautoloadfilters.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_adddefaultmodifiers.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_append.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_appendbyref.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_assignbyref.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_assignglobal.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearallassign.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearallcache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearassign.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearcache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearcompiledtemplate.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearconfig.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_compileallconfig.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_compilealltemplates.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_configload.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_createdata.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getautoloadfilters.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getconfigvariable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getconfigvars.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getdebugtemplate.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getdefaultmodifiers.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getglobal.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getregisteredobject.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getstreamvariable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_gettags.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_gettemplatevars.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_literals.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_loadfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_loadplugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_mustcompile.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registercacheresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerclass.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerdefaultconfighandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerdefaultpluginhandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerdefaulttemplatehandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerobject.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerplugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_setautoloadfilters.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_setdebugtemplate.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_setdefaultmodifiers.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unloadfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregistercacheresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterobject.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterplugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_nocache_insert.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_code.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_dq.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_dqcontent.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_tag.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_template.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_text.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_eval.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_extends.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_file.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_php.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_registered.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_stream.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_string.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_cachemodify.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_cacheresourcefile.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_capture.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_codeframe.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_filterhandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_foreach.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_getincludepath.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_inheritance.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_make_nocache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_tplfunction.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_updatecache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_updatescope.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_writefile.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_smartytemplatecompiler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_template.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templatebase.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templatecompilerbase.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templatelexer.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templateparser.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_testinstall.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_undefined.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource_custom.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource_recompiled.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource_uncompiled.php
+        new file:   libs/smarty/libs/sysplugins/smarty_security.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_cached.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_compiled.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_config.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_resource_base.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_source.php
+        new file:   libs/smarty/libs/sysplugins/smarty_undefined_variable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_variable.php
+        new file:   libs/smarty/libs/sysplugins/smartycompilerexception.php
+        new file:   libs/smarty/libs/sysplugins/smartyexception.php
+        modified:   router.php
+        new file:   templates/carrusel.tpl
+        new file:   templates/footer.tpl
+        new file:   templates/form_login.tpl
+        new file:   templates/form_registro.tpl
+        modified:   templates/header.php
+        new file:   templates/header.tpl
+        new file:   templates/home.tpl
+        new file:   templates/servicios.tpl
+        new file:   templates_c/13655eae936abb887e62557be9906a8c5be59b3e_0.file.home.tpl.php
+        new file:   templates_c/21a165abc360cf3524d4f3261ff180649cd18186_0.file.form_login.tpl.php
+        new file:   templates_c/2375a80cdd0d8e98013c079d8734f6cb6366d50c_0.file.login.tpl.php
+        new file:   templates_c/32ffe49419297bb5dfb3bf1b56a63de0ed14df25_0.file.carrusel.tpl.php
+        new file:   templates_c/3780c894e36468b9391a52f1b8777c90e8b6db51_0.file.form_registro.tpl.php
+        new file:   templates_c/7216e045b9f70a8ef63bb833cab0ef4a5868a112_0.file.header.tpl.php
+        new file:   templates_c/9f9f4abfef4dab8b2aaabceecec8e1aebd12f7b7_0.file.servicios.tpl.php
+        new file:   templates_c/d9395179d7fb1fd1ad775b3df445e16b9dd62c4e_0.file.footer.tpl.php
+
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git status
+On branch noe-rama
+Your branch is up to date with 'origin/noe-rama'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   app/controllers/habitacion.controller.php
+        new file:   app/controllers/home.controller.php
+        new file:   app/controllers/usuario.controller.php
+        new file:   app/models/usuario.model.php
+        modified:   app/views/categoria.view.php
+        modified:   app/views/habitacion.view.php
+        new file:   app/views/home.view.php
+        new file:   app/views/usuario.view.php
+        new file:   css/style.css
+        new file:   documentos_Noe/Creacion de rama a nivel local.png
+        new file:   documentos_Noe/Experiencia propia.docx
+        new file:   documentos_Noe/log_Noe.txt
+        new file:   documentos_Noe/sugerencia_pull_en_rama.png
+        new file:   img/img1.jpg
+        new file:   img/img2.jpg
+        new file:   img/img3.jpg
+        new file:   js/validar_formulario.js
+        new file:   libs/.gitkeep
+        new file:   libs/smarty/libs/Autoloader.php
+        new file:   libs/smarty/libs/Smarty.class.php
+        new file:   libs/smarty/libs/SmartyBC.class.php
+        new file:   libs/smarty/libs/bootstrap.php
+        new file:   libs/smarty/libs/debug.tpl
+        new file:   libs/smarty/libs/plugins/block.textformat.php
+        new file:   libs/smarty/libs/plugins/function.counter.php
+        new file:   libs/smarty/libs/plugins/function.cycle.php
+        new file:   libs/smarty/libs/plugins/function.fetch.php
+        new file:   libs/smarty/libs/plugins/function.html_checkboxes.php
+        new file:   libs/smarty/libs/plugins/function.html_image.php
+        new file:   libs/smarty/libs/plugins/function.html_options.php
+        new file:   libs/smarty/libs/plugins/function.html_radios.php
+        new file:   libs/smarty/libs/plugins/function.html_select_date.php
+        new file:   libs/smarty/libs/plugins/function.html_select_time.php
+        new file:   libs/smarty/libs/plugins/function.html_table.php
+        new file:   libs/smarty/libs/plugins/function.mailto.php
+        new file:   libs/smarty/libs/plugins/function.math.php
+        new file:   libs/smarty/libs/plugins/modifier.capitalize.php
+        new file:   libs/smarty/libs/plugins/modifier.date_format.php
+        new file:   libs/smarty/libs/plugins/modifier.debug_print_var.php
+        new file:   libs/smarty/libs/plugins/modifier.escape.php
+        new file:   libs/smarty/libs/plugins/modifier.mb_wordwrap.php
+        new file:   libs/smarty/libs/plugins/modifier.regex_replace.php
+        new file:   libs/smarty/libs/plugins/modifier.replace.php
+        new file:   libs/smarty/libs/plugins/modifier.spacify.php
+        new file:   libs/smarty/libs/plugins/modifier.truncate.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.cat.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_characters.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_paragraphs.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_sentences.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.count_words.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.default.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.escape.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.from_charset.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.indent.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.lower.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.noprint.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.string_format.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.strip.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.strip_tags.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.to_charset.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.unescape.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.upper.php
+        new file:   libs/smarty/libs/plugins/modifiercompiler.wordwrap.php
+        new file:   libs/smarty/libs/plugins/outputfilter.trimwhitespace.php
+        new file:   libs/smarty/libs/plugins/shared.escape_special_chars.php
+        new file:   libs/smarty/libs/plugins/shared.literal_compiler_param.php
+        new file:   libs/smarty/libs/plugins/shared.make_timestamp.php
+        new file:   libs/smarty/libs/plugins/shared.mb_str_replace.php
+        new file:   libs/smarty/libs/plugins/shared.mb_unicode.php
+        new file:   libs/smarty/libs/plugins/variablefilter.htmlspecialchars.php
+        new file:   libs/smarty/libs/sysplugins/smarty_cacheresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_cacheresource_custom.php
+        new file:   libs/smarty/libs/sysplugins/smarty_cacheresource_keyvaluestore.php
+        new file:   libs/smarty/libs/sysplugins/smarty_data.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_block.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_cacheresource_file.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_append.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_assign.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_block.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_block_child.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_block_parent.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_break.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_call.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_capture.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_child.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_config_load.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_continue.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_debug.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_eval.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_extends.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_for.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_foreach.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_if.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_include.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_include_php.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_insert.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_ldelim.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_make_nocache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_nocache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_parent.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_block_plugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_foreachsection.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_function_plugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_modifier.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_object_block_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_object_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_php.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_print_expression.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_registered_block.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_registered_function.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_private_special_variable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_rdelim.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_section.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_setfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_shared_inheritance.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compile_while.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_compilebase.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_config_file_compiler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_configfilelexer.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_configfileparser.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_data.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_debug.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_errorhandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_extension_handler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_addautoloadfilters.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_adddefaultmodifiers.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_append.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_appendbyref.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_assignbyref.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_assignglobal.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearallassign.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearallcache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearassign.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearcache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearcompiledtemplate.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_clearconfig.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_compileallconfig.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_compilealltemplates.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_configload.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_createdata.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getautoloadfilters.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getconfigvariable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getconfigvars.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getdebugtemplate.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getdefaultmodifiers.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getglobal.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getregisteredobject.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_getstreamvariable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_gettags.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_gettemplatevars.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_literals.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_loadfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_loadplugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_mustcompile.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registercacheresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerclass.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerdefaultconfighandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerdefaultpluginhandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerdefaulttemplatehandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerobject.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerplugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_registerresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_setautoloadfilters.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_setdebugtemplate.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_setdefaultmodifiers.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unloadfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregistercacheresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterfilter.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterobject.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterplugin.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_method_unregisterresource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_nocache_insert.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_code.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_dq.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_dqcontent.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_tag.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_template.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_parsetree_text.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_eval.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_extends.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_file.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_php.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_registered.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_stream.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_resource_string.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_cachemodify.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_cacheresourcefile.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_capture.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_codeframe.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_filterhandler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_foreach.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_getincludepath.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_inheritance.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_make_nocache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_tplfunction.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_updatecache.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_updatescope.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_runtime_writefile.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_smartytemplatecompiler.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_template.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templatebase.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templatecompilerbase.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templatelexer.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_templateparser.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_testinstall.php
+        new file:   libs/smarty/libs/sysplugins/smarty_internal_undefined.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource_custom.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource_recompiled.php
+        new file:   libs/smarty/libs/sysplugins/smarty_resource_uncompiled.php
+        new file:   libs/smarty/libs/sysplugins/smarty_security.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_cached.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_compiled.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_config.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_resource_base.php
+        new file:   libs/smarty/libs/sysplugins/smarty_template_source.php
+        new file:   libs/smarty/libs/sysplugins/smarty_undefined_variable.php
+        new file:   libs/smarty/libs/sysplugins/smarty_variable.php
+        new file:   libs/smarty/libs/sysplugins/smartycompilerexception.php
+        new file:   libs/smarty/libs/sysplugins/smartyexception.php
+        modified:   router.php
+        new file:   templates/carrusel.tpl
+        new file:   templates/footer.tpl
+        new file:   templates/form_login.tpl
+        new file:   templates/form_registro.tpl
+        modified:   templates/header.php
+        new file:   templates/header.tpl
+        new file:   templates/home.tpl
+        new file:   templates/servicios.tpl
+        new file:   templates_c/13655eae936abb887e62557be9906a8c5be59b3e_0.file.home.tpl.php
+        new file:   templates_c/21a165abc360cf3524d4f3261ff180649cd18186_0.file.form_login.tpl.php
+        new file:   templates_c/2375a80cdd0d8e98013c079d8734f6cb6366d50c_0.file.login.tpl.php
+        new file:   templates_c/32ffe49419297bb5dfb3bf1b56a63de0ed14df25_0.file.carrusel.tpl.php
+        new file:   templates_c/3780c894e36468b9391a52f1b8777c90e8b6db51_0.file.form_registro.tpl.php
+        new file:   templates_c/7216e045b9f70a8ef63bb833cab0ef4a5868a112_0.file.header.tpl.php
+        new file:   templates_c/9f9f4abfef4dab8b2aaabceecec8e1aebd12f7b7_0.file.servicios.tpl.php
+        new file:   templates_c/d9395179d7fb1fd1ad775b3df445e16b9dd62c4e_0.file.footer.tpl.php
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git add .
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$ git push
+Everything up-to-date
+
+Noe@Noe-Notebook MINGW32 /c/xampp/htdocs/Web2/tpe_web2 (noe-rama)
+$
