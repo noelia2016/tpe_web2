@@ -10,6 +10,7 @@ class HomeController {
     private $view;
 
     function __construct() {
+        
         $this->model = new CategoriaModel();
         $this->modelH = new HabitacionModel();
         $this->view = new HomeView();

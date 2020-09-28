@@ -69,12 +69,18 @@
             $id = $params[1];
             $controller->mostrarCategoria($id);
             break; 
-        case 'habitaciones': 
-            /* muestra los detalles de todas las habitaciones */
+        case 'mostrar_categoria': 
+            /* muestra los detalles de la categoria elegida */
             $controller = new CategoriaController();
             $id = $params[1];
             $controller->mostrarCategoria($id);
             break; 
+        case 'mostar_habitacion': 
+            /* muestra los detalles de la habitacion elegida */
+            $controller = new HabitacionController();
+            $id = $params[1];
+            $controller->mostrarHabitacion($id);
+            break;
         case 'servicios': 
             /* muestra los servicios que brinda el hotel */
             $controller = new HomeController();

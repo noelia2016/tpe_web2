@@ -31,5 +31,35 @@ class CategoriaModel {
 
         return $categorias;
     }
+    
+    /**
+     * Devuelve los detalles de una categoria.
+     */
+    function obtenerCategoria($id) {
+
+        // Enviar la consulta 
+        $query = $this->db->prepare('SELECT * FROM categoria where id = ?');
+        $query->execute([$id]);
+
+        // Obtengo la respuesta con un fetchAll 
+        $categoria = $query->fetchAll(PDO::FETCH_OBJ); 
+
+        return $categoria;
+    }
+    
+    /**
+     * Devuelve todas las habitaciones para la categoria elegida.
+     */
+    function obtenerHabitacionesdeCategoria($id) {
+
+        // Enviar la consulta 
+        $query = $this->db->prepare('SELECT * FROM habitacion where categoria_id = ? ');
+        $query->execute([$id]);
+
+        // Obtengo la respuesta con un fetchAll 
+        $habitaciones = $query->fetchAll(PDO::FETCH_OBJ); 
+
+        return $habitaciones;
+    }
 
 }

@@ -8,24 +8,29 @@ class CategoriaView {
         Muestra el listado de categorias existentes 
     **/
     function mostrarCategorias($categorias) {
-        /*$smarty = new Smarty();
+        
+        $smarty = new Smarty();
 
         $smarty->assign('msg', $msg);
     
-        $smarty->display('templates/categorias.tpl');+/
+        $smarty->display('templates/categorias.tpl');
         
-        include 'templates/header.php';*/
+        include 'templates/header.php';
 
-        echo "<ul class='list-group mt-5'>";
-        foreach($categorias as $cat) {
-            echo "<li class='list-group-item'>
-                    $cat->nombre | $cat->descripcion
-                </li>";
-        }
-        echo "</ul>";
-
+    }
     
-        include 'templates/footer.php';
+    /** 
+        Muestra la categoria elegida con sus detalles y habitaciones que posee asociadas
+    **/
+    function mostrarCategoria ($categoria, $habitaciones){
+        
+        $smarty = new Smarty();
+
+        $smarty->assign('categoria', $categoria);
+        $smarty->assign('habitaciones', $habitaciones);
+    
+        $smarty->display('templates/ver_categoria.tpl');
+
     }
     
 }
