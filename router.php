@@ -75,7 +75,7 @@
             $id = $params[1];
             $controller->mostrarCategoria($id);
             break; 
-        case 'mostar_habitacion': 
+        case 'mostrar_habitacion': 
             /* muestra los detalles de la habitacion elegida */
             $controller = new HabitacionController();
             $id = $params[1];

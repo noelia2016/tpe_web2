@@ -25,5 +25,16 @@ class HabitacionController {
         
     }
     
+    /**
+     * Imprime los detalles de la habitacion
+     */
+    function mostrarHabitacion($id) {
+       
+       $habitacion = $this->model->mostrarHabitacion($id);
+
+       // actualizo la vista
+       $this->view->mostrarDetalleHabitacion($habitacion);
+        
+    }
 
 }

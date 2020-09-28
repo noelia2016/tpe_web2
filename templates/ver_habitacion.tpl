@@ -17,17 +17,20 @@
         
         {include 'carrusel.tpl'}
         
-        
-        {foreach from=$categoria item=cat}
-            <h1>{$cat->nombre}</h1>
-            <p>{$cat->descripcion}</p>
-        {/foreach}
-
-        <h3>Habitaciones con dicha categoria</h3>
+        <h3>Habitacion</h3>
         <ul class="list-group mt-5">
-        {foreach from=$habitaciones item=hab}
+        {foreach from=$habitacion item=hab}
             <li class="list-group-item">
-                <a href="mostrar_habitacion/{$hab->id}">Habitacion N {$hab->nro} - {$hab->ubicacion}</a>
+                Habitacion N {$hab->nro} - {$hab->ubicacion}
+            </li>
+            <li class="list-group-item">
+                Comodidades: {$hab->comodidades} 
+            </li>
+            <li class="list-group-item">
+                Capacidad: {$hab->capacidad} 
+            </li>
+            <li class="list-group-item">
+                Estado: {$hab->estado} 
             </li>
         {/foreach}
         </ul> 
