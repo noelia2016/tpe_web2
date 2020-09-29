@@ -2,6 +2,7 @@
 
 include_once 'app/models/categoria.model.php';
 include_once 'app/views/admin.categoria.view.php';
+include_once 'app/views/categoria.view.php';
 
 class CategoriaController {
 

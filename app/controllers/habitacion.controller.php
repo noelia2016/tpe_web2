@@ -2,6 +2,7 @@
 
 include_once 'app/models/habitacion.model.php';
 include_once 'app/views/admin.habitacion.view.php';
+include_once 'app/views/habitacion.view.php';
 
 class HabitacionController {
 
@@ -11,6 +12,7 @@ class HabitacionController {
     function __construct() {
         $this->model = new HabitacionModel();
         $this->viewAdmin = new AdminHabitacionView();
+        $this->view = new HabitacionView();
     }
 
     function mostrarHabitaciones() {

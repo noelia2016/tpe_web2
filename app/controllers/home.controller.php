@@ -21,7 +21,7 @@ class HomeController {
      */
     function mostrarHome(){
         
-        $categorias=$this->model->getAll();
+        $categorias=$this->model->obtenerCategorias();
         $this->view->mostrarHome($categorias);
     }
     
