@@ -17,20 +17,37 @@ class AdminHabitacionView
                         $hab->capacidad 
                     </td> 
                     <td>
+                        $hab->nombre_cat 
+                    </td>
+                    <td>
                         $hab->estado 
                     </td> 
                     <td>
-                        <a class='btn btn-danger btn-sm' href='eliminar/$hab->id'>Eliminar
+                        <a class='btn btn-danger btn-sm' href='eliminar_hab/$hab->id'>Eliminar
                         </a>
-                    </td> 
-                    <td>
-                        <a class='btn btn-info btn-sm' href='editar/$hab->id'>Editar
+                        <a class='btn btn-info btn-sm' href='editar_hab/$hab->id'>Editar
                         </a>
                     </td> 
                 </tr>";
         }
         include 'templates/admin.lista.hab.footer.php';
-        include 'templates/admin.edit.habitacion.php';
         include 'templates/footer.php';
     }
+
+    function editarHabitacionVista($habitacion)
+    {   
+        include 'templates/admin.form.habitacion.php';
+        echo "
+            nro_habitacion.value = $habitacion->nro ; 
+            capacidad.value = $habitacion->capacidad  ;
+            categoria.value = $habitacion->nombre_cat ; 
+            estado.value = $habitacion->estado ;
+          
+        <a class='btn btn-info btn-sm' href='actualiz_hab/$habitacion->id'>Guardar</a>
+             
+         ";
+        
+        
+        include 'templates/footer.php';
+    } 
 }

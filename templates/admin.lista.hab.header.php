@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container fondo_container">
     <div class="row">
         <div class="col-12">
             <h2>Habitaciones</h2>
