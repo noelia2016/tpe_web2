@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-09-2020 a las 01:41:16
+-- Tiempo de generación: 29-09-2020 a las 03:16:44
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -53,7 +53,9 @@ CREATE TABLE `habitacion` (
   `id` int(11) NOT NULL,
   `nro` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
+  `comodidades` mediumtext NOT NULL,
   `estado` varchar(45) NOT NULL,
+  `ubicacion` varchar(65) NOT NULL,
   `categoria_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,9 +63,30 @@ CREATE TABLE `habitacion` (
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`id`, `nro`, `capacidad`, `estado`, `categoria_id`) VALUES
-(1, 1, 2, 'disponible', 1),
-(2, 2, 2, 'disponible', 1);
+INSERT INTO `habitacion` (`id`, `nro`, `capacidad`, `comodidades`, `estado`, `ubicacion`, `categoria_id`) VALUES
+(1, 1, 2, 'Área de 72 m2. Balcón privado con vista a los jardines. \n', 'disponible', 'planta alta', 1),
+(2, 2, 2, 'Área de 182 m2. Balcón privado con vista a la pileta exterior. Área de trabajo · Sofa esquienero muy comodo. Minibar · Sistema de climatización · Caja de seguridad, compatible con notebook. Máquina de café Illy en la habitación. Microondas. Jacuzzi.', 'disponible', 'planta alta', 4),
+(3, 3, 2, 'Área 172 m2. Balcón privado con vista a los jardines. Minibar. Sistema de climatización. Caja de seguridad, compatible con notebook. Cafetera', 'disponible', 'planta alta', 3),
+(4, 4, 4, 'Área 172 m2. Balcón privado con vista a los jardines. Minibar. Sistema de climatización. Caja de seguridad, compatible con notebook. 2 (dos) baños una en planta baja donde se encuentra la cama matromonial y otro en la planta alta donde se encuentran (2) dos camas individuales', 'disponible', 'planta baja', 3),
+(5, 5, 2, 'En 196 m2, la suite cuenta con un amplio dormitorio, elegante sala de estar, balcón privado y terraza con jacuzzi al aire libre. El baño destaca por sus características únicas: un impactante cubo de cristal permite disfrutar de las magníficas vistas desde los embalses y el río dejando pasar la luz natural. Una cama extragrande y una bañera de hidromasaje le esperan. El living también cuenta con amplio sofá y toilette. ', 'disponible', 'planta alta', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(125) NOT NULL,
+  `apellido` varchar(125) NOT NULL,
+  `sexo` varchar(12) NOT NULL,
+  `fecha_nac` date NOT NULL,
+  `email` varchar(165) NOT NULL,
+  `user` varchar(65) NOT NULL,
+  `password` varchar(65) NOT NULL,
+  `habilitado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -83,6 +106,14 @@ ALTER TABLE `habitacion`
   ADD KEY `categoria_id` (`categoria_id`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user` (`user`),
+  ADD UNIQUE KEY `user_2` (`user`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -95,7 +126,12 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
