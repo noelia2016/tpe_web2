@@ -14,7 +14,7 @@
         $action = 'home'; // acción por defecto si no envían
     }
 
-    // parsea la accion Ej: suma/1/2 --> ['suma', 1, 2]
+    // parsea la acción y los parámetros 
     $params = explode('/', $action);
 
     // determina que camino seguir según la acción
@@ -24,30 +24,6 @@
             $controller = new HomeController();
             $controller->mostrarHome();
             break;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         case 'login': 
             /* muestra al usuario la pantalla de login */
             $controller = new UsuarioController();
@@ -64,10 +40,7 @@
             $controller->registroUser();
             break; 
         case 'registrar_user': 
-            /* muestra los detalles de la categoria elegida */
-            $controller = new CategoriaController();
-            $id = $params[1];
-            $controller->mostrarCategoria($id);
+          
             break; 
         case 'mostrar_categoria': 
             /* muestra los detalles de la categoria elegida */
@@ -86,6 +59,34 @@
             $controller = new HomeController();
             $controller->mostrarServicios();
             break;
+        case 'admhab': 
+            $controller = new HabitacionController();
+            $controller->mostrarHabitaciones();
+            break; 
+        case 'admcat': 
+            $controller = new CategoriaController();
+            $controller->mostrarCategorias();
+            break; 
+        case 'eliminar_hab':
+            $controller = new HabitacionController();
+            $id = $params[1];
+            $controller->eliminarHabitacion($id);
+            break;
+        case 'editar_hab':
+            $controller = new HabitacionController();
+            $id = $params[1];
+            $controller->editarHabitacion($id);
+            break; 
+        case 'eliminar_cat':
+            $controller = new CategoriaController();
+            $id = $params[1];
+            $controller->eliminarCategoria($id);
+            break;
+        case 'editar_cat':
+            $controller = new CategoriaController();
+            $id = $params[1];
+            //$controller->editarCategoria($id);
+            break; 
         default:
             echo('404 Page not found');
             break;

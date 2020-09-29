@@ -1,0 +1,59 @@
+[33mcommit c037152b6f837b014863465967c3c8278591f436[m[33m ([m[1;36mHEAD -> [m[1;32mdev_andrea[m[33m)[m
+Author: Andrea Gherbi <gherbiandrea@gmail.com>
+Date:   Fri Sep 25 13:36:01 2020 -0300
+
+    creo las lista de habitaciones y form edición para usuario admin
+
+[33mcommit 0a06064c2796b695e64bf98c1268b14d1f292309[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Andrea Gherbi <gherbiandrea@gmail.com>
+Date:   Thu Sep 24 20:03:56 2020 -0300
+
+    cambiamos nombres y agregamos algunos archivos del modelo mvc
+
+[33mcommit 2b03d0be2181843cc150f82a787e4bc2547b74c1[m
+Author: Andrea Gherbi <gherbiandrea@gmail.com>
+Date:   Thu Sep 24 16:26:55 2020 -0300
+
+    cambiamos nombre una carpeta para el TPE de TIO
+
+[33mcommit 5625bd4d0280264bedef583087fb4719d1e0d762[m
+Author: Andrea Gherbi <gherbiandrea@gmail.com>
+Date:   Thu Sep 24 16:04:02 2020 -0300
+
+    logramos agregar el gitignore
+
+[33mcommit 9af85c9ea4be547ccf6d8c7e243119333e651ecd[m
+Author: noelia2016 <noeliacarrizo22@gmail.com>
+Date:   Wed Sep 23 20:44:33 2020 -0300
+
+    BD con las categorias cargadas y ejemplos de habitaciones para trabajar
+
+[33mcommit 46574dd772cfd67faf07c29b9b321d0e7d04e9a9[m
+Author: noelia2016 <noeliacarrizo22@gmail.com>
+Date:   Wed Sep 23 20:35:20 2020 -0300
+
+    estructura mvc organizada con algo de funcionalidad
+
+[33mcommit 40b930389634205a4f6d3122cbbbc7b602c58a4d[m
+Author: noelia2016 <noeliacarrizo22@gmail.com>
+Date:   Sat Sep 19 18:56:03 2020 -0300
+
+    administracion de nuestro proyecto en mvc
+
+[33mcommit bc30f16904b6f2ed4db5ddd3b1a665c28b951124[m
+Author: noelia2016 <noeliacarrizo22@gmail.com>
+Date:   Thu Sep 17 17:33:03 2020 -0300
+
+    Agrego los archivos por defecto de nuestro tpe
+
+[33mcommit df68e82b8467ddebece1636b8a05a7a1b872c52c[m
+Author: Andrea Gherbi <gherbiandrea@gmail.com>
+Date:   Tue Sep 15 16:40:47 2020 -0300
+
+    planilla excel con modelo de tablas
+
+[33mcommit faf2e6b79b072682089a570bcf07480c55898c12[m
+Author: noelia2016 <noeliacarrizo22@gmail.com>
+Date:   Tue Sep 15 16:35:12 2020 -0300
+
+    Initial commit

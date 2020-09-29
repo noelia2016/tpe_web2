@@ -5,13 +5,13 @@ require_once('libs/smarty/libs/Smarty.class.php');
 class CategoriaView {
 
     /** 
-        Muestra el listado de categorias existentes 
+     *   Muestra el listado de categorias existentes 
     **/
     function mostrarCategorias($categorias) {
         
         $smarty = new Smarty();
 
-        $smarty->assign('msg', $msg);
+        $smarty->assign('categorias', $categorias);
     
         $smarty->display('templates/categorias.tpl');
         
@@ -20,15 +20,13 @@ class CategoriaView {
     }
     
     /** 
-        Muestra la categoria elegida con sus detalles y habitaciones que posee asociadas
+     *  Muestra la categoria elegida con sus detalles y habitaciones que posee asociadas
     **/
     function mostrarCategoria ($categoria, $habitaciones){
         
         $smarty = new Smarty();
-
         $smarty->assign('categoria', $categoria);
         $smarty->assign('habitaciones', $habitaciones);
-    
         $smarty->display('templates/ver_categoria.tpl');
 
     }

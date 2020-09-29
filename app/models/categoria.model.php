@@ -20,7 +20,7 @@ class CategoriaModel {
     /**
      * Devuelve todas las categorias de habitaciones que existen.
      */
-    function getAll() {
+    function obtenerCategorias() {
 
         // Enviar la consulta 
         $query = $this->db->prepare('SELECT * FROM categoria');
@@ -62,4 +62,17 @@ class CategoriaModel {
         return $habitaciones;
     }
 
+    /**
+     * Eliminar categoria según id pasado como parámetro 
+     */
+    function eliminarCategoriaMdl($id) {
+        // Se envia la consulta
+        $query = $this->db->prepare('
+        DELETE FROM categoria where id = ?'); 
+        var_dump($query);
+        var_dump($id);
+        die();
+    $query->execute([$id]);
+}
+    
 }
