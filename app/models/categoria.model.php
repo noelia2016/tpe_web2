@@ -72,7 +72,7 @@ class CategoriaModel {
         var_dump($query);
         var_dump($id);
         die();
-    $query->execute([$id]);
+        $query->execute([$id]);
 }
     
 }
