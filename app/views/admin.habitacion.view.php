@@ -34,9 +34,11 @@ class AdminHabitacionView
         include 'templates/footer.php';
     }
 
-    function editarHabitacionVista($habitacion)
+    function editarHabitacionVista($habitacion,$categoria)
     {   
-        include 'templates/admin.form.habitacion.php';
+
+        /*include 'templates/admin.form.habitacion.php';
+        
         echo "
             nro_habitacion.value = $habitacion->nro ; 
             capacidad.value = $habitacion->capacidad  ;
@@ -45,9 +47,13 @@ class AdminHabitacionView
           
         <a class='btn btn-info btn-sm' href='actualiz_hab/$habitacion->id'>Guardar</a>
              
-         ";
-        
-        
-        include 'templates/footer.php';
+         ";*/
+
+        $smarty = new Smarty();
+
+        $smarty->assign('habitacion', $habitacion);
+        $smarty->assign('categoria', $categoria);
+    
+        $smarty->display('templates/form_editar_habitacion.tpl');
     } 
 }

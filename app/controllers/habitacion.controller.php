@@ -37,7 +37,7 @@ class HabitacionController {
 
     function editarHabitacion($id) {
         // obtener los datos de una habitación del modelo
-        $habitacion = $this->model->obtenerHabitacion($id);
+       $habitacion = $this->model->obtenerHabitacion($id);
 
        // actualizo la vista cargando los datos en el formulario de habitación
        $this->viewAdmin->editarHabitacionVista($habitacion);

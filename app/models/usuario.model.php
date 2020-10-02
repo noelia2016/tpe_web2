@@ -35,19 +35,23 @@ class UsuarioModel {
     /**
      * Inserta un nuevo usuario.
      */
-    function insertar($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
+    function insertar ($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
         
-        $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, users, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
+        
+        $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
+        var_dump($query);
         $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, md5($password), 1]);
 
         // Obtengo y devuelo el ID del usuario recientemente creado
         return $this->db->lastInsertId();
+        
+        /*INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`, `user`, `password`, `habilitado`) VALUES (NULL, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', MD5('noelia2020'), '1');*/
     }
     
     /**
      * Elimina el usuario
      */
-    function remove($id) {  
+    function eliminar($id) {  
   
         $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
         $query->execute([$id]);
@@ -62,12 +66,25 @@ class UsuarioModel {
     }
     
     /**
-     * Elimina el usuario
+     * Verifica los datos del inicio de usuario
      */
-    function verificar($user, $pass) {  
+    function verificar($user) {  
   
-        $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ? and password = ?');
-        $query->execute([$user, md5($pass)]);
+        $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ?');
+        $query->execute([$user]);
+        
+        return $query;
+    }
+    
+    /**
+     * Verifica los datos del usuario
+     */
+    function verificarDatos($email) {  
+  
+        $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
+        $query->execute([$email]);
+        
+        return $query;
     }
 
 }

@@ -1,28 +1,31 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-09-28 23:26:58
+/* Smarty version 3.1.34-dev-7, created on 2020-10-01 23:49:26
   from 'C:\xampp\htdocs\Web2\tpe_web2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7255223c1db7_74253420',
+  'unifunc' => 'content_5f764ee64d7624_28341105',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7216e045b9f70a8ef63bb833cab0ef4a5868a112' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Web2\\tpe_web2\\templates\\header.tpl',
-      1 => 1601328412,
+      1 => 1601588953,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:head.tpl' => 1,
   ),
 ),false)) {
-function content_5f7255223c1db7_74253420 (Smarty_Internal_Template $_smarty_tpl) {
-?>    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+function content_5f764ee64d7624_28341105 (Smarty_Internal_Template $_smarty_tpl) {
+?>    <?php $_smarty_tpl->_subTemplateRender('file:head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Hotel 3sarro</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -47,5 +50,6 @@ function content_5f7255223c1db7_74253420 (Smarty_Internal_Template $_smarty_tpl)
               </ul>
             </div>
           </nav>
-    </header><?php }
+    </header>
+    <main class="container"> <!-- inicio del contenido principal --><?php }
 }

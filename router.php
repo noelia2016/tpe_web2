@@ -24,12 +24,13 @@
             $controller = new HomeController();
             $controller->mostrarHome();
             break;
+        /* operaciones de usuario */
         case 'login': 
             /* muestra al usuario la pantalla de login */
             $controller = new UsuarioController();
             $controller->login();
             break;
-        case 'verificar_inicio': 
+        case 'verificar_login': 
             /* verifica que el inicio de session sea correcto */
             $controller = new UsuarioController();
             $controller->verificarInicio();
@@ -37,11 +38,22 @@
         case 'registrar': 
             /* muestra el formulario de registro de usuario */
             $controller = new UsuarioController();
-            $controller->registroUser();
+            $controller->registrar();
             break; 
-        case 'registrar_user': 
-          
-            break; 
+        case 'verificar_registro': 
+            $controller = new UsuarioController();
+            $controller->verificar_registro();
+            break;
+        case 'actualizar_password': 
+            $controller = new UsuarioController();
+            $controller->actualizarPassword();
+            break;
+         case 'verificar_cambio_pass': 
+            $controller = new UsuarioController();
+            $controller->actualizar_pass();
+            break;
+
+        /* operaciones de vista home */
         case 'mostrar_categoria': 
             /* muestra los detalles de la categoria elegida */
             $controller = new CategoriaController();
@@ -59,6 +71,7 @@
             $controller = new HomeController();
             $controller->mostrarServicios();
             break;
+        /* operaciones de usuario administrador */
         case 'admhab': 
             $controller = new HabitacionController();
             $controller->mostrarHabitaciones();
