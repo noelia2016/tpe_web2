@@ -1,6 +1,6 @@
-documentosTIO/
-documentos_Noe/
+documentosTIO/*
+documentos_Noe/*
 database/*.txt
-templates_c/
-Disenio de base de datos.xlsx
+templates_c/*
+"Disenio de base de datos.xlsx"
 
