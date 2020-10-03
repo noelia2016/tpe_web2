@@ -37,6 +37,3 @@
  </section>
  </main>
  {include file='footer.tpl'}
- </body>
-
- </html>

@@ -77,15 +77,11 @@ switch ($params[0]) {
         $id = $params[1];
         $controller->editarHabitacion($id);
         break;
-    case 'actualiz_hab':
+    case 'insertar_hab':
         $controller = new HabitacionController();
-        $id = $params[1];
-        //$controller->actualizarHabitacion($id);
+        $controller->actualizarHabitacion();
         break;
-        case 'nueva_hab':
-            $controller = new HabitacionController();
-            $controller->crearHabitacion();
-    case 'eliminar_cat':
+      case 'eliminar_cat':
         $controller = new CategoriaController();
         $id = $params[1];
         $controller->eliminarCategoria($id);

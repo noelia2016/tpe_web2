@@ -10,12 +10,13 @@ class AdminHabitacionView
         $smarty->display('templates/admin.lista.hab.tpl');       
     }
 
-    function editarHabitacionVista($habitacion)
+    function editarHabitacionVista($habitacion, $categorias)
     {   
         $smarty = new Smarty(); 
         $smarty->assign('habitacion', $habitacion);
         //Completar opciones de estados de habitación posibles
         $smarty->assign('estado', array('ocupada','disponible','reservada'));
+        //asignar las categorias y mostrar seleccionadas
         //Indicar cual es el estado de la habitación que vamos a mostrar
         $smarty->assign('estado_selec', $habitacion->estado);
         $smarty->display('templates/admin.form.hab.tpl'); 
