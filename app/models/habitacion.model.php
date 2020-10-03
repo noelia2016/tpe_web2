@@ -53,7 +53,7 @@ class HabitacionModel {
 
         // Se envia la consulta
         $query = $this->db->prepare('
-            SELECT a.nro, a.capacidad, a.estado, a.categoria_id, 
+            SELECT a.id, a.nro, a.capacidad, a.estado, a.categoria_id, 
                    b.nombre as nombre_cat
             FROM habitacion a 
             join categoria b 
@@ -79,7 +79,7 @@ class HabitacionModel {
         $query->execute([$id]);
     }
     
-    function editarHabitacionMdl($id){
+    function actualizarHabitacion($id){
 
     }
 }

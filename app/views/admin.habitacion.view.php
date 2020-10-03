@@ -1,53 +1,30 @@
 <?php
+require_once('libs/smarty/libs/Smarty.class.php');
 
 class AdminHabitacionView
 {
-
     function mostrarHabitaciones($habitaciones)
     {
-        include 'templates/admin.header.php';
-        include 'templates/admin.lista.hab.header.php';
-
-        foreach ($habitaciones as $hab) {
-            echo "<tr>
-                    <td>
-                        $hab->nro  
-                    </td>    
-                    <td>
-                        $hab->capacidad 
-                    </td> 
-                    <td>
-                        $hab->nombre_cat 
-                    </td>
-                    <td>
-                        $hab->estado 
-                    </td> 
-                    <td>
-                        <a class='btn btn-danger btn-sm' href='eliminar_hab/$hab->id'>Eliminar
-                        </a>
-                        <a class='btn btn-info btn-sm' href='editar_hab/$hab->id'>Editar
-                        </a>
-                    </td> 
-                </tr>";
-        }
-        include 'templates/admin.lista.hab.footer.php';
-        include 'templates/footer.php';
+        $smarty = new Smarty(); 
+        $smarty->assign('habitaciones', $habitaciones);
+        $smarty->display('templates/admin.lista.hab.tpl');       
     }
 
     function editarHabitacionVista($habitacion)
     {   
-        include 'templates/admin.form.habitacion.php';
-        echo "
-            nro_habitacion.value = $habitacion->nro ; 
-            capacidad.value = $habitacion->capacidad  ;
-            categoria.value = $habitacion->nombre_cat ; 
-            estado.value = $habitacion->estado ;
-          
-        <a class='btn btn-info btn-sm' href='actualiz_hab/$habitacion->id'>Guardar</a>
-             
-         ";
-        
-        
-        include 'templates/footer.php';
+        $smarty = new Smarty(); 
+        $smarty->assign('habitacion', $habitacion);
+        //Completar opciones de estados de habitación posibles
+        $smarty->assign('estado', array('ocupada','disponible','reservada'));
+        //Indicar cual es el estado de la habitación que vamos a mostrar
+        $smarty->assign('estado_selec', $habitacion->estado);
+        $smarty->display('templates/admin.form.hab.tpl'); 
+    } 
+    function altaHabitacionVista()
+    {   
+        $smarty = new Smarty(); 
+        //Completar opciones de estados de habitación posibles
+        $smarty->assign('estado', array('ocupada','disponible','reservada'));
+        $smarty->display('templates/admin.form.hab.tpl'); 
     } 
 }
