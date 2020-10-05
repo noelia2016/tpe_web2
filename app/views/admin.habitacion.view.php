@@ -21,11 +21,23 @@ class AdminHabitacionView
         $smarty->assign('estado_selec', $habitacion->estado);
         $smarty->display('templates/admin.form.hab.tpl'); 
     } 
+    
     function altaHabitacionVista()
     {   
         $smarty = new Smarty(); 
         //Completar opciones de estados de habitación posibles
         $smarty->assign('estado', array('ocupada','disponible','reservada'));
         $smarty->display('templates/admin.form.hab.tpl'); 
+    }
+    
+    function editarHabitacionVista($habitacion,$categoria)
+    {   
+
+        $smarty = new Smarty();
+
+        $smarty->assign('habitacion', $habitacion);
+        $smarty->assign('categoria', $categoria);
+    
+        $smarty->display('templates/form_editar_habitacion.tpl');
     } 
 }

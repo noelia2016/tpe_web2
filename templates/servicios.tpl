@@ -1,5 +1,4 @@
-   {include 'header.tpl'}
-    <main class="container"> <!-- inicio del contenido principal -->
+    {include 'header.tpl'}
         
         {include 'carrusel.tpl'}
         <h1>Servicios</h1>
@@ -17,11 +16,12 @@
             <li>Beneficios exclusivos para huéspedes en los menúes de la carta del restó ( no incluye bebida).</li>
             <li>Sesión en camilla de jade de regalo para cada adulto.</li>
         </ul>
-
-        <p>Los precios de las habitaciones <span>rigen por noche</span>.</p>
-        <p><b><u>Check In:</u></b> 14:00 hs. Check Out 10:00 hs.</p>
-        <p>Las reservas se realizan telefónicamente o vía e-mail provisoriamente por 24 hs. hasta recibir el depósito o transferencia.</p>
-        <p><b><u>Financiación con tarjetas de crédito:</u></b> Tarjetas de Credito Visa, Mastercard, American Express y Nativa.</p>
- 
-     </main>
+        <div class="alert alert-dismissible alert-warning">
+            <h4 class="alert-heading">Importante!</h4>
+            <p class="mb-0">Los precios de las habitaciones <span>rigen por noche</span>.</p>
+            <p><b><u>Check In:</u></b> 14:00 hs. Check Out 10:00 hs.</p>
+            <p>Las reservas se realizan telefónicamente o vía e-mail provisoriamente por 24 hs. hasta recibir el depósito o transferencia.</p>
+            <p><b><u>Financiación con tarjetas de crédito:</u></b> Tarjetas de Credito Visa, Mastercard, American Express y Nativa.</p>
+        </div>
+        
     {include file='footer.tpl'}

@@ -25,3 +25,4 @@
             </div>
           </nav>
     </header>
+    <main class="container"> <!-- inicio del contenido principal -->
