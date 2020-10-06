@@ -20,7 +20,7 @@ class UsuarioModel {
     /**
      * Devuelve todas los usuarios que existen.
      */
-    function getAll() {
+    function obtenerUsuarios() {
 
         // Enviar la consulta 
         $query = $this->db->prepare('SELECT * FROM usuario');
@@ -73,18 +73,18 @@ class UsuarioModel {
         $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ?');
         $query->execute([$user]);
         
-        return $query;
+        return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
-     * Verifica los datos del usuario
+     * Verifica los datos del usuario para cambiar password
      */
     function verificarDatos($email) {  
   
         $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
         $query->execute([$email]);
         
-        return $query;
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 
 }

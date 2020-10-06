@@ -30,7 +30,7 @@ class UsuarioController {
      */
     function login(){
        // actualizo la vista
-       $this->view->login();
+       $this->view->login('');
         
     }
     
@@ -39,31 +39,40 @@ class UsuarioController {
      */
     function verificarInicio(){
        
-        $user = $_POST['user'];
+        $user = $_POST['usuario'];
         $pass = $_POST['password'];
-
-        // verifico campos obligatorios
-        if (empty($user) || empty($pass)) {
-            $this->view->showError('Faltan datos obligatorios');
-            die();
-        }
         
+        // verifico que el usuario exista
         $usuario = $this->model->verificar($user);
         
         /* verifico que los datos ingresados sean correctos */
         if ($usuario && $usuario->password == md5($pass)){
             // si no devuelve la mando a iniciar session nuevamente notificandolo
-            $this->view->showError('Los datos ingresados son incorrectos');
-            die();
+            // armo la sesion del usuario
+            session_start();
+            $_SESSION['ID_USER'] = $usuario->id;
+            $_SESSION['USER'] = $usuario->user;
+
+            // redirigimos al listado
+            header("Location: " . BASE_URL . 'admhab'); 
             
-            // DEBERIA HACERLO DE OTRA FORMA AQUI
-        }else{
-            // si paso todo bien entonces le muestro el panel de usuario
-            header("Location: " . BASE_URL); 
+        } else {
+            $this->view->login("Credenciales inválidas");
         }
-        
-        
+
     }
+    
+    /**
+     * Finaliza la sesion de usuario
+     */
+    function logout() {
+        
+        session_start();
+        session_destroy();
+        // redirecciono a login despues de cerrar sesion
+        header("Location: " . BASE_URL . 'login');
+    }
+
     
     /**
      * Muestro el formulario de registro de usuario
@@ -95,7 +104,7 @@ class UsuarioController {
         $id= $this->model->insertar($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password);
         if ($id){
             // si se registro correctamente redireciono al login
-            header("Location: " . login);
+            header("Location: " . BASE_URL . "login");
         }else{
             echo "Ocurrio un error vuelva a intentarlo jeje";
         }           
@@ -105,7 +114,7 @@ class UsuarioController {
     /**
      * Muestro el form de actualizacion de password
      */
-    function actualizarPassword($){
+    function actualizarPassword(){
        // actualizo la vista
        $this->view->actualizarPass();
         

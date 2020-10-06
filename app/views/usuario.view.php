@@ -5,9 +5,12 @@ class UsuarioView {
     /** 
         Muestra el formulario de login
     **/
-    function login() {
+    function login($mensaje) {
         
-        $smarty = new Smarty();    
+        $smarty = new Smarty();   
+        
+        $smarty->assign('mensaje', $mensaje);
+        
         $smarty->display('templates/form_login.tpl');
     }
     

@@ -11,16 +11,7 @@
                   <a class="nav-link" href="home">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="servicios">Servicios</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
-                </li>
-                <!--li class="nav-item">
                   <a class="nav-link" href="registrar" target="_blank">Registrarse</a>
-                </li-->
-                <li class="nav-item ml-auto">
-                  <a class="nav-link" href="login" target="_blank">Iniciar session</a>
                 </li>
               </ul>
             </div>
