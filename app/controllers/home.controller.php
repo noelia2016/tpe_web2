@@ -32,6 +32,14 @@ class HomeController {
         
         $this->view->mostrarServicios();
     }
+    
+    /**
+     * Muestra los servicios que ofrece al hotel husped
+     */
+    function mostrarContacto(){
+        
+        $this->view->mostrarContacto();
+    }
 
 }
 ?>

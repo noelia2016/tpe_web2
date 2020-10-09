@@ -19,7 +19,7 @@
         </div>
    </form>
    <span class="nav-item">
-      <a class="nav-link" href="#">Olvidaste credenciales</a>
+      <a class="nav-link" href="recuperar_password">Olvidaste credenciales</a>
    </span>
    {include 'footer.tpl'}
    

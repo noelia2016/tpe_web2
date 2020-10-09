@@ -44,15 +44,14 @@
             $controller = new UsuarioController();
             $controller->verificar_registro();
             break;
-        case 'actualizar_password': 
+        case 'recuperar_password': 
             $controller = new UsuarioController();
-            $controller->actualizarPassword();
+            $controller->recuperarPassword();
             break;
          case 'verificar_cambio_pass': 
             $controller = new UsuarioController();
             $controller->actualizar_pass();
             break;
-
         /* operaciones de vista home */
         case 'mostrar_categoria': 
             /* muestra los detalles de la categoria elegida */
@@ -70,6 +69,11 @@
             /* muestra los servicios que brinda el hotel */
             $controller = new HomeController();
             $controller->mostrarServicios();
+            break;
+        case 'contacto': 
+            /* muestra los datos de contacto */
+            $controller = new HomeController();
+            $controller->mostrarContacto();
             break;
         /* operaciones de usuario administrador */
         case 'admhab': 

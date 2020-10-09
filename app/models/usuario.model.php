@@ -39,7 +39,6 @@ class UsuarioModel {
         
         
         $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
-        var_dump($query);
         $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, md5($password), 1]);
 
         // Obtengo y devuelo el ID del usuario recientemente creado
@@ -55,14 +54,18 @@ class UsuarioModel {
   
         $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
         $query->execute([$id]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
      * Deshabilita el usuario temporalmete 
      */
     function bloquear($id) {
+        
        $query = $this->db->prepare('UPDATE usuario SET habilitado = 0 WHERE id = ?');
        $query->execute([$id]);
+       return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
@@ -85,6 +88,20 @@ class UsuarioModel {
         $query->execute([$email]);
         
         return $query->fetch(PDO::FETCH_OBJ);
+    }
+    
+     /**
+     * Deshabilita el usuario temporalmete 
+     */
+    function actualizarPass($passwordNueva,$id) {
+
+       $query = $this->db->prepare("UPDATE usuario SET password = ? WHERE id = ?");
+       $query->execute([md5($passwordNueva),$id]);
+       if ($query == TRUE){
+           return TRUE;
+       }else{
+           return FALSE;
+       }
     }
 
 }

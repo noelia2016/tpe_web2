@@ -11,7 +11,7 @@
                   <a class="nav-link" href="home">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="registrar" target="_blank">Registrarse</a>
+                  <a class="nav-link" href="registrar">Registrarse</a>
                 </li>
               </ul>
             </div>

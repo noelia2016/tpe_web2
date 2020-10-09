@@ -17,10 +17,26 @@ class UsuarioView {
     /** 
         Muestra el formulario para registrarse como usuario 
     **/
-    function registrar() {
+    function registrar($mensaje) {
         
-        $smarty = new Smarty(); 
+        $smarty = new Smarty();
+        
+        $smarty->assign('mensaje', $mensaje);
+
         $smarty->display('templates/form_registro.tpl');
+
+    }
+    
+    /** 
+        Muestra el formulario para cambiar contraseña 
+    **/
+    function actualizarPass($mensaje) {
+        
+        $smarty = new Smarty();
+        
+        $smarty->assign('mensaje', $mensaje);
+
+        $smarty->display('templates/form_actualizar_pass.tpl');
 
     }
     
