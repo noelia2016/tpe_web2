@@ -95,6 +95,7 @@ class HabitacionController
         header("Location: " . BASE_URL . "/admhab"); 
         
     }
+    
     function nuevaHabitacion()
     {
         // obtener los datos de las categorias del modelo

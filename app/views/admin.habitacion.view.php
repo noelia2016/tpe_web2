@@ -12,6 +12,7 @@ class AdminHabitacionView
 
     function editarHabitacionVista($habitacion, $lista_cat)
     {   
+
         $smarty = new Smarty(); 
         $smarty->debugging = true;
         $smarty->assign('habitacion', $habitacion);
@@ -26,12 +27,12 @@ class AdminHabitacionView
     }
 
     function altaHabitacionVista($lista_cat)
-
     {   
         $smarty = new Smarty(); 
         //Completar opciones de estados de habitación posibles
         $smarty->assign('estado', array('ocupada','disponible','reservada'));
         $smarty->display('templates/admin.form.hab.tpl'); 
+
     }
-    
+
 }
