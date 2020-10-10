@@ -42,10 +42,7 @@ class UsuarioController {
         $user = $_POST['usuario'];
         $pass = $_POST['password'];
         
-<<<<<<< HEAD
-=======
         // verifico que el usuario exista
->>>>>>> abm-user
         $usuario = $this->model->verificar($user);
         
         /* verifico que los datos ingresados sean correctos */
@@ -58,16 +55,9 @@ class UsuarioController {
 
             // redirigimos al listado
             header("Location: " . BASE_URL . 'admhab'); 
-            
-<<<<<<< HEAD
-            // DEBERIA HACERLO DE OTRA FORMA AQUI
-        }else{
-            // si paso todo bien entonces le muestro el panel de usuario
-            header("Location: " . BASE_URL); 
-=======
         } else {
             $this->view->login("Credenciales inválidas");
->>>>>>> abm-user
+
         }
 
     }
@@ -77,14 +67,10 @@ class UsuarioController {
      */
     function logout() {
         
-<<<<<<< HEAD
-        
-=======
         session_start();
         session_destroy();
         // redirecciono a login despues de cerrar sesion
         header("Location: " . BASE_URL . 'login');
->>>>>>> abm-user
     }
 
     
@@ -94,11 +80,7 @@ class UsuarioController {
      function registrar(){
          
        // actualizo la vista
-<<<<<<< HEAD
-       $this->view->registrar();
-=======
        $this->view->registrar('');
->>>>>>> abm-user
         
      }
      
@@ -194,8 +176,6 @@ class UsuarioController {
            echo "Los datos que ingreso no coinciden con los registrados jeje"; 
         }
         
-                  
-   
     }
     
 

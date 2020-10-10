@@ -24,18 +24,6 @@ class AdminHabitacionView
         $smarty->assign('estado_selec', $habitacion->estado);
         $smarty->display('templates/admin.form.edit.hab.tpl'); 
     }
-    
-    function editarHabitacionVista($habitacion,$categoria)
-    {   
-
-        $smarty = new Smarty();
-
-        $smarty->assign('habitacion', $habitacion);
-        $smarty->assign('categoria', $categoria);
-    
-        $smarty->display('templates/form_editar_habitacion.tpl');
-
-    } 
 
     function altaHabitacionVista($lista_cat)
 
