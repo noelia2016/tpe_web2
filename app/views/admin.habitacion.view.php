@@ -34,16 +34,4 @@ class AdminHabitacionView
         $smarty->display('templates/admin.form.hab.tpl'); 
     }
     
-    function editarHabitacionVista($habitacion,$categoria)
-    {   
-
-        $smarty = new Smarty();
-
-        $smarty->assign('habitacion', $habitacion);
-
-        //Completar opciones de categorias de habitación 
-        $smarty->assign('categorias', $lista_cat); 
-        $smarty->display('templates/admin.form.alta.hab.tpl'); 
-
-    } 
 }

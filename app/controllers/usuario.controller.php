@@ -105,7 +105,7 @@ class UsuarioController {
     /**
      * Muestro el form de actualizacion de password
      */
-    function actualizarPassword($){
+    function actualizarPassword(){
        // actualizo la vista
        $this->view->actualizarPass();
         
