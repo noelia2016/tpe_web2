@@ -43,16 +43,17 @@ input {
  https://www.colorschemer.com/roblox-color-codes/
  */
 
-.fondo_oscuro{
-    background-color: #883E3E !important; 
-}
- 
-a {
+ .fondo_oscuro{
+    background-color: #883E3E !important;
+    
+    
+ }
+ a{
     color: #EDEAEA !important;
     text-shadow: 1px 1px 3px #957977 !important;
     font-size: large;
-}
+ }
 
-.fondo_container {
+ .fondo_container{
      background-color: #D3BE96 !important;
-}
+ }

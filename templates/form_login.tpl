@@ -1,38 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <base href="{BASE_URL}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Tres Arroyos</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-</head>
-<body>
-
-    <main class="container"> <!-- inicio del contenido principal -->
-        
-        <form class='form-signin' action='verificar' method='POST'>
-            <h1 class='h3 mb-3 font-weight-normal'>Iniciar session</h1>
-            <div class="form-group">
-                <label for='inputEmail' class='sr-only'>Usuario:</label>
-                <input type='text' id='usuario' class='form-control' placeholder='Usuario' required autofocus>
+ {include 'header_login.tpl'}
+  <form class='form-signin' action='verificar_login' method='POST'>
+        <h1 class='h3 mb-3 font-weight-normal'>Iniciar session</h1>
+        {if isset($mensaje) && !empty($mensaje)}
+            <div class="alert alert-dismissible alert-info">
+              <strong>{$mensaje}</strong>
             </div>
-            <div class="form-group">
-                <label for='inputPassword' class='sr-only'>Password</label>
-                <input type='password' id='password' class='form-control' placeholder='Password' required>
-            </div>
-            <div class="form-group">
-                <button class='btn btn-lg btn-primary btn-block' type='submit'>Login</button>
-            </div>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-               <a href="">Olvidates tu password</a>
-            </small>
-        </form>
-        
-    </main>
-
-</body>
-</html> 
+        {/if}
+        <div class="form-group">
+            <label for='inputEmail' class='sr-only'>Usuario:</label>
+            <input type='text' name='usuario' id='usuario' class='form-control' placeholder='Usuario' required autofocus>
+        </div>
+        <div class="form-group">
+            <label for='inputPassword' class='sr-only'>Password</label>
+            <input type='password' name='password' id='password' class='form-control' placeholder='Password' required>
+        </div>
+        <div class="form-group">
+            <button class='btn btn-lg btn-primary btn-block' type='submit'>Login</button>
+        </div>
+   </form>
+   <span class="nav-item">
+      <a class="nav-link" href="recuperar_password">Olvidaste credenciales</a>
+   </span>
+   {include 'footer.tpl'}
+   

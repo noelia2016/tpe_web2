@@ -20,7 +20,7 @@ class UsuarioModel {
     /**
      * Devuelve todas los usuarios que existen.
      */
-    function getAll() {
+    function obtenerUsuarios() {
 
         // Enviar la consulta 
         $query = $this->db->prepare('SELECT * FROM usuario');
@@ -35,39 +35,73 @@ class UsuarioModel {
     /**
      * Inserta un nuevo usuario.
      */
-    function insertar($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
+    function insertar ($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
         
-        $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, users, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
+        
+        $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
         $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, md5($password), 1]);
 
         // Obtengo y devuelo el ID del usuario recientemente creado
         return $this->db->lastInsertId();
+        
+        /*INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`, `user`, `password`, `habilitado`) VALUES (NULL, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', MD5('noelia2020'), '1');*/
     }
     
     /**
      * Elimina el usuario
      */
-    function remove($id) {  
+    function eliminar($id) {  
   
         $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
         $query->execute([$id]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
      * Deshabilita el usuario temporalmete 
      */
     function bloquear($id) {
+        
        $query = $this->db->prepare('UPDATE usuario SET habilitado = 0 WHERE id = ?');
        $query->execute([$id]);
+       return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
-     * Elimina el usuario
+     * Verifica los datos del inicio de usuario
      */
-    function verificar($user, $pass) {  
+    function verificar($user) {  
   
-        $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ? and password = ?');
-        $query->execute([$user, md5($pass)]);
+        $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ?');
+        $query->execute([$user]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);;
+    }
+    
+    /**
+     * Verifica los datos del usuario para cambiar password
+     */
+    function verificarDatos($email) {  
+  
+        $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
+        $query->execute([$email]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+    
+     /**
+     * Deshabilita el usuario temporalmete 
+     */
+    function actualizarPass($passwordNueva,$id) {
+
+       $query = $this->db->prepare("UPDATE usuario SET password = ? WHERE id = ?");
+       $query->execute([md5($passwordNueva),$id]);
+       if ($query == TRUE){
+           return TRUE;
+       }else{
+           return FALSE;
+       }
     }
 
 }

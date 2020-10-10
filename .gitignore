@@ -2,6 +2,10 @@ documentosTIO/*
 documentos_Noe/*
 database/*.txt
 templates_c/*
+<<<<<<< HEAD
 "Disenio de base de datos.xlsx"
 
+=======
+'Disenio de base de datos.xlsx'
+>>>>>>> abm-user
 
