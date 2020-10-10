@@ -69,10 +69,23 @@ class CategoriaModel {
         // Se envia la consulta
         $query = $this->db->prepare('
         DELETE FROM categoria where id = ?'); 
-        var_dump($query);
-        var_dump($id);
-        die();
         $query->execute([$id]);
-}
+    }
+    //Obtener lista con los IDs de categorias
+    function obtenerIDsCategorias() {
+        $query = $this->db->prepare('SELECT id FROM categoria');
+        $query->execute();
+        $categoriasIDs = $query->fetchAll(PDO::FETCH_OBJ); 
+
+        return $categoriasIDs;
+    }
+    //Obtener lista con los nombres de categorias
+    function obtenerNombresCategorias() {
+        $query = $this->db->prepare('SELECT nombre FROM categoria');
+        $query->execute();
+        $nombresCat = $query->fetchAll(PDO::FETCH_OBJ); 
+        return $nombresCat;
+
+    }
     
 }

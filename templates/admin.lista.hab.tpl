@@ -1,5 +1,5 @@
  {include 'admin.header.tpl'}
- <section class="container fondo_container">
+ <section class="container-fluid fondo_container">
      <div class="row">
          <div class="col-12">
              <h2>Habitaciones</h2>
@@ -45,7 +45,7 @@
      </div>
 
      <div class="btn-group m-5">
-         <a class='btn btn-success btn-sm' href='nueva_hab'>Nueva habitación</a>
+         <a class='btn btn-success btn-sm' href='insertar_hab'>Nueva habitación</a>
      </div>
 
  </section>

@@ -1,5 +1,5 @@
  {include 'admin.header.tpl'}
- <section class="container fondo_container">
+ <section class="container-fluid fondo_container">
      <div class="row">
          <div class="col-12">
              <h2>Categorias de habitaciones</h2>
