@@ -33,7 +33,7 @@
 				</div>
             </div>
          </div>
-         <!--div class="col-md-2 col-sm-4 col-xs-3">
+         <div class="col-md-2 col-sm-4 col-xs-3">
          <div class="card mb-3">
             <h3 class="card-header">Estandar</h3>
               <div class="card-body">
@@ -56,6 +56,6 @@
               <div class="card-footer text-muted">
                 2 days ago
               </div>
-        </div-->
+        </div>
         
     {include file='footer.tpl'}
