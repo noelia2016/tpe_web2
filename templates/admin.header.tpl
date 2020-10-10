@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <base href="<?= BASE_URL ?>">
+  <base href="{BASE_URL}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema Hotelero - Admin</title>
@@ -22,16 +22,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Habitaciones<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="admcat">Categorias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="admhab">Habitaciones</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Reservas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Cerrar sesión</a>

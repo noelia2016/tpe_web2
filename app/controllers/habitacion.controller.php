@@ -48,10 +48,10 @@ class HabitacionController
     {
         // obtener los datos de una habitación del modelo
         $habitacion = $this->model->obtenerHabitacion($id);
-        $categorias = $this->modelCat->obtenerCategorias();
+        $lista_cat = $this->modelCat->obtenerCategorias();
         // actualizo la vista cargando los datos en el formulario de habitación
         if ($habitacion) {
-            $this->viewAdmin->editarHabitacionVista($habitacion, $categorias);
+            $this->viewAdmin->editarHabitacionVista($habitacion, $lista_cat);
         } else {
             //no se encontró la habitacion con ese id
         }
@@ -64,12 +64,43 @@ class HabitacionController
         return $this->model->eliminarHabitacionMdl($id);
     }
 
-    function actualizarHabitacion()
+    function guardarHabitacion()
     {
-        //si $_POST['$id_habitacion]') > 0 --> actualizar datos en modelo
-        //si id habitacion es 0 --> nueva habitacion
-        $id=$_POST['nombre'];
-        //pasar al modelo todos los datos en variables o json
-        //en el modelo se actualiza la tabla
+        $categoria_id = $_POST['id_categoria'];
+        $nro_habitacion = $_POST['nro_habitacion'];
+        $capacidad = $_POST['capacidad'];
+        $estado = $_POST['estado'];
+        $comodidades = $_POST['comodidades'];
+        $ubicacion = $_POST['ubicacion'];
+        
+          // verifico campos obligatorios
+        if (empty($categoria_id) || empty($nro_habitacion) || 
+            empty($capacidad) || empty($ubicacion)) {
+            //mensaje de aviso? 
+            die();
+        }
+        if ($_POST['id_habitacion'] > 0 && !empty($_POST['id_habitacion']) )
+        {   //actualizo los datos de una habitación existente
+            $id = $_POST['id_habitacion'] ;
+            $this->model->actualizarHabitacionMdl($id, $nro_habitacion, $estado,
+            $categoria_id, $capacidad, $comodidades, $ubicacion);
+        }
+        else
+        {
+            // inserto una nueva habitación en la DB
+            $id = $this->model->insertarHabitacionMdl($nro_habitacion, $estado,
+                  $categoria_id, $capacidad, $comodidades, $ubicacion);
+        }
+
+        // redirigimos a la lista
+        header("Location: " . BASE_URL . "/admhab"); 
+        
+    }
+    function nuevaHabitacion()
+    {
+        // obtener los datos de las categorias del modelo
+        $lista_cat = $this->modelCat->obtenerCategorias();
+        $this->viewAdmin->altaHabitacionVista($lista_cat);
+      
     }
 }
