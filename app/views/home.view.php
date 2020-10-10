@@ -32,4 +32,16 @@ class HomeView {
 
     }
     
+    /** 
+        Muestra la pagina de contactos para poder comunicarse con nosotros 
+    **/
+    function mostrarContacto() {
+        
+        
+        $smarty = new Smarty();
+    
+        $smarty->display('templates/contacto.tpl');
+
+    }
+    
 }

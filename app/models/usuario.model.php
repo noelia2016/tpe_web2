@@ -20,7 +20,7 @@ class UsuarioModel {
     /**
      * Devuelve todas los usuarios que existen.
      */
-    function getAll() {
+    function obtenerUsuarios() {
 
         // Enviar la consulta 
         $query = $this->db->prepare('SELECT * FROM usuario');
@@ -39,7 +39,6 @@ class UsuarioModel {
         
         
         $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
-        var_dump($query);
         $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, md5($password), 1]);
 
         // Obtengo y devuelo el ID del usuario recientemente creado
@@ -55,36 +54,55 @@ class UsuarioModel {
   
         $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
         $query->execute([$id]);
+        
+        return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
      * Deshabilita el usuario temporalmete 
      */
     function bloquear($id) {
+        
        $query = $this->db->prepare('UPDATE usuario SET habilitado = 0 WHERE id = ?');
        $query->execute([$id]);
+       return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
      * Verifica los datos del inicio de usuario
      */
+
     function verificar($user) {  
   
         $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ?');
         $query->execute([$user]);
         
-        return $query;
+        return $query->fetch(PDO::FETCH_OBJ);;
     }
     
     /**
-     * Verifica los datos del usuario
+     * Verifica los datos del usuario para cambiar password
      */
     function verificarDatos($email) {  
   
         $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
         $query->execute([$email]);
         
-        return $query;
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+    
+     /**
+     * Deshabilita el usuario temporalmete 
+     */
+    function actualizarPass($passwordNueva,$id) {
+
+       $query = $this->db->prepare("UPDATE usuario SET password = ? WHERE id = ?");
+       $query->execute([md5($passwordNueva),$id]);
+       if ($query == TRUE){
+           return TRUE;
+       }else{
+           return FALSE;
+       }
     }
 
 }

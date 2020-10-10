@@ -47,6 +47,7 @@ footer {
 
  .fondo_container{
      background-color: #D3BE96 !important;
+<<<<<<< HEAD
  }
 
 table,
@@ -83,3 +84,6 @@ select {
   padding: 5px;
 }
 
+=======
+ }
+>>>>>>> abm-user

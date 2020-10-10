@@ -57,7 +57,6 @@ class HabitacionController
         }
     }
 
-
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 

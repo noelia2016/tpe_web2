@@ -1,5 +1,10 @@
-    {include 'header.tpl'}
+    {include 'header_login.tpl'}
     <h1 class='h3 mb-3 font-weight-normal'>Registrar usuario:</h1>
+    {if isset($mensaje) && !empty($mensaje)}
+        <div class="alert alert-dismissible alert-info">
+          <strong>{$mensaje}</strong>
+        </div>
+    {/if}
     <form class='form-signin' id="form_registro" action='verificar_registro' method='POST'>
         <div class="form-group">
             <label for="nombre">Nombre:</label>
