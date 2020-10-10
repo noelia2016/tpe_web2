@@ -18,7 +18,7 @@ class UsuarioController {
      */
     function mostrarTodos(){
         // obtiene las diferentes categorias del modelo
-        $usuarios = $this->model->getAll();
+        $usuarios = $this->model->mostrarUsuarios();
 
        // actualizo la vista
        $this->view->mostrarUsuarios($usuarios);
