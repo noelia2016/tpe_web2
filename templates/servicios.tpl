@@ -8,7 +8,7 @@
         <p>Le ofrecemos todos los servicios y nuestra cálida y profesional atención para que su estadía sea inolvidable y desee regresar pronto.</p>
         <p>Todo pensado para que disfrute su estadía al máximo y desee volver pronto. Restó, cafetería, gimnasio, spa, sauna, piscina climatizada, sala de rélax, masajes y nuestra atención cálida y profesional. </p>
         
-        <h3><u>TARIFAS, PROMOS y RESERVAS</u></h3>
+        <!--h3><u>TARIFAS, PROMOS y RESERVAS</u></h3>
         <p>Las tarifas incluyen:</p>
         <ul>
             <li>Noches de alojamiento (precio por hab. no por persona).</li>
@@ -23,7 +23,7 @@
             <p><b><u>Check In:</u></b> 14:00 hs. Check Out 10:00 hs.</p>
             <p>Las reservas se realizan telefónicamente o vía e-mail provisoriamente por 24 hs. hasta recibir el depósito o transferencia.</p>
             <p><b><u>Financiación con tarjetas de crédito:</u></b> Tarjetas de Credito Visa, Mastercard, American Express y Nativa.</p>
-        </div>
+        </div-->
 
     </div>
            
@@ -44,5 +44,5 @@
         <p>Las reservas se realizan telefónicamente o vía e-mail provisoriamente por 24 hs. hasta recibir el depósito o transferencia.</p>
         <p><b><u>Financiación con tarjetas de crédito:</u></b> Tarjetas de Credito Visa, Mastercard, American Express y Nativa.</p>
     </div>
-        
+</main>      
     {include file='footer.tpl'}

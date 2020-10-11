@@ -3,17 +3,23 @@
 include_once 'app/models/categoria.model.php';
 include_once 'app/views/admin.categoria.view.php';
 include_once 'app/views/categoria.view.php';
+include_once 'app/helpers/sesion.helper.php';
 
 class CategoriaController {
 
     private $model;
     private $view; 
     private $viewAdmin;
+    private $sesionHelper;
 
     function __construct() {
         $this->model = new CategoriaModel();
         $this->view = new CategoriaView();
         $this->viewAdmin = new AdminCategoriaView();
+        $this->authHelper = new SesionHelper();
+
+        // verifico que el usuario esté logueado siempre
+        $this->authHelper->checkLogged();
     }
 
     /**

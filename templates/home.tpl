@@ -58,5 +58,5 @@
                 2 days ago
               </div>
         </div>
-       
+</main>      
     {include file='footer.tpl'}
