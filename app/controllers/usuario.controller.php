@@ -57,7 +57,6 @@ class UsuarioController {
             header("Location: " . BASE_URL . 'admhab'); 
         } else {
             $this->view->login("Credenciales inválidas");
-
         }
 
     }
@@ -104,23 +103,17 @@ class UsuarioController {
         $id= $this->model->insertar($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password);
         if ($id){
             // si se registro correctamente redireciono al login
-
-            header("Location: " . BASE_URL . "login");
+            $this->view->login("Se registro correctamente. Ingrese sus datos por favor.");
         }else{
-            echo "Ocurrio un error vuelva a intentarlo jeje";
+            // si no se registra en la base de datos
+            $this->view->registrar("Ups!! Ocurrio un error vuelva a intentarlo.");
         }           
    
     }   
     
     /**
      * Muestro el form de actualizacion de password
-     */
-
-    function actualizarPassword(){
-       // actualizo la vista
-       $this->view->actualizarPass();
-    }
-    
+     */  
     function recuperarPassword(){
        // actualizo la vista
        $this->view->actualizarPass('');      
@@ -159,21 +152,6 @@ class UsuarioController {
         }else{
             // si el email y usuario no coinciden para los datos registrados de un usuario
            $this->view->actualizarPass("Los datos ingresados no coinciden con los registrados. Verifique y vuelve a intentarlo."); 
-        }
-        
-        // cuando cambie a bcrypt password_verify($password, $user->password)
-        if ($datos && $datos->password = md5(passAnt)){
-            // si los datos ingresados existen realizo la modificacion de la pass
-            // hago el insert de datos en la base de datos
-            $id= $this->model->actualizarPass($password,$id);
-            if ($id){
-                // si se registro correctamente redireciono al login
-                header("Location: " . BASE_URL . "login");
-            }else{
-                echo "Ocurrio un error vuelva a intentarlo jeje";
-            } 
-        }else{
-           echo "Los datos que ingreso no coinciden con los registrados jeje"; 
         }
         
     }
