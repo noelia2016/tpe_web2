@@ -19,8 +19,8 @@ class AdminCategoriaView
 
     function editarCategoriaVista($categoria){
         $smarty = new Smarty(); 
-        $smarty->debugging = true;
         $smarty->assign('categoria', $categoria);
+        //$smarty->assign('id_categoria', $categoria->id);
         $smarty->display('templates/admin.form.edit.cat.tpl'); 
     }
 }

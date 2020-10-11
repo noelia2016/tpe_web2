@@ -7,11 +7,11 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group-row">
                     <label>Nro de habitación:</label>
-                    <input name="nro_habitacion" type="number" class="form-control" value = ' '>
+                    <input name="nro_habitacion" type="number" class="form-control" value = ''>
                     <label>Capacidad de personas:</label>
-                    <input name="capacidad" type="number" class="form-control" value = ' '>
+                    <input name="capacidad" type="number" class="form-control" value = ''>
                     <label>Comodidades:</label>
-                    <input name="comodidades" type="text" class="form-control" value = ' '>
+                    <input name="comodidades" type="text" class="form-control" value = ''>
                 </div>
             </div>
             <div class="col-12 col-sm-6">
@@ -30,7 +30,7 @@
                         {html_options values=$estado output=$estado}
                     </select>
                     <label>Ubicación:</label>
-                    <input name="ubicacion" type="text" class="form-control" value = ' '>
+                    <input name="ubicacion" type="text" class="form-control" value = ''>
                 </div>
             </div>
         </div>

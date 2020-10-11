@@ -9,7 +9,8 @@
                     <label>Nombre</label>
                     <input type="text" name="nombre" class="form-control">
                     <label>Descripción</label>
-                    <textarea name="descripcion" class="form-control" rows="5"></textarea>
+                    <textarea name="descripcion" class="form-control" rows="6" wrap="hard">
+                    </textarea>
                 </div>
             </div>
         </div>

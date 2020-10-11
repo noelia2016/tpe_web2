@@ -23,7 +23,7 @@ class CategoriaModel {
     function obtenerCategorias() {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT * FROM categoria');
+        $query = $this->db->prepare('SELECT * FROM categoria order by id');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 
@@ -42,7 +42,7 @@ class CategoriaModel {
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 
-        $categoria = $query->fetchAll(PDO::FETCH_OBJ); 
+        $categoria = $query->fetch(PDO::FETCH_OBJ); 
 
         return $categoria;
     }

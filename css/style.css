@@ -39,7 +39,7 @@ footer {
     
     
  }
- a{
+ a {
     color: #EDEAEA !important;
     text-shadow: 1px 1px 3px #957977 !important;
     font-size: large;
@@ -77,11 +77,5 @@ th {
   border: 1px solid black;
 }
 
-textarea,
-input, 
-select {
-  border-radius: 5px;
-  padding: 5px;
-}
 
 

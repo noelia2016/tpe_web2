@@ -8,7 +8,6 @@
                 <div class="form-group-row">
                 {if $habitacion}
                     <input type="hidden" name = "id_habitacion" value={$habitacion->id}>
-                    {* despues de editar debe tener la nueva seleccionada, por si cambió *}
                 {/if}
                     <label>Nro de habitación:</label>
                     <input name="nro_habitacion" type="number" class="form-control" 
@@ -23,12 +22,12 @@
                     {if $habitacion} 
                         value={$habitacion->capacidad}
                     {else}
-                        value = ' '
+                        value = ''
                     {/if}
                     >
                     <label>Comodidades:</label>
                     <input name="comodidades" type="text" class="form-control" 
-                        value = {$habitacion->comodidades}>
+                        value = "{$habitacion->comodidades}">
                 </div>
             </div>
             <div class="col-12 col-sm-6">
@@ -57,7 +56,7 @@
                     </select>
                     <label>Ubicación:</label>
                     <input name="ubicacion" type="text" class="form-control" 
-                        value = {$habitacion->ubicacion}>
+                        value = "{$habitacion->ubicacion}">
                 </div>
             </div>
         </div>

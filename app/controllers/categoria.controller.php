@@ -42,10 +42,9 @@ class CategoriaController {
     }   
         
     function eliminarCategoria($id) {
-        // eliminar una habitación 
         $this->model->eliminarCategoriaMdl($id);
         // redirigimos a la lista
-        header("Location: " . BASE_URL . "/admcat"); 
+        header("Location: " . BASE_URL . "admcat"); 
        
     }
 
@@ -62,8 +61,7 @@ class CategoriaController {
         }
     }
     function guardarCategoria(){
-        {
-            $nombre = $_POST['nombre'];
+        {   $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             
               // verifico campos obligatorios
@@ -71,7 +69,7 @@ class CategoriaController {
                 //mensaje de aviso? 
                 die();
             }
-            if ($_POST['id_categoria'] > 0 && !empty($_POST['id_categoria']) )
+            if (!empty($_POST['id_categoria']) )
             {   //actualizo los datos de una categoria existente
                 $id = $_POST['id_categoria'] ;
                 $this->model->actualizarCategoriaMdl($id, $nombre, $descripcion);
@@ -83,7 +81,7 @@ class CategoriaController {
             }
     
             // redirigimos a la lista
-            header("Location: " . BASE_URL . "/admcat"); 
+            header("Location: " . BASE_URL . "admcat"); 
             
         }
     }
