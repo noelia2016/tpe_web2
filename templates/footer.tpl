@@ -1,4 +1,3 @@
-
         <footer class="bg-dark"> 
             <p>Hotel 3sarro - Tel. 2983-424242 - Tres Arroyos</p>
             <p>Derechos reservador por Carrizo, Noelia y Gherbi, Andrea - UNICEN  Web II 2020</p>

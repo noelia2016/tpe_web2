@@ -48,4 +48,5 @@
             <input type="submit" id="btn_agregar" class="btn btn-primary" value="<< AGREGAR >>"/>
        </div>
     </form>
-    {include 'footer.tpl'}
+</main>
+{include 'footer.tpl'}

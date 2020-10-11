@@ -21,6 +21,6 @@
    <span class="nav-item">
       <a class="nav-link" href="recuperar_password">Olvidaste credenciales</a>
    </span>
-
+</main>
    {include 'footer.tpl'}
    

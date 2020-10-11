@@ -34,6 +34,11 @@ $params = explode('/', $action);
             $controller = new UsuarioController();
             $controller->verificarInicio();
             break; 
+        case 'logout': 
+            /* muestra al usuario la pantalla de login luego de cerrar sesion */
+            $controller = new UsuarioController();
+            $controller->logout();
+            break;
         case 'registrar': 
             /* muestra el formulario de registro de usuario */
             $controller = new UsuarioController();

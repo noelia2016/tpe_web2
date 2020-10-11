@@ -4,13 +4,15 @@ include_once 'app/models/habitacion.model.php';
 include_once 'app/views/admin.habitacion.view.php';
 include_once 'app/views/habitacion.view.php';
 include_once 'app/models/categoria.model.php';
+include_once 'app/helpers/sesion.helper.php';
 
 class HabitacionController
 {
 
     private $model;
     private $view, $viewAdmin;
-    private $modelCat ;
+    private $modelCat;
+    private $sesionHelper;
 
     function __construct()
     {
@@ -18,6 +20,11 @@ class HabitacionController
         $this->modelCat = new CategoriaModel();
         $this->viewAdmin = new AdminHabitacionView();
         $this->view = new HabitacionView();
+        $this->authHelper = new SesionHelper();
+
+        // verifico que el usuario esté logueado siempre
+        $this->authHelper->checkLogged();
+
     }
 
     function mostrarHabitaciones()
