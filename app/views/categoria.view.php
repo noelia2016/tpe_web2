@@ -25,6 +25,7 @@ class CategoriaView {
     function mostrarCategoria ($categoria, $habitaciones){
         
         $smarty = new Smarty();
+        $smarty->debugging = true;
         $smarty->assign('categoria', $categoria);
         $smarty->assign('habitaciones', $habitaciones);
         $smarty->display('templates/ver_categoria.tpl');

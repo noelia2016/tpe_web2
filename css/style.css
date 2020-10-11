@@ -48,7 +48,14 @@ footer {
  .fondo_container{
      background-color: #D3BE96 !important;
  }
-
+#recuperar-pass, #link-nombre-cat a {
+  color: #181717 !important;
+  text-shadow: 1px 1px 3px #957977 !important;
+  font-size: x-large;
+}
+#recuperar-pass {
+  font-size: large;
+}
 table,
 td,
 #tablaHabitaciones.table thead th,
