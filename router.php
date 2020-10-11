@@ -90,7 +90,17 @@ $params = explode('/', $action);
             break;
         case 'editar_hab':
             $controller = new HabitacionController();
-            $controller->crearHabitacion();
+            $id = $params[1];
+            $controller->editarHabitacion($id);
+            break;
+        case 'insertar_hab':
+            $controller = new HabitacionController();
+            $controller->nuevaHabitacion();
+            break;
+        case 'guardar_hab':
+            $controller = new HabitacionController();
+            $controller->guardarHabitacion();
+            break;    
         case 'eliminar_cat':
             $controller = new CategoriaController();
             $id = $params[1];
