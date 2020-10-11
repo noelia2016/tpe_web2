@@ -30,8 +30,9 @@ class AdminHabitacionView
     {   
         $smarty = new Smarty(); 
         //Completar opciones de estados de habitación posibles
+        $smarty->assign('categorias', $lista_cat); 
         $smarty->assign('estado', array('ocupada','disponible','reservada'));
-        $smarty->display('templates/admin.form.hab.tpl'); 
+        $smarty->display('templates/admin.form.alta.hab.tpl'); 
 
     }
 
