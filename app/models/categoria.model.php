@@ -23,7 +23,7 @@ class CategoriaModel {
     function obtenerCategorias() {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT * FROM categoria');
+        $query = $this->db->prepare('SELECT * FROM categoria order by id');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 
@@ -42,7 +42,7 @@ class CategoriaModel {
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 
-        $categoria = $query->fetchAll(PDO::FETCH_OBJ); 
+        $categoria = $query->fetch(PDO::FETCH_OBJ); 
 
         return $categoria;
     }
@@ -71,21 +71,20 @@ class CategoriaModel {
         DELETE FROM categoria where id = ?'); 
         $query->execute([$id]);
     }
-    //Obtener lista con los IDs de categorias
-    function obtenerIDsCategorias() {
-        $query = $this->db->prepare('SELECT id FROM categoria');
-        $query->execute();
-        $categoriasIDs = $query->fetchAll(PDO::FETCH_OBJ); 
-
-        return $categoriasIDs;
-    }
-    //Obtener lista con los nombres de categorias
-    function obtenerNombresCategorias() {
-        $query = $this->db->prepare('SELECT nombre FROM categoria');
-        $query->execute();
-        $nombresCat = $query->fetchAll(PDO::FETCH_OBJ); 
-        return $nombresCat;
-
+    
+    function actualizarCategoriaMdl($id, $nombre, $descripcion){
+        $query = $this->db->prepare('
+        UPDATE categoria SET nombre = ?,  descripcion = ? 
+            WHERE id = ?');
+        $query->execute([$nombre, $descripcion, $id]);  
     }
     
+    function insertarCategoriaMdl($nombre, $descripcion){
+        $query = $this->db->prepare('
+        INSERT INTO categoria (nombre, descripcion )
+                VALUES ( ? , ? )');
+        $query->execute([$nombre, $descripcion]);
+        return $this->db->lastInsertId();
+    }
+   
 }

@@ -67,7 +67,9 @@ class HabitacionController
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 
-        return $this->model->eliminarHabitacionMdl($id);
+        $this->model->eliminarHabitacionMdl($id);
+        // redirigimos a la lista
+        header("Location: " . BASE_URL . "admhab");
     }
 
     function guardarHabitacion()
@@ -99,7 +101,7 @@ class HabitacionController
         }
 
         // redirigimos a la lista
-        header("Location: " . BASE_URL . "/admhab"); 
+        header("Location: " . BASE_URL . "admhab"); 
         
     }
     

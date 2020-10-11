@@ -10,7 +10,7 @@
         
         <ul class="list-group mt-5">
         {foreach from=$categorias item=cat}
-            <li class="list-group-item">
+            <li class="list-group-item" id="link-nombre-cat">
                 <a href="mostrar_categoria/{$cat->id}">{$cat->nombre}</a>
             </li>
         {/foreach}

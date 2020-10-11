@@ -39,7 +39,7 @@ footer {
     
     
  }
- a{
+ a {
     color: #EDEAEA !important;
     text-shadow: 1px 1px 3px #957977 !important;
     font-size: large;
@@ -47,12 +47,19 @@ footer {
 
  .fondo_container{
      background-color: #D3BE96 !important;
-<<<<<<< HEAD
  }
-
+#recuperar-pass, #link-nombre-cat a {
+  color: #181717 !important;
+  text-shadow: 1px 1px 3px #957977 !important;
+  font-size: x-large;
+}
+#recuperar-pass {
+  font-size: large;
+}
 table,
 td,
-#tablaHabitaciones.table thead th {
+#tablaHabitaciones.table thead th,
+#tablaCategorias.table thead th {
   border: 1px solid black !important;
 }
 
@@ -77,13 +84,5 @@ th {
   border: 1px solid black;
 }
 
-textarea,
-input, 
-select {
-  border-radius: 5px;
-  padding: 5px;
-}
 
-=======
- }
->>>>>>> abm-user
+

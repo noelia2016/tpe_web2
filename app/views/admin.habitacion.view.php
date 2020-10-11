@@ -14,7 +14,7 @@ class AdminHabitacionView
     {   
 
         $smarty = new Smarty(); 
-        $smarty->debugging = true;
+        //$smarty->debugging = true;
         $smarty->assign('habitacion', $habitacion);
         //asignar las categorias y mostrar seleccionada
         $smarty->assign('categorias', $lista_cat); 
@@ -23,7 +23,7 @@ class AdminHabitacionView
         $smarty->assign('estado', array('ocupada','disponible','reservada'));
         //Indicar cual es el estado de la habitación que vamos a mostrar
         $smarty->assign('estado_selec', $habitacion->estado);
-        $smarty->display('templates/admin.form.edit.hab.tpl'); 
+        $smarty->display('templates/admin.form.edit.habit.tpl'); 
     }
 
     function altaHabitacionVista($lista_cat)
@@ -32,7 +32,7 @@ class AdminHabitacionView
         //Completar opciones de estados de habitación posibles
         $smarty->assign('categorias', $lista_cat); 
         $smarty->assign('estado', array('ocupada','disponible','reservada'));
-        $smarty->display('templates/admin.form.alta.hab.tpl'); 
+        $smarty->display('templates/admin.form.alta.habit.tpl'); 
 
     }
 

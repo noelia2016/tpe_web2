@@ -32,7 +32,7 @@
                   <a class="nav-link" href="registrar" target="_blank">Registrarse</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="login" target="_blank">Iniciar session</a>
+                  <a class="nav-link" href="login" target="_blank">Iniciar sesión</a>
                 </li>
               </ul>
             </div>
