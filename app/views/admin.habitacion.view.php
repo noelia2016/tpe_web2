@@ -14,7 +14,7 @@ class AdminHabitacionView
     {   
 
         $smarty = new Smarty(); 
-        $smarty->debugging = true;
+        //$smarty->debugging = true;
         $smarty->assign('habitacion', $habitacion);
         //asignar las categorias y mostrar seleccionada
         $smarty->assign('categorias', $lista_cat); 

@@ -44,6 +44,47 @@ class CategoriaController {
     function eliminarCategoria($id) {
         // eliminar una habitación 
         $this->model->eliminarCategoriaMdl($id);
+        // redirigimos a la lista
+        header("Location: " . BASE_URL . "/admcat"); 
        
+    }
+
+    function nuevaCategoria() {
+        $this->viewAdmin->altaCategoriaVista();
+    }
+
+    function editarCategoria($id){
+        $categoria = $this->model->obtenerCategoria($id);
+        if ($categoria) {
+            $this->viewAdmin->editarCategoriaVista($categoria);
+        } else {
+            //no se encontró la categoria con ese id
+        }
+    }
+    function guardarCategoria(){
+        {
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
+            
+              // verifico campos obligatorios
+            if (empty($nombre) || empty($descripcion)) {
+                //mensaje de aviso? 
+                die();
+            }
+            if ($_POST['id_categoria'] > 0 && !empty($_POST['id_categoria']) )
+            {   //actualizo los datos de una categoria existente
+                $id = $_POST['id_categoria'] ;
+                $this->model->actualizarCategoriaMdl($id, $nombre, $descripcion);
+            }
+            else
+            {
+                // inserto una nueva categoria en la DB
+                $id = $this->model->insertarCategoriaMdl($nombre, $descripcion);
+            }
+    
+            // redirigimos a la lista
+            header("Location: " . BASE_URL . "/admcat"); 
+            
+        }
     }
 }

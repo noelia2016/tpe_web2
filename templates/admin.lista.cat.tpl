@@ -9,6 +9,7 @@
                          <tr>
                              <th>Nombre</th>
                              <th>Descripción</th>
+                             <th>Acciones</th>
                          </tr>
                      </thead>
                      <tbody id="tabla-Body-categorias">
@@ -33,6 +34,9 @@
              </div>
 
          </div>
+     </div>
+     <div class="btn-group m-5">
+         <a class='btn btn-success btn-sm' href='insertar_cat'>Nueva categoria</a>
      </div>
  </section>
  </main>
