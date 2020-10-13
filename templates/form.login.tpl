@@ -1,4 +1,4 @@
-    {include 'header_login.tpl'}
+    {include 'header.login.tpl'}
     <div class="mt-5 w-25 mx-auto">
       <form class='form-signin' action='verificar_login' method='POST'>
             <h1 class='h3 mb-3 font-weight-normal'>Iniciar session</h1>

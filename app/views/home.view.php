@@ -53,7 +53,7 @@ class HomeView {
         $smarty->debugging = true;
         $smarty->assign('categoria', $categoria);
         $smarty->assign('habitaciones', $habitaciones);
-        $smarty->display('templates/ver_categoria.tpl');
+        $smarty->display('templates/ver.categoria.tpl');
 
     }
     
@@ -66,7 +66,7 @@ class HomeView {
 
         $smarty->assign('habitacion', $habitacion);
     
-        $smarty->display('templates/ver_habitacion.tpl');
+        $smarty->display('templates/ver.habitacion.tpl');
     }
     
     /**

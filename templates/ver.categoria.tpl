@@ -4,10 +4,8 @@
     
     {if !empty($categoria)}
         {* si hay detalles de la categoria *}
-        {foreach from=$categoria item=cat}
-            <h1>{$cat->nombre}</h1>
-            <p>{$cat->descripcion}</p>
-        {/foreach}
+        <h1>{$categoria->nombre}</h1>
+        <p>{$categoria->descripcion}</p>
     {else}
         <p>No hay ningun detalle de categoria para mostrar.</p>
     {/if}

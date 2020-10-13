@@ -10,8 +10,7 @@
                     <label>Nombre</label>
                     <input name="nombre" type="text" class="form-control" value="{$categoria->nombre}">
                     <label>Descripción</label>
-                    <textarea name="descripcion" class="form-control" rows="6" wrap="hard">
-                         {$categoria->descripcion} 
+                    <textarea name="descripcion" class="form-control" rows="6" wrap="hard">{$categoria->descripcion} 
                     </textarea>
                 </div>
             </div>

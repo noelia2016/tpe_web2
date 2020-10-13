@@ -1,6 +1,6 @@
 {include 'head.tpl'}
   <header>
-    <nav class="navbar navbar-expand-lg bg-light fondo_oscuro">
+    <nav class="navbar navbar-expand-lg fondo_oscuro">
       <a class="navbar-brand" href="admhab">Sistema Hotelero</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,4 +19,4 @@
   </header>
 
   <main class="container fondo_container pt-5">
-    <!-- inicio del contenido pricipal -->
+    <!-- inicio del contenido principal -->

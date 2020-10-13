@@ -11,7 +11,7 @@ class UsuarioView {
         
         $smarty->assign('mensaje', $mensaje);
         
-        $smarty->display('templates/form_login.tpl');
+        $smarty->display('templates/form.login.tpl');
     }
     
     /** 
@@ -23,7 +23,7 @@ class UsuarioView {
         
         $smarty->assign('mensaje', $mensaje);
 
-        $smarty->display('templates/form_registro.tpl');
+        $smarty->display('templates/form.registro.tpl');
 
     }
     
@@ -36,7 +36,7 @@ class UsuarioView {
         
         $smarty->assign('mensaje', $mensaje);
 
-        $smarty->display('templates/form_actualizar_pass.tpl');
+        $smarty->display('templates/form.actualizar.pass.tpl');
 
     }
     

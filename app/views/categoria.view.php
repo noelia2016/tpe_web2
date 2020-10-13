@@ -14,8 +14,6 @@ class CategoriaView {
         $smarty->assign('categorias', $categorias);
     
         $smarty->display('templates/categorias.tpl');
-        
-        include 'templates/header.php';
 
     }
     
@@ -28,7 +26,7 @@ class CategoriaView {
         $smarty->debugging = true;
         $smarty->assign('categoria', $categoria);
         $smarty->assign('habitaciones', $habitaciones);
-        $smarty->display('templates/ver_categoria.tpl');
+        $smarty->display('templates/ver.categoria.tpl');
 
     }
     
