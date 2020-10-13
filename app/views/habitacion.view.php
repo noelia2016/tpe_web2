@@ -13,7 +13,7 @@ class HabitacionView {
 
         $smarty->assign('habitacion', $habitacion);
     
-        $smarty->display('templates/ver_habitacion.tpl');
+        $smarty->display('templates/ver.habitacion.tpl');
     }
     
 

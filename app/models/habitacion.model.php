@@ -43,7 +43,7 @@ class HabitacionModel {
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 
-        $habitacion = $query->fetchAll(PDO::FETCH_OBJ); 
+        $habitacion = $query->fetch(PDO::FETCH_OBJ); 
 
         return $habitacion;
     }

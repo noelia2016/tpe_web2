@@ -5,20 +5,18 @@
     <h3>Habitacion</h3>
     {if !empty($habitacion)}
         <ul class="list-group mt-5">
-        {foreach from=$habitacion item=hab}
             <li class="list-group-item">
-                Habitacion N {$hab->nro} - {$hab->ubicacion}
+                Habitacion N {$habitacion->nro} - {$habitacion->ubicacion}
             </li>
             <li class="list-group-item">
-                Comodidades: {$hab->comodidades} 
+                Comodidades: {$habitacion->comodidades} 
             </li>
             <li class="list-group-item">
-                Capacidad: {$hab->capacidad} 
+                Capacidad: {$habitacion->capacidad} 
             </li>
             <li class="list-group-item">
-                Estado: {$hab->estado} 
+                Estado: {$habitacion->estado} 
             </li>
-        {/foreach}
         </ul> 
     {else}
         {* en caso que no se dispongan de datos a mostrar notifico *}

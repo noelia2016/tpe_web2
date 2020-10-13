@@ -11,7 +11,8 @@
                     <label>Capacidad de personas:</label>
                     <input name="capacidad" type="number" class="form-control" value = ''>
                     <label>Comodidades:</label>
-                    <input name="comodidades" type="text" class="form-control" value = ''>
+                    <textarea name="comodidades" class="form-control" rows="3" wrap="hard">
+                    </textarea>
                 </div>
             </div>
             <div class="col-12 col-sm-6">

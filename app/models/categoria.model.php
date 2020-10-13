@@ -42,7 +42,7 @@ class CategoriaModel {
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 
-        $categoria = $query->fetchAll(PDO::FETCH_OBJ); 
+        $categoria = $query->fetch(PDO::FETCH_OBJ); 
 
         return $categoria;
     }
