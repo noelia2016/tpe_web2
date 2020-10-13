@@ -44,4 +44,29 @@ class HomeView {
 
     }
     
+    /** 
+     *  Muestra la categoria elegida con sus detalles y habitaciones que posee asociadas
+    **/
+    function mostrarCategoria ($categoria, $habitaciones){
+        
+        $smarty = new Smarty();
+        $smarty->debugging = true;
+        $smarty->assign('categoria', $categoria);
+        $smarty->assign('habitaciones', $habitaciones);
+        $smarty->display('templates/ver_categoria.tpl');
+
+    }
+    
+    /**
+     * Imprime los detalles de una habitacion
+     */
+    function mostrarDetalleHabitacion($habitacion) {
+        
+        $smarty = new Smarty();
+
+        $smarty->assign('habitacion', $habitacion);
+    
+        $smarty->display('templates/ver_habitacion.tpl');
+    }
+    
 }

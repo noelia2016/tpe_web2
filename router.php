@@ -59,13 +59,13 @@ switch ($params[0]) {
     /* operaciones de vista home */
     case 'mostrar_categoria':
         /* muestra los detalles de la categoria elegida */
-        $controller = new CategoriaController();
+        $controller = new HomeController();
         $id = $params[1];
         $controller->mostrarCategoria($id);
         break;
     case 'mostrar_habitacion':
         /* muestra los detalles de la habitacion elegida */
-        $controller = new HabitacionController();
+        $controller = new HomeController();
         $id = $params[1];
         $controller->mostrarHabitacion($id);
         break;
