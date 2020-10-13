@@ -49,11 +49,19 @@ class HomeController {
      * Imprime los detalles de la categoria con las habitaciones que dispone
      */
     function mostrarCategoria($id) {
-        // obtiene las diferentes categorias del modelo
-        $categoria = $this->modelC->obtenerCategoria($id);
-        $habitaciones = $this->modelC->obtenerHabitacionesdeCategoria($id);
-       // actualizo la vista
-       $this->viewC->mostrarCategoria($categoria, $habitaciones);
+        
+       if (is_numeric($id)){
+            // obtiene los detalles de la categoria elegida
+            $categoria = $this->modelC->obtenerCategoria($id);
+            // obtengo las habitaciones asociadas a la categoria elegida
+            $habitaciones = $this->modelC->obtenerHabitacionesdeCategoria($id);
+            // actualizo la vista
+            $this->viewC->mostrarCategoria($categoria, $habitaciones);
+       }else{
+           // si no viene un numero por parametro
+           $camino='home';
+           $this->view->pantallaDeError($camino);
+       }
 
     }  
     
@@ -63,13 +71,15 @@ class HomeController {
     function mostrarHabitacion($id)
     {
 
-        $habitacion = $this->modelH->mostrarHabitacion($id);
+        if (is_numeric($id)){
+            $habitacion = $this->modelH->mostrarHabitacion($id);
         
-        // actualizo la vista
-        if ($habitacion) {
+            // actualizo la vista
             $this->viewH->mostrarDetalleHabitacion($habitacion);
-        } else {
-            //no se encontró la habitacion con ese id
+        }else{
+           // si no viene un numero por parametro
+           $camino='home';
+           $this->view->pantallaDeError($camino);     
         }
     }
 

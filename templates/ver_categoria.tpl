@@ -22,7 +22,11 @@
             {/foreach}
         </ul> 
     {else}
-        <p>No hay habitaciones que tengan asociada esta categoria</p>
+        {* en caso que no se dispongan de datos a mostrar notifico *}
+        <div class="alert alert-dismissible alert-warning">
+            <h4 class="alert-heading">Importante!</h4>
+            <p>No hay habitaciones que tengan asociada esta categoria</p>
+        </div>        
     {/if}
         
     </main>

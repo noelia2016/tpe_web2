@@ -21,7 +21,11 @@
         {/foreach}
         </ul> 
     {else}
-        <p>No detalles especificos para la habitacion elegida.</p>
+        {* en caso que no se dispongan de datos a mostrar notifico *}
+        <div class="alert alert-dismissible alert-warning">
+            <h4 class="alert-heading">Importante!</h4>
+            <p>No hay detalles especificos para la habitacion elegida.</p>
+        </div>    
     {/if}  
     </main>
     {include file='footer.tpl'}

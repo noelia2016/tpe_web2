@@ -69,4 +69,18 @@ class HomeView {
         $smarty->display('templates/ver_habitacion.tpl');
     }
     
+    /**
+     * Muestra pantalla de error para el visitante
+     */
+    function pantallaDeError($camino) {
+        
+        $smarty = new Smarty();
+        
+        $smarty->assign('camino', $camino);
+
+        $smarty->assign('mensaje', "Esta intentando ingresar a una seccion no valida.");
+    
+        $smarty->display('templates/notFound.tpl');
+    }
+    
 }
