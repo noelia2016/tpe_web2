@@ -26,8 +26,8 @@
                     {/if}
                     >
                     <label>Comodidades:</label>
-                    <input name="comodidades" type="text" class="form-control" 
-                        value = "{$habitacion->comodidades}">
+                    <textarea name="comodidades" class="form-control" rows="3" wrap="hard">{$habitacion->comodidades}
+                    </textarea>
                 </div>
             </div>
             <div class="col-12 col-sm-6">

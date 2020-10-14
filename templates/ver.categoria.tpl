@@ -15,7 +15,8 @@
         <ul class="list-group mt-5">
             {foreach from=$habitaciones item=hab}
                 <li class="list-group-item">
-                    <a href="mostrar_habitacion/{$hab->id}">Habitacion N {$hab->nro} - {$hab->ubicacion}</a>
+                    <a class="cat_lista_habitacion" href="mostrar_habitacion/{$hab->id}">
+                    Habitacion N {$hab->nro} - {$hab->ubicacion}</a>
                 </li>
             {/foreach}
         </ul> 

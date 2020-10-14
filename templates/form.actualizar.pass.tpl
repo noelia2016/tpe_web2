@@ -1,4 +1,4 @@
-        {include 'header_login.tpl'}
+        {include 'header.login.tpl'}
         <h1 class='h3 mb-3 font-weight-normal'>Actualiza tu password:</h1>
         {if isset($mensaje) && !empty($mensaje)}
             <div class="alert alert-dismissible alert-info">

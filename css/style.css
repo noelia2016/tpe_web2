@@ -34,12 +34,7 @@ footer {
  https://www.colorschemer.com/roblox-color-codes/
  */
 
- .fondo_oscuro{
-    background-color: #883E3E !important;
-    
-    
- }
- a {
+a {
     color: #EDEAEA !important;
     text-shadow: 1px 1px 3px #957977 !important;
     font-size: large;
@@ -48,7 +43,9 @@ footer {
  .fondo_container{
      background-color: #D3BE96 !important;
  }
-#recuperar-pass, #link-nombre-cat a {
+#recuperar-pass, 
+.cat_lista_habitacion, 
+#link-nombre-cat a {
   color: #181717 !important;
   text-shadow: 1px 1px 3px #957977 !important;
   font-size: x-large;
@@ -56,6 +53,7 @@ footer {
 #recuperar-pass {
   font-size: large;
 }
+
 table,
 td,
 #tablaHabitaciones.table thead th,
@@ -84,5 +82,12 @@ th {
   border: 1px solid black;
 }
 
-
+.fondo_oscuro{
+  background-color: #883E3E !important;
+}
+textarea{
+  resize: none;
+  white-space: normal;
+  text-align: justify; 
+}
 

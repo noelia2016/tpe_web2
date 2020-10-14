@@ -10,7 +10,7 @@
           <li class="nav-item">
             <a class="nav-link" href="admcat">Categorias</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ml-auto">
             <a class="nav-link" href="logout">Bienvenido {$smarty.session.USER} (Cerrar sesión)</a>
           </li>
         </ul>
