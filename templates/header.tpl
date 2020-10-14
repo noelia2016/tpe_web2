@@ -17,7 +17,7 @@
                   <a class="nav-link" href="contacto">Contacto</a>
                 </li>
                 <li class="nav-item ml-auto">
-                  <a class="nav-link" href="login">Iniciar session</a>
+                  <a class="nav-link" href="login">Iniciar sesión</a>
                 </li>
               </ul>
             </div>

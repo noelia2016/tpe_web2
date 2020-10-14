@@ -34,6 +34,9 @@ class HabitacionModel {
         return $habitaciones;
     }
     
+    /**
+     * Devuelve los datos de una habitación según id pasado como parámetro sin filtros.
+     */    
     function mostrarHabitacion($id){
         // Enviar la consulta 
         $query = $this->db->prepare('SELECT * FROM habitacion where id = ?');
@@ -64,6 +67,7 @@ class HabitacionModel {
 
         return $habitacion;
     }
+    
     /**
      * Eliminar habitación según id pasado como parámetro .
      */
@@ -74,16 +78,24 @@ class HabitacionModel {
         $query->execute([$id]);
     }
     
+    /**
+     * Actualiza los campos de la habitación según id pasado como parámetro .
+     */
     function actualizarHabitacionMdl($id, $nro_habitacion, $estado, $categoria_id, $capacidad, $comodidades, $ubicacion){
-    //preparar sentencia de actualización datos de la habitación
+         
+         //preparar sentencia de actualización datos de la habitación
          $query = $this->db->prepare('UPDATE habitacion 
          SET nro = ?, capacidad = ?, estado = ?, categoria_id = ?, comodidades = ?, ubicacion = ? 
          WHERE id = ?');
-     //ejecutar sentencia de insert con los valores de los parámetros
+         //ejecutar sentencia de insert con los valores de los parámetros
          $query->execute([$nro_habitacion, $capacidad, $estado, 
          $categoria_id, $comodidades, $ubicacion, $id]);        
 
     }
+    
+    /**
+     * Inserto una nueva habitacion.
+     */
     function insertarHabitacionMdl($nro_habitacion, $estado, $categoria_id, $capacidad, $comodidades, $ubicacion){
         //preparar sentencia de insert de la nueva habitación
         $query = $this->db->prepare('INSERT INTO habitacion (nro, capacidad, estado, categoria_id, comodidades, ubicacion )
