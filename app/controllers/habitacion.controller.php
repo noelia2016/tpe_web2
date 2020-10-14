@@ -104,24 +104,29 @@ class HabitacionController
           // verifico campos obligatorios
         if (empty($categoria_id) || empty($nro_habitacion) || 
             empty($capacidad) || empty($ubicacion)) {
-            //mensaje de aviso? 
-            die();
+            $mensaje = "Debe completar los datos de la habitación";
+            $this->redirigirListaHabError($mensaje);
         }
-        if ($_POST['id_habitacion'] > 0 && !empty($_POST['id_habitacion']) )
+        if (is_numeric($_POST['id_habitacion']) && !empty($_POST['id_habitacion']) )
         {   //actualizo los datos de una habitación existente
             $id = $_POST['id_habitacion'] ;
-            $this->model->actualizarHabitacionMdl($id, $nro_habitacion, $estado,
-            $categoria_id, $capacidad, $comodidades, $ubicacion);
+            $this->model->actualizarHabitacionMdl(
+                            $id, $nro_habitacion, $estado,
+                            $categoria_id, $capacidad, $comodidades, $ubicacion);
         }
         else
         {
             // inserto una nueva habitación en la DB
             $id = $this->model->insertarHabitacionMdl($nro_habitacion, $estado,
                   $categoria_id, $capacidad, $comodidades, $ubicacion);
+                if ($id){
+                $mensajeBien = "Se creó la habitación " . $id;
+                $this->redirigirListaHabPostActualiz($mensajeBien);
+                }
         }
 
         // redirigimos a la lista
-        header("Location: " . BASE_URL . "admhab"); 
+        //header("Location: " . BASE_URL . "admhab"); 
         
     }
     
@@ -137,5 +142,11 @@ class HabitacionController
     {
         $habitaciones = $this->model->obtenerHabitaciones();
         $this->viewAdmin->mostrarErrorIDHabitacion($habitaciones, $mensaje);
+    }
+
+    function redirigirListaHabPostActualiz($mensajeBien)
+    {
+        $habitaciones = $this->model->obtenerHabitaciones();
+        $this->viewAdmin->mostrarExitoActuHabitacion($habitaciones, $mensajeBien);
     }
 }

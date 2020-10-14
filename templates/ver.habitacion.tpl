@@ -2,11 +2,11 @@
       
     {include 'carrusel.tpl'}
         
-    <h3>Habitacion</h3>
+    <h3>Habitación</h3>
     {if !empty($habitacion)}
         <ul class="list-group mt-5">
             <li class="list-group-item">
-                Habitacion N {$habitacion->nro} - {$habitacion->ubicacion}
+                Habitación N° {$habitacion->nro} - {$habitacion->ubicacion}
             </li>
             <li class="list-group-item">
                 Comodidades: {$habitacion->comodidades} 

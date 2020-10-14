@@ -1,7 +1,7 @@
     {include 'header.login.tpl'}
     <div class="mt-5 w-25 mx-auto">
       <form class='form-signin' action='verificar_login' method='POST'>
-            <h1 class='h3 mb-3 font-weight-normal'>Iniciar session</h1>
+            <h1 class='h3 mb-3 font-weight-normal'>Iniciar sesión</h1>
             {if isset($mensaje) && !empty($mensaje)}
                 <div class="alert alert-dismissible alert-info">
                   <strong>{$mensaje}</strong>
@@ -20,7 +20,7 @@
             </div>
        </form>
        <span class="nav-item">
-          <a class="nav-link" href="recuperar_password">Olvidaste credenciales</a>
+          <a class="nav-link" href="recuperar_password" id="recuperar-pass">¿Olvidaste credenciales?</a>
        </span>
     </main>
    {include 'footer.tpl'}

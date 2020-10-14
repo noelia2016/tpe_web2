@@ -5,7 +5,7 @@
         <h1>NUESTRAS HABITACIONES</h1>
         <p>En nuestro hotel todas las habitaciones cuentan con Caja Fuerte, Placard, Ropa Blanca, calefacción por Losa Radiante, TV por cable y Aire acondicionado (Excepto las estándar).</p>
 
-        <span>CONOCELAS…</span>
+        <span>CONOCELAS SEGÚN SU CATEGORIA…</span>
         
         
         <ul class="list-group mt-5">

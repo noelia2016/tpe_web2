@@ -90,4 +90,8 @@ textarea{
   white-space: normal;
   text-align: justify; 
 }
+#link-nombre-cat, #lista-hab-categoria {
+  background-color: rgb(243, 207, 155) ;
+  border: 1px solid rgb(109, 110, 108);
+}
 
