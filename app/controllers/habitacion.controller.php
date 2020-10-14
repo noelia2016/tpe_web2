@@ -72,7 +72,7 @@ class HabitacionController
     }
 
     function eliminarHabitacion($id)
-    {
+    {    $mensaje = "No se pudo eliminar la habitación en la base de datos";
         // eliminar una habitación 
         if (is_numeric($id)) {
             $borrado = $this->model->eliminarHabitacionMdl($id);
@@ -82,12 +82,11 @@ class HabitacionController
             }    
             else
             {  
-                $mensaje = "No se pudo eliminar la habitación en la base de datos";
                 $this->redirigirListaHabError($mensaje);
             }    
         }
         else
-        {   $mensaje = "No se pudo eliminar la habitación en la base de datos";
+        {  
             $this->redirigirListaHabError($mensaje);
         }
     }
@@ -104,30 +103,31 @@ class HabitacionController
           // verifico campos obligatorios
         if (empty($categoria_id) || empty($nro_habitacion) || 
             empty($capacidad) || empty($ubicacion)) {
-            $mensaje = "Debe completar los datos de la habitación";
-            $this->redirigirListaHabError($mensaje);
-        }
-        if (is_numeric($_POST['id_habitacion']) && !empty($_POST['id_habitacion']) )
-        {   //actualizo los datos de una habitación existente
-            $id = $_POST['id_habitacion'] ;
-            $this->model->actualizarHabitacionMdl(
-                            $id, $nro_habitacion, $estado,
-                            $categoria_id, $capacidad, $comodidades, $ubicacion);
-        }
-        else
-        {
-            // inserto una nueva habitación en la DB
-            $id = $this->model->insertarHabitacionMdl($nro_habitacion, $estado,
-                  $categoria_id, $capacidad, $comodidades, $ubicacion);
-                if ($id){
-                $mensajeBien = "Se creó la habitación " . $id;
+                $mensaje = "Debe completar los datos de la habitación";
+                $this->redirigirListaHabError($mensaje);
+            }
+        else{
+            if (isset($_POST['id_habitacion']) )
+            {   //actualizo los datos de una habitación existente
+                $id = $_POST['id_habitacion'] ;
+                $this->model->actualizarHabitacionMdl(
+                                $id, $nro_habitacion, $estado,
+                                $categoria_id, $capacidad, $comodidades, $ubicacion);
+                $mensajeBien = "Se actualizaron los datos de la habitación";
                 $this->redirigirListaHabPostActualiz($mensajeBien);
-                }
+            }
+            else
+            {
+                // inserto una nueva habitación en la DB
+                $id = $this->model->insertarHabitacionMdl($nro_habitacion, $estado,
+                    $categoria_id, $capacidad, $comodidades, $ubicacion);
+                    if (!is_null($id) && ($id > 0)){
+                        $mensajeBien = "Se creó la habitación de manera exitosa" ;
+                        $this->redirigirListaHabPostActualiz($mensajeBien);
+                    }
+            }
         }
-
-        // redirigimos a la lista
-        //header("Location: " . BASE_URL . "admhab"); 
-        
+               
     }
     
     function nuevaHabitacion()
