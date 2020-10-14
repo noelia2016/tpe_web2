@@ -52,24 +52,44 @@ class HabitacionController
     }
 
     function editarHabitacion($id)
-    {
+    {   
+        $mensaje = "No se pudieron recuperar datos de la 
+                    habitación en la base de datos";
         // obtener los datos de una habitación del modelo
-        $habitacion = $this->model->obtenerHabitacion($id);
-        $lista_cat = $this->modelCat->obtenerCategorias();
-        // actualizo la vista cargando los datos en el formulario de habitación
-        if ($habitacion) {
-            $this->viewAdmin->editarHabitacionVista($habitacion, $lista_cat);
-        } else {
-            //no se encontró la habitacion con ese id
+        if (is_numeric($id)){
+            $habitacion = $this->model->obtenerHabitacion($id);
+            $lista_cat = $this->modelCat->obtenerCategorias();
+            // actualizo la vista cargando los datos en el formulario de habitación
+            if ($habitacion) {
+                $this->viewAdmin->editarHabitacionVista($habitacion, $lista_cat);
+            } else {
+                $this->redirigirListaHabError($mensaje);
+            }
+        }
+        else {
+            $this->redirigirListaHabError($mensaje);
         }
     }
 
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 
-        $this->model->eliminarHabitacionMdl($id);
-        // redirigimos a la lista
-        header("Location: " . BASE_URL . "admhab");
+        if (is_numeric($id)) {
+            $borrado = $this->model->eliminarHabitacionMdl($id);
+            if ($borrado) {
+                // redirigimos a la lista
+                header("Location: " . BASE_URL . "admhab");
+            }    
+            else
+            {  
+                $mensaje = "No se pudo eliminar la habitación en la base de datos";
+                $this->redirigirListaHabError($mensaje);
+            }    
+        }
+        else
+        {   $mensaje = "No se pudo eliminar la habitación en la base de datos";
+            $this->redirigirListaHabError($mensaje);
+        }
     }
 
     function guardarHabitacion()
@@ -111,5 +131,11 @@ class HabitacionController
         $lista_cat = $this->modelCat->obtenerCategorias();
         $this->viewAdmin->altaHabitacionVista($lista_cat);
       
+    }
+
+    function redirigirListaHabError($mensaje)
+    {
+        $habitaciones = $this->model->obtenerHabitaciones();
+        $this->viewAdmin->mostrarErrorIDHabitacion($habitaciones, $mensaje);
     }
 }

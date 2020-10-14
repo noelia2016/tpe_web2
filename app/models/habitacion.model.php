@@ -75,7 +75,7 @@ class HabitacionModel {
             // Se envia la consulta
             $query = $this->db->prepare('
             DELETE FROM habitacion where id = ?'); 
-            $query->execute([$id]);
+            return $query->execute([$id]);
     }
     
     function actualizarHabitacionMdl($id, $nro_habitacion, $estado,

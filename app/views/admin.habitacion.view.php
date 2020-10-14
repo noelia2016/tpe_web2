@@ -36,4 +36,11 @@ class AdminHabitacionView
 
     }
 
+    function mostrarErrorIDHabitacion($habitaciones, $mensaje){
+        $smarty = new Smarty(); 
+        $smarty->assign('mensaje', $mensaje);
+        $smarty->assign('habitaciones', $habitaciones);
+        $smarty->display('templates/admin.lista.hab.tpl');
+    }
+
 }
