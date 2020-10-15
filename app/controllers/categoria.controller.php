@@ -54,16 +54,16 @@ class CategoriaController
         if (is_numeric($id)) {
             $borrado = $this->model->eliminarCategoriaMdl($id);
             if ($borrado) {
-                header("Location: " . BASE_URL . "admcat");
+                $mensaje = "La categoria ha sido eliminada";
             } else {
                 $mensaje = "No se pudo borrar la categoria
                      porque hay habitaciones asignadas a la misma";
-                $this->redirigirListaCatError($mensaje);
             }
         } else {
             $mensaje = "No se pudo recuperar categoria de la base de datos";
-            $this->redirigirListaCatError($mensaje);
+            $borrado = false;
         }
+        $this->redirigirListaCatMensaje($mensaje, $borrado);
     }
 
     function nuevaCategoria()
@@ -73,16 +73,21 @@ class CategoriaController
 
     function editarCategoria($id)
     {
-        $mensaje = "No se pudo recuperar categoria de la base de datos";
+        $valido = true;
+
         if (is_numeric($id)) {
             $categoria = $this->model->obtenerCategoria($id);
             if ($categoria) {
                 $this->viewAdmin->editarCategoriaVista($categoria);
             } else {
-                $this->redirigirListaCatError($mensaje);
+                $valido = false;
+                $mensaje = "No se pudieron recuperar los datos de la categoria";
+                $this->redirigirListaCatMensaje($mensaje, $valido);
             }
         } else {
-            $this->redirigirListaCatError($mensaje);
+            $valido = false;
+            $mensaje = "No se pudieron recuperar los datos de la categoria";
+            $this->redirigirListaCatMensaje($mensaje, $valido);
         }
     }
     function guardarCategoria()
@@ -92,24 +97,33 @@ class CategoriaController
 
         // verifico campos obligatorios
         if (empty($nombre) || empty($descripcion)) {
-            //mensaje de aviso? 
-            die();
-        }
-        if (!empty($_POST['id_categoria'])) {   //actualizo los datos de una categoria existente
-            $id = $_POST['id_categoria'];
-            $this->model->actualizarCategoriaMdl($id, $nombre, $descripcion);
+            $mensaje = "Debe completar los datos de la categoria";
+            $valido = false;
+            $this->redirigirListaCatMensaje($mensaje, $valido);
         } else {
-            // inserto una nueva categoria en la DB
-            $id = $this->model->insertarCategoriaMdl($nombre, $descripcion);
+            if (!empty($_POST['id_categoria'])) {   //actualizo los datos de una categoria existente
+                $id = $_POST['id_categoria'];
+                $this->model->actualizarCategoriaMdl($id, $nombre, $descripcion);
+                $actualizado = true;
+                $mensaje = "Datos de categoria actualizados satisfactoriamente";
+                $this->redirigirListaCatMensaje($mensaje, $actualizado);
+            } else {
+                // inserto una nueva categoria en la DB
+                $id = $this->model->insertarCategoriaMdl($nombre, $descripcion);
+                $valido = (!is_null($id) && ($id > 0));
+                if ($valido) {
+                    $mensaje = "Se creó la categoria de manera exitosa";
+                } else {
+                    $mensaje = "No se pudo crear nueva categoria. Verifique los datos ingresados";
+                }
+                $this->redirigirListaCatMensaje($mensaje, $valido);
+            }
         }
-
-        // redirigimos a la lista
-        header("Location: " . BASE_URL . "admcat");
     }
 
-    function redirigirListaCatError($mensaje)
+    function redirigirListaCatMensaje($mensaje, $actualizado)
     {
         $categorias = $this->model->obtenerCategorias();
-        $this->viewAdmin->mostrarErrorIDCategoria($categorias, $mensaje);
+        $this->viewAdmin->mostrarMensajeCategoria($categorias, $mensaje, $actualizado);
     }
 }
