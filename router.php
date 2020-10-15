@@ -36,7 +36,7 @@ switch ($params[0]) {
         break; 
     case 'logout': 
         /* muestra al usuario la pantalla de login luego de cerrar sesion */
-        $controller = new UsuarioController();
+        $controller = new SesionHelper();
         $controller->logout();
         break;
     case 'registrar': 
@@ -123,6 +123,20 @@ switch ($params[0]) {
     case 'guardar_cat':
         $controller = new CategoriaController();
         $controller->guardarCategoria();
+        break;
+    case 'listar_usuarios':
+        $controller = new UsuarioController();
+        $controller->mostrarTodos();
+        break;
+    case 'eliminar_usuario':
+        $controller = new UsuarioController();
+        $id = $params[1];
+        $controller->eliminar($id);
+        break;
+    case 'deshabilitar_usuario':
+        $controller = new UsuarioController();
+        $id = $params[1];
+        $controller->deshabilitar($id);
         break;
     default:
         echo ('404 Page not found');

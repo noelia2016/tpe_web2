@@ -4,8 +4,8 @@
     
     {if !empty($categoria)}
         {* si hay detalles de la categoria *}
-            <h1>{$categoria->nombre}</h1>
-            <p>{$categoria->descripcion}</p>
+        <h1>{$categoria->nombre}</h1>
+        <p>{$categoria->descripcion}</p>
     {else}
         <p>No hay ningun detalle de categoria para mostrar.</p>
     {/if}

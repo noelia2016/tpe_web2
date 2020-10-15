@@ -14,7 +14,6 @@ class CategoriaView {
         $smarty->assign('categorias', $categorias);
     
         $smarty->display('templates/categorias.tpl');
-        
     }
     
     /** 

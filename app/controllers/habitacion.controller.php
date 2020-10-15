@@ -26,7 +26,10 @@ class HabitacionController
         $this->authHelper->checkLogged();
 
     }
-
+    
+    /**
+     * Muestra todas las habitaciones disponibles
+     */
     function mostrarHabitaciones()
     {
         // obtiene todas las habitaciones del modelo
@@ -50,7 +53,10 @@ class HabitacionController
             //no se encontró la habitacion con ese id
         }
     }
-
+    
+    /**
+     * Modifica los detalles de la habitacion elegida
+     */
     function editarHabitacion($id)
     {   
         $mensaje = "No se pudieron recuperar datos de la 
@@ -70,9 +76,13 @@ class HabitacionController
             $this->redirigirListaHabError($mensaje);
         }
     }
-
+    
+    /**
+     * Elimina la habitacion elegida
+     */
     function eliminarHabitacion($id)
-    {    $mensaje = "No se pudo eliminar la habitación en la base de datos";
+    {    
+        $mensaje = "No se pudo eliminar la habitación en la base de datos";
         // eliminar una habitación 
         if (is_numeric($id)) {
             $borrado = $this->model->eliminarHabitacionMdl($id);
@@ -84,15 +94,17 @@ class HabitacionController
             {  
                 $this->redirigirListaHabError($mensaje);
             }    
-        }
         else
         {  
             $this->redirigirListaHabError($mensaje);
         }
     }
-
-    function guardarHabitacion()
-    {
+    
+    /**
+     * Inserta una nueva habitacion
+     */
+    function guardarHabitacion() {
+        // tomo los datos que fueron ingresados por el usuario
         $categoria_id = $_POST['id_categoria'];
         $nro_habitacion = $_POST['nro_habitacion'];
         $capacidad = $_POST['capacidad'];
@@ -103,6 +115,24 @@ class HabitacionController
           // verifico campos obligatorios
         if (empty($categoria_id) || empty($nro_habitacion) || 
             empty($capacidad) || empty($ubicacion)) {
+/*<<<<<<< HEAD
+            $mensaje = "Debe completar los datos de la habitación";
+            $this->redirigirListaHabError($mensaje);
+        }
+        
+        if (is_numeric($_POST['id_habitacion']) && !empty($_POST['id_habitacion']) )
+        {   //actualizo los datos de una habitación existente
+            $id = $_POST['id_habitacion'] ;
+            $this->model->actualizarHabitacionMdl(
+                            $id, $nro_habitacion, $estado,
+                            $categoria_id, $capacidad, $comodidades, $ubicacion);
+        }else{
+            // inserto una nueva habitación en la DB
+            $id = $this->model->insertarHabitacionMdl($nro_habitacion, $estado,
+                  $categoria_id, $capacidad, $comodidades, $ubicacion);
+                if ($id){
+                $mensajeBien = "Se creó la habitación " . $id;
+=======*/
                 $mensaje = "Debe completar los datos de la habitación";
                 $this->redirigirListaHabError($mensaje);
             }
@@ -114,6 +144,7 @@ class HabitacionController
                                 $id, $nro_habitacion, $estado,
                                 $categoria_id, $capacidad, $comodidades, $ubicacion);
                 $mensajeBien = "Se actualizaron los datos de la habitación";
+//>>>>>>> 3fba8b287d5310608a7ab96a18bbadf0d22ab57c
                 $this->redirigirListaHabPostActualiz($mensajeBien);
             }
             else

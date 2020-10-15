@@ -23,12 +23,9 @@ class HabitacionModel {
     function obtenerHabitaciones() {
 
         // Se envia la consulta
-        $query = $this->db->prepare('
-            SELECT a.id, a.nro, a.capacidad, a.estado, 
-                   b.nombre as nombre_cat, a.categoria_id,
-                   a.comodidades, a.ubicacion
-            FROM habitacion a join categoria b 
-            on a.categoria_id = b.id order by a.nro');
+        $query = $this->db->prepare('SELECT a.id, a.nro, a.capacidad, a.estado, b.nombre as nombre_cat, a.categoria_id, a.comodidades, a.ubicacion
+            FROM habitacion a join categoria b on a.categoria_id = b.id 
+            order by a.nro');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 
@@ -37,6 +34,9 @@ class HabitacionModel {
         return $habitaciones;
     }
     
+    /**
+     * Devuelve los datos de una habitación según id pasado como parámetro sin filtros.
+     */    
     function mostrarHabitacion($id){
         // Enviar la consulta 
         $query = $this->db->prepare('SELECT * FROM habitacion where id = ?');
@@ -54,13 +54,12 @@ class HabitacionModel {
     function obtenerHabitacion($id) {
 
         // Se envia la consulta
-        $query = $this->db->prepare('
-            SELECT a.id, a.nro, a.capacidad, a.estado, a.categoria_id, 
-                   b.nombre as nombre_cat, a.comodidades, a.ubicacion
-            FROM habitacion a 
-            join categoria b 
-                on a.categoria_id = b.id 
-            where a.id = ?');
+        $query = $this->db->prepare('SELECT a.id, a.nro, a.capacidad, a.estado, a.categoria_id, 
+        b.nombre as nombre_cat, a.comodidades, a.ubicacion
+        FROM habitacion a 
+        join categoria b 
+        on a.categoria_id = b.id 
+        where a.id = ?');
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetch
@@ -68,41 +67,45 @@ class HabitacionModel {
 
         return $habitacion;
     }
+    
     /**
      * Eliminar habitación según id pasado como parámetro .
      */
     function eliminarHabitacionMdl($id) {
-            // Se envia la consulta
-            $query = $this->db->prepare('
-            DELETE FROM habitacion where id = ?'); 
-            return $query->execute([$id]);
+        // Se envia la consulta
+        $query = $this->db->prepare('
+        DELETE FROM habitacion where id = ?'); 
+        $query->execute([$id]);
     }
     
-    function actualizarHabitacionMdl($id, $nro_habitacion, $estado,
-            $categoria_id, $capacidad, $comodidades, $ubicacion){
-    //preparar sentencia de actualización datos de la habitación
-         $query = $this->db->prepare('
-         UPDATE habitacion SET nro = ?, 
-            capacidad = ?, estado = ?, categoria_id = ?,
-            comodidades = ?, ubicacion = ? 
+    /**
+     * Actualiza los campos de la habitación según id pasado como parámetro .
+     */
+    function actualizarHabitacionMdl($id, $nro_habitacion, $estado, $categoria_id, $capacidad, $comodidades, $ubicacion){
+         
+         //preparar sentencia de actualización datos de la habitación
+         $query = $this->db->prepare('UPDATE habitacion 
+         SET nro = ?, capacidad = ?, estado = ?, categoria_id = ?, comodidades = ?, ubicacion = ? 
          WHERE id = ?');
-     //ejecutar sentencia de insert con los valores de los parámetros
+         //ejecutar sentencia de insert con los valores de los parámetros
          $query->execute([$nro_habitacion, $capacidad, $estado, 
          $categoria_id, $comodidades, $ubicacion, $id]);        
 
     }
-    function insertarHabitacionMdl($nro_habitacion, $estado, $categoria_id, 
-                                  $capacidad, $comodidades, $ubicacion){
+    
+    /**
+     * Inserto una nueva habitacion.
+     */
+    function insertarHabitacionMdl($nro_habitacion, $estado, $categoria_id, $capacidad, $comodidades, $ubicacion){
         //preparar sentencia de insert de la nueva habitación
-            $query = $this->db->prepare('
-            INSERT INTO habitacion (nro, capacidad, estado, categoria_id,
-                                    comodidades, ubicacion )
-                    VALUES ( ? , ? , ? , ? , ? , ? )');
+        $query = $this->db->prepare('INSERT INTO habitacion (nro, capacidad, estado, categoria_id, comodidades, ubicacion )
+        VALUES ( ? , ? , ? , ? , ? , ? )');
+        
         //ejecutar sentencia de insert con los valores de los parámetros
-            $query->execute([$nro_habitacion, $capacidad, $estado, 
-                             $categoria_id, $comodidades, $ubicacion]);
+        $query->execute([$nro_habitacion, $capacidad, $estado, $categoria_id, $comodidades, $ubicacion]);
+        
         //Obtengo y devuelo el ID de la nueva habitación
-            return $this->db->lastInsertId();
+        return $this->db->lastInsertId();
 
     }
 }

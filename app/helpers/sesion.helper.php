@@ -1,5 +1,5 @@
 <?php
-
+//error_reporting(0);
 class SesionHelper {
     public function __construct() {
         
@@ -29,6 +29,7 @@ class SesionHelper {
         session_start();
         $_SESSION['ID_USER'] = $user->id;
         $_SESSION['EMAIL_USER'] = $user->email;
+        $_SESSION['USER'] = $user->user;
     }
 
 

@@ -10,6 +10,9 @@
           <li class="nav-item">
             <a class="nav-link" href="admcat">Categorias</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="listar_usuarios">Usuarios</a>
+          </li>
           <li class="nav-item ml-auto">
             <a class="nav-link" href="logout">Bienvenido {$smarty.session.USER} (Cerrar sesión)</a>
           </li>
@@ -19,4 +22,4 @@
   </header>
 
   <main class="container fondo_container pt-5">
-    <!-- inicio del contenido pricipal -->
+    <!-- inicio del contenido principal -->
