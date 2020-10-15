@@ -94,7 +94,7 @@ class HabitacionController
             {  
                 $this->redirigirListaHabError($mensaje);
             }    
-        else
+        }else
         {  
             $this->redirigirListaHabError($mensaje);
         }
