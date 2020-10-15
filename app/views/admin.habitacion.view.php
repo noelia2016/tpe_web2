@@ -44,6 +44,7 @@ class AdminHabitacionView
     }
     function mostrarExitoActuHabitacion($habitaciones, $mensajeBien){
         $smarty = new Smarty(); 
+        //$smarty->debugging = true;
         $smarty->assign('mensajeBien', $mensajeBien);
         $smarty->assign('habitaciones', $habitaciones);
         $smarty->display('templates/admin.lista.hab.tpl');
