@@ -2,26 +2,33 @@
 
 include_once 'app/models/usuario.model.php';
 include_once 'app/views/usuario.view.php';
+include_once 'app/helpers/sesion.helper.php';
 
 class UsuarioController {
 
     private $model;
     private $view;
+    private $sesionHelper;
 
     function __construct() {
         $this->model = new UsuarioModel();
         $this->view = new UsuarioView();
+        $this->sesionHelper = new SesionHelper();
     }
 
     /**
      * Imprime la lista de usuarios registrados
      */
     function mostrarTodos(){
-        // obtiene las diferentes categorias del modelo
-        $usuarios = $this->model->mostrarUsuarios();
+        
+       // verifico que el usuario esté logueado siempre
+       $this->sesionHelper->checkLogged();
+       
+       // obtiene las diferentes categorias del modelo
+       $usuarios = $this->model->obtenerUsuarios();
 
        // actualizo la vista
-       $this->view->mostrarUsuarios($usuarios);
+       $this->view->mostrarUsuarios($usuarios, '');
         
     }
     
@@ -49,9 +56,7 @@ class UsuarioController {
         if ($usuario && $usuario->password == md5($pass)){
             // si no devuelve la mando a iniciar session nuevamente notificandolo
             // armo la sesion del usuario
-            session_start();
-            $_SESSION['ID_USER'] = $usuario->id;
-            $_SESSION['USER'] = $usuario->user;
+            $this->sesionHelper->login($usuario);
 
             // redirigimos al listado
             header("Location: " . BASE_URL . 'admhab'); 
@@ -66,10 +71,7 @@ class UsuarioController {
      */
     function logout() {
         
-        session_start();
-        session_destroy();
-        // redirecciono a login despues de cerrar sesion
-        header("Location: " . BASE_URL . 'login');
+        $this->sesionHelper->logout();
     }
 
     
@@ -154,6 +156,61 @@ class UsuarioController {
            $this->view->actualizarPass("Los datos ingresados no coinciden con los registrados. Verifique y vuelve a intentarlo."); 
         }
         
+    }
+    
+    /**
+     * Eliminar un usuario registrado
+     */  
+    function eliminar($id){
+       // elimino el usuario de la BD
+       
+       // verifico que el usuario esté logueado siempre
+       $this->sesionHelper->checkLogged();
+       if (is_numeric($id)){
+           $idU= $this->model->eliminar($id);
+           if ($idU){
+               $mensaje="El usuario fue eliminado correctamente";
+           }else{
+               $mensaje="Ups!! Ocurrio un error vuelva a intentar";
+           }
+           $this->mostrarTodos($mensaje);  
+       }else{
+           // si no viene un numero por parametro
+           $camino='listar_usuarios';
+           $this->view->pantallaDeError($camino);
+       }
+    }
+    
+    /**
+     * Deshabilita o habilita temporalmete un usuario segun este por desicion del moderador
+     */  
+    function deshabilitar($id){
+       // elimino el usuario de la BD
+       
+       // verifico que el usuario esté logueado siempre
+       $this->sesionHelper->checkLogged();
+       if (is_numeric($id)){
+           // verifica el estado del usuario
+           $estadoV=$this->model->verificarEstado($id);
+           if ($estadoV == 'TRUE'){
+               $estado=FALSE;
+           }else{
+               $estado=TRUE;
+           }    
+           
+           // cambio el estado del usuario
+           $idU= $this->model->deshabilitar($id,$estado);
+           if ($idU){
+               $mensaje="El usuario fue des/habilitado temporalmente";
+           }else{
+               $mensaje="Ups!! Ocurrio un error vuelva a intentar";
+           }
+           $this->mostrarTodos($mensaje);  
+       }else{
+           // si no viene un numero por parametro
+           $camino='listar_usuarios';
+           $this->view->pantallaDeError($camino);
+       }
     }
     
 

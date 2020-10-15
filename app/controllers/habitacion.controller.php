@@ -26,7 +26,10 @@ class HabitacionController
         $this->authHelper->checkLogged();
 
     }
-
+    
+    /**
+     * Muestra todas las habitaciones disponibles
+     */
     function mostrarHabitaciones()
     {
         // obtiene todas las habitaciones del modelo
@@ -50,7 +53,10 @@ class HabitacionController
             //no se encontró la habitacion con ese id
         }
     }
-
+    
+    /**
+     * Modifica los detalles de la habitacion elegida
+     */
     function editarHabitacion($id)
     {   
         $mensaje = "No se pudieron recuperar datos de la 
@@ -70,7 +76,10 @@ class HabitacionController
             $this->redirigirListaHabError($mensaje);
         }
     }
-
+    
+    /**
+     * Elimina la habitacion elegida
+     */
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 
@@ -85,15 +94,17 @@ class HabitacionController
                 $mensaje = "No se pudo eliminar la habitación en la base de datos";
                 $this->redirigirListaHabError($mensaje);
             }    
-        }
-        else
-        {   $mensaje = "No se pudo eliminar la habitación en la base de datos";
+        }else{
+            $mensaje = "No se pudo eliminar la habitación en la base de datos";
             $this->redirigirListaHabError($mensaje);
         }
     }
-
-    function guardarHabitacion()
-    {
+    
+    /**
+     * Inserta una nueva habitacion
+     */
+    function guardarHabitacion() {
+        // tomo los datos que fueron ingresados por el usuario
         $categoria_id = $_POST['id_categoria'];
         $nro_habitacion = $_POST['nro_habitacion'];
         $capacidad = $_POST['capacidad'];
@@ -107,15 +118,14 @@ class HabitacionController
             $mensaje = "Debe completar los datos de la habitación";
             $this->redirigirListaHabError($mensaje);
         }
+        
         if (is_numeric($_POST['id_habitacion']) && !empty($_POST['id_habitacion']) )
         {   //actualizo los datos de una habitación existente
             $id = $_POST['id_habitacion'] ;
             $this->model->actualizarHabitacionMdl(
                             $id, $nro_habitacion, $estado,
                             $categoria_id, $capacidad, $comodidades, $ubicacion);
-        }
-        else
-        {
+        }else{
             // inserto una nueva habitación en la DB
             $id = $this->model->insertarHabitacionMdl($nro_habitacion, $estado,
                   $categoria_id, $capacidad, $comodidades, $ubicacion);

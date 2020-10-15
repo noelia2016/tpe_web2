@@ -34,16 +34,15 @@
                 <div class="form-group-row">
                     <label>Categoria</label>
                     <select name="id_categoria" class="form-control">
-                    {* lista de categorias --> nombre e ids *} 
-                    {foreach from=$categorias item=categoria} 
+                        {* lista de categorias --> nombre e ids *} 
+                        {foreach from=$categorias item=categoria} 
                             <option value={$categoria->id} 
                                 {if $categoria->id == $categoria_sel}
                                     selected={$categoria->id}
                                 {/if}
                                 > {$categoria->nombre}
                             </option>
-                    {/foreach}
-                        
+                        {/foreach}      
                     </select>
 
                     <label>Estado:</label>

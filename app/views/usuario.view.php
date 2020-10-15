@@ -40,4 +40,33 @@ class UsuarioView {
 
     }
     
+     /* 
+        Muestra todos los usuarios registrados 
+    */
+    function mostrarUsuarios($usuarios, $mensaje) {
+        
+        $smarty = new Smarty();
+        
+        $smarty->assign('usuarios', $usuarios);
+        
+        $smarty->assign('mensaje', $mensaje);
+
+        $smarty->display('templates/listar.usuarios.tpl');
+
+    }
+    
+    /**
+     * Muestra pantalla de error para el visitante
+     */
+    function pantallaDeError($camino) {
+        
+        $smarty = new Smarty();
+        
+        $smarty->assign('camino', $camino);
+
+        $smarty->assign('mensaje', "Esta intentando ingresar a una seccion no valida.");
+    
+        $smarty->display('templates/notFound.tpl');
+    }
+    
 }
