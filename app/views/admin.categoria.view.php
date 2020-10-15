@@ -23,10 +23,16 @@ class AdminCategoriaView
         $smarty->display('templates/admin.form.edit.cat.tpl'); 
     }
 
-    function mostrarErrorIDCategoria($categorias, $mensaje){
+    function mostrarMensajeCategoria($categorias, $mensaje, $exito){
         $smarty = new Smarty(); 
         $smarty->assign('categorias', $categorias);
-        $smarty->assign('mensaje', $mensaje);
+        if ($exito){
+            $smarty->assign('mensajeBien', $mensaje);
+        }
+        else
+        {
+            $smarty->assign('mensaje', $mensaje);
+        }
         $smarty->display('templates/admin.lista.cat.tpl');
     }
 }

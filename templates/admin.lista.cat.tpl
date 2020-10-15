@@ -9,6 +9,12 @@
                      <p>{$mensaje}</p>
                  </div>
              {/if}
+             {if !empty($mensajeBien)}
+                <div class="alert alert-dismissible alert-success" role="alert">
+                    <h4 class="alert-heading">Datos actualizados</h4>
+                    <p>{$mensajeBien}</p>
+                </div>
+            {/if}
              <div class="table-responsive">
                  <table class="table mt-3 text-left" id="tablaCategorias">
                      <thead>

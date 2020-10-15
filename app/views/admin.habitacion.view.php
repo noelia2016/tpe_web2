@@ -35,17 +35,14 @@ class AdminHabitacionView
         $smarty->display('templates/admin.form.alta.habit.tpl'); 
 
     }
-
-    function mostrarErrorIDHabitacion($habitaciones, $mensaje){
+    function mostrarMensajeActuHabitacion($habitaciones, $mensaje, $estado){
         $smarty = new Smarty(); 
-        $smarty->assign('mensaje', $mensaje);
-        $smarty->assign('habitaciones', $habitaciones);
-        $smarty->display('templates/admin.lista.hab.tpl');
-    }
-    function mostrarExitoActuHabitacion($habitaciones, $mensajeBien){
-        $smarty = new Smarty(); 
-        //$smarty->debugging = true;
-        $smarty->assign('mensajeBien', $mensajeBien);
+        if ($estado){
+            $smarty->assign('mensajeBien', $mensaje);
+        }
+        else{
+            $smarty->assign('mensaje', $mensaje);
+        }
         $smarty->assign('habitaciones', $habitaciones);
         $smarty->display('templates/admin.lista.hab.tpl');
     }
