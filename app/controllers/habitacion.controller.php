@@ -82,20 +82,22 @@ class HabitacionController
      */
     function eliminarHabitacion($id)
     {    
-        $mensaje = "No se pudo eliminar la habitación en la base de datos";
+        
         // eliminar una habitación 
         if (is_numeric($id)) {
             $borrado = $this->model->eliminarHabitacionMdl($id);
-            if ($borrado) {
+            if ($borrado > 0) {
                 // redirigimos a la lista
                 header("Location: " . BASE_URL . "admhab");
             }    
             else
             {  
+                $mensaje = "No se pudo eliminar la habitación en la base de datos";
                 $this->redirigirListaHabError($mensaje);
             }    
         }else
         {  
+            $mensaje = "Ups!! Ocurrio un error vuelva a intentarlo.";
             $this->redirigirListaHabError($mensaje);
         }
     }

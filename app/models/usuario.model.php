@@ -54,8 +54,8 @@ class UsuarioModel {
   
         $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
         $query->execute([$id]);
-        
-        return $query->fetch(PDO::FETCH_OBJ);;
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->rowCount();
     }
     
     /**
@@ -65,7 +65,7 @@ class UsuarioModel {
         
        $query = $this->db->prepare('UPDATE usuario SET habilitado = 0 WHERE id = ?');
        $query->execute([$id]);
-       return $query->fetch(PDO::FETCH_OBJ);;
+       return $query->fetch(PDO::FETCH_OBJ);
     }
     
     /**

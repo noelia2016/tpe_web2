@@ -76,6 +76,9 @@ class HabitacionModel {
         $query = $this->db->prepare('
         DELETE FROM habitacion where id = ?'); 
         $query->execute([$id]);
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->rowCount();
+
     }
     
     /**
@@ -89,7 +92,8 @@ class HabitacionModel {
          WHERE id = ?');
          //ejecutar sentencia de insert con los valores de los parámetros
          $query->execute([$nro_habitacion, $capacidad, $estado, 
-         $categoria_id, $comodidades, $ubicacion, $id]);        
+         $categoria_id, $comodidades, $ubicacion, $id]);   
+         return $query->fetch(PDO::FETCH_OBJ);;
 
     }
     
