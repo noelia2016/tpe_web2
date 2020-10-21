@@ -9,6 +9,9 @@
                 Habitación N° {$habitacion->nro} - {$habitacion->ubicacion}
             </li>
             <li class="list-group-item">
+                Categoria: {$habitacion->nombre_cat} 
+            </li>
+            <li class="list-group-item">
                 Comodidades: {$habitacion->comodidades} 
             </li>
             <li class="list-group-item">

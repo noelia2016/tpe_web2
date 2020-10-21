@@ -72,8 +72,8 @@ class HomeController {
     {
 
         if (is_numeric($id)){
-            $habitacion = $this->modelH->mostrarHabitacion($id);
-            //FALTA INDICARLE LA CATEGORIA DE HABITACION
+            // se obtiene la habtacion con sus respectivos detalles y con los datos de la categoria
+            $habitacion = $this->modelH->obtenerHabitacion($id);
             // actualizo la vista
             $this->viewH->mostrarDetalleHabitacion($habitacion);
         }else{
