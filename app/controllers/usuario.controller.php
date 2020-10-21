@@ -169,10 +169,10 @@ class UsuarioController {
        if (is_numeric($id)){
            $idU= $this->model->eliminar($id);
            if ($idU > 0){
-               echo "entro por aca eliminando bien el usuario";
+               //echo "entro por aca eliminando bien el usuario";
                $mensaje="El usuario fue eliminado correctamente";
            }else{
-               echo "entro por error";
+               //echo "entro por error";
                $mensaje="Ups!! Ocurrio un error vuelva a intentar";
            }          
             // obtiene las diferentes categorias del modelo
