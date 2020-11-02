@@ -47,13 +47,14 @@ class UsuarioController {
     function verificarInicio(){
        
         $user = $_POST['usuario'];
-        $pass = $_POST['password'];
+        $passIngresado = $_POST['password'];
         
         // verifico que el usuario exista
         $usuario = $this->model->verificar($user);
         
         /* verifico que los datos ingresados sean correctos */
-        if ($usuario && $usuario->password == md5($pass)){
+        // si el usuario y la contraseña ingresado con correctos
+        if ( !empty($usuario) && password_verify($passIngresado, $usuario->password)){
             // si no devuelve la mando a iniciar session nuevamente notificandolo
             // armo la sesion del usuario
             $this->sesionHelper->login($usuario);
@@ -61,7 +62,8 @@ class UsuarioController {
             // redirigimos al listado
             header("Location: " . BASE_URL . 'admhab'); 
         } else {
-            $this->view->login("Credenciales inválidas");
+            //$this->view->login("Credenciales inválidas");
+            //echo "entra con error";
         }
 
     }
@@ -217,6 +219,45 @@ class UsuarioController {
        }
     }
     
-
+    /**
+     * cambia los permisos de usuario por desicion del moderador
+     ** solo lo puede hacer el administrador
+     */  
+    function cambiar_rol_a_usuario($id){
+       // elimino el usuario de la BD
+       
+       // verifico que el usuario esté logueado siempre
+       $this->sesionHelper->checkLogged();
+       /* verifico que el usuario sea administrador para poder realizar operacion */
+       if (($_SESSION['TIPO_USER'] == 1)) {
+           if (is_numeric($id)){
+               // verifica el estado del usuario
+               $estadoV=$this->model->verificarEstado($id);
+               if ($estadoV == 'TRUE'){
+                   $estado=FALSE;
+               }else{
+                   $estado=TRUE;
+               }    
+               
+               // cambio el estado del usuario
+               $idU= $this->model->deshabilitar($id,$estado);
+               if ($idU){
+                   $mensaje="El usuario fue des/habilitado temporalmente";
+               }else{
+                   $mensaje="Ups!! Ocurrio un error vuelva a intentar";
+               }
+               $this->mostrarTodos($mensaje);  
+           }else{
+               // si no viene un numero por parametro
+               $camino='listar_usuarios';
+               $this->view->pantallaDeError($camino);
+           }
+       }else{
+           // si no es usuario debe notificarle que no puede realizar esa accion
+           $camino='home';
+           // VER COMO NOTIFICO EL ERROR
+           $this->view->pantallaDeError($camino);
+       }
+    }
 }
 ?>

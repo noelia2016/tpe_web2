@@ -37,15 +37,17 @@ class UsuarioModel {
      */
     function insertar ($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
         
-        
-        $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado) VALUES (?,?,?,?,?,?,?,?)');
-        $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, md5($password), 1]);
+        // guardo la contraseña encriptandola
+        $hash = password_hash($password, PASSWORD_DEFAULT); 
+        var_dump($hash);
+        /* el usuario a insertar simpre va hacer usuario normal ... el unico que lo puede modificar es el administrador para que sea usuario administrador */
+        $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado, es_administrador) VALUES (?,?,?,?,?,?,?,?,?)');
+        $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, $hash, 1, 0]);
 
         // Obtengo y devuelo el ID del usuario recientemente creado
         return $this->db->lastInsertId();
         
-        /*INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`, `user`, `password`, `habilitado`) VALUES (NULL, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', MD5('noelia2020'), '1');*/
-    }
+   }
     
     /**
      * Elimina el usuario

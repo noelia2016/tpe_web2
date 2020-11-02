@@ -1,6 +1,6 @@
 <?php
 // no muestra las notificaciones de php en el navegador
-error_reporting(0);
+//error_reporting(0);
 class SesionHelper {
     public function __construct() {
         
@@ -31,6 +31,8 @@ class SesionHelper {
         $_SESSION['ID_USER'] = $user->id;
         $_SESSION['EMAIL_USER'] = $user->email;
         $_SESSION['USER'] = $user->user;
+        // para poder saber el tipo de usuario que es y controlar permisos
+        $_SESSION['TIPO_USER'] = $user->es_administrador;
     }
 
 
