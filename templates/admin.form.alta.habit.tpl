@@ -19,10 +19,10 @@
                     <label>Categoria</label>
                     {* lista de categorias --> nombre e ids *}  
                     <select name="id_categoria" class="form-control">
-                    <option value=''></option> 
-                    {foreach from=$categorias item=categoria} 
-                         <option value={$categoria->id}> {$categoria->nombre}</option>
-                    {/foreach}
+                        <option value=''></option> 
+                        {foreach from=$categorias item=categoria} 
+                             <option value={$categoria->id}> {$categoria->nombre}</option>
+                        {/foreach}
                     </select>
                     <label>Estado:</label>
                     <select name="estado" class="form-control">

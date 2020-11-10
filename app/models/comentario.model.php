@@ -88,4 +88,5 @@ class ComentarioModel
         $query->execute([$puntuacion, $mensaje, $usuario, $habtacion, $fecha]);
         return $this->db->lastInsertId();
     }
+    
 }
