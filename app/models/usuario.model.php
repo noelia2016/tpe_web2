@@ -63,10 +63,10 @@ class UsuarioModel {
     /**
      * Deshabilita el usuario temporalmete 
      */
-    function bloquear($id) {
+    function bloquear($id, $accion) {
         
-       $query = $this->db->prepare('UPDATE usuario SET habilitado = 0 WHERE id = ?');
-       $query->execute([$id]);
+       $query = $this->db->prepare('UPDATE usuario SET habilitado = ? WHERE id = ?');
+       $query->execute([$id, $accion]);
        return $query->fetch(PDO::FETCH_OBJ);
     }
     
@@ -79,7 +79,7 @@ class UsuarioModel {
         $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ?');
         $query->execute([$user]);
         
-        return $query->fetch(PDO::FETCH_OBJ);;
+        return $query->fetch(PDO::FETCH_OBJ);
     }
     
     /**
@@ -105,6 +105,28 @@ class UsuarioModel {
        }else{
            return FALSE;
        }
+    }
+    
+    /**
+     * Verifica si el usuario elegido ya se encuentra registrado
+     */
+    function existe_user($user) {  
+  
+        $query = $this->db->prepare('select * FROM usuario WHERE usuario = ?');
+        $query->execute([$user]);
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->rowCount();
+    }
+    
+    /**
+     * Verifica si el usuario elegido ya se encuentra registrado
+     */
+    function obtener_usuario($id) {  
+  
+        $query = $this->db->prepare('select * FROM usuario WHERE id = ?');
+        $query->execute([$id]);
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 
 }

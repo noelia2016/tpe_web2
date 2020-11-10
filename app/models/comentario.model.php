@@ -78,14 +78,14 @@ class ComentarioModel
     /**
      * Inserta un nuevo comentario con los datos ingresados por el usuario
      */
-    function insertarComentario($puntuacion, $mensaje)
+    function insertarComentario($puntuacion, $mensaje, $usuario, $habitacion)
     {
         // guardo la fecha actual en una variable
         $fecha=date("d-m-Y");
         $query = $this->db->prepare('
-        INSERT INTO comentario (puntuacion, mensaje, fecha_realizado )
-                VALUES ( ? , ? , ?)');
-        $query->execute([$puntuacion, $mensaje, $fecha]);
+        INSERT INTO comentario (puntuacion, mensaje, usuario_id, habitacion_id, fecha_realizado )
+                VALUES ( ? , ? , ?, ?, ?)');
+        $query->execute([$puntuacion, $mensaje, $usuario, $habtacion, $fecha]);
         return $this->db->lastInsertId();
     }
 }

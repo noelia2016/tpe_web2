@@ -40,13 +40,15 @@
             <label for="password">Password:</label>
             <input type="password" id="clave" name="clave" required/>
        </div>
-       <!--div class="form-group">
+       <div class="form-group">
             <label for="password">Repetir Password:</label>
             <input type="password" id="claveR" name="claveR" required/>
-       </div-->
+       </div>
        <div class="form-group">
             <input type="submit" id="btn_agregar" class="btn btn-primary" value="<< AGREGAR >>"/>
        </div>
     </form>
 </main>
+<!-- Optional JavaScript -->
+<script type="text/javascript" src="js/validad_formulario.js"></script>
 {include 'footer.tpl'}

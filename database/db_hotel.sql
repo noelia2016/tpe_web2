@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2020 a las 03:50:09
+-- Tiempo de generación: 10-11-2020 a las 20:39:51
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -46,6 +46,31 @@ INSERT INTO `categoria` (`id`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id` int(11) NOT NULL,
+  `puntuacion` int(11) NOT NULL,
+  `mensaje` mediumtext NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `habitacion_id` int(11) NOT NULL,
+  `fecha_realizado` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `puntuacion`, `mensaje`, `usuario_id`, `habitacion_id`, `fecha_realizado`) VALUES
+(1, 5, 'Excelente atencion. Bello lugar.', 1, 13, '2020-10-01'),
+(2, 1, 'Deprolable atencion. Las habitaciones re chicas.', 3, 14, '2020-10-05'),
+(3, 5, 'Excelente atencion. Los empleados muy amables. Comida excelente. ', 1, 16, '2020-07-07'),
+(4, 1, 'Deprolable atencion. Las habitaciones bastante chica. El baño re chiquito. El spa la pileta climatizada el agua fria. Horrible la pase!!', 2, 13, '2020-10-07');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `habitacion`
 --
 
@@ -64,13 +89,13 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`id`, `nro`, `capacidad`, `comodidades`, `estado`, `ubicacion`, `categoria_id`) VALUES
-(10, 4, 4, 'Área 172 m2. Balcón privado con vista a los jardines. Minibar. Sistema de climatización. Caja de seguridad, compatible con notebook. Cafetera', 'ocupada', 'planta alta', 3),
 (13, 3, 3, 'Área 172 m2. Balcón privado con vista a los jardines. Minibar. Sistema de climatización. Caja de seguridad, compatible con notebook. 2 (dos) baños una en planta baja donde se encuentra la cama matromonial y otro en la planta alta donde se encuentran (2) dos camas individuales', 'reservada', 'planta baja', 2),
 (14, 5, 2, 'Área de 182 m2. Balcón privado con vista a la pileta exterior. Área de trabajo · Sofa esquienero muy comodo. Minibar · Sistema de climatización · Caja de seguridad, compatible con notebook. Máquina de café Illy en la habitación. Microondas. Jacuzzi.', 'disponible', 'planta alta', 5),
 (15, 3, 2, 'Área de 182 m2. Balcón privado con vista a la pileta exterior. Área de trabajo · Sofa esquienero muy comodo. Minibar · Sistema de climatización · Caja de seguridad, compatible con notebook. Máquina de café Illy en la habitación. Microondas. Jacuzzi.', 'ocupada', 'planta baja', 5),
-(16, 2, 4, 'Área 172 m2. Balcón privado con vista a los jardines. Minibar. Sistema de climatización. Caja de seguridad, compatible con notebook. Cafetera', 'disponible', 'planta baja', 1),
+(16, 2, 7, 'Área de 172 m2. Balcón privado con vista a los jardines. Minibar. \r\nSistema de climatización. Caja de seguridad, compatible con \r\nnotebook. Cafetera.\r\n                    \r\n                    ', 'reservada', 'planta baja', 1),
 (17, 3, 5, 'Área de 182 m2. Balcón privado con vista a la pileta exterior. Área de trabajo · Sofa esquienero muy comodo. Minibar · Sistema de climatización · Caja de seguridad, compatible con notebook. Máquina de café Illy en la habitación. Microondas. Jacuzzi.', 'disponible', 'planta baja', 3),
-(18, 5, 2, 'Área de 182 m2. Balcón privado con vista a la pileta exterior. Área de trabajo · Sofa esquienero muy comodo. Minibar · Sistema de climatización · Caja de seguridad, compatible con notebook. Máquina de café Illy en la habitación. Microondas. Jacuzzi.', 'disponible', 'sotano', 4);
+(19, 4, 4, 'Área de 190 m2 con dos camas en plata baja y 2 en planta alta dentro de la misma habitación.', 'disponible', 'planta baja', 2),
+(20, 8, 8, 'jdjfsjfksfsjf kjfjakfj', 'ocupada', 'Sotano', 3);
 
 -- --------------------------------------------------------
 
@@ -86,16 +111,21 @@ CREATE TABLE `usuario` (
   `fecha_nac` date NOT NULL,
   `email` varchar(165) NOT NULL,
   `user` varchar(65) NOT NULL,
-  `password` varchar(65) NOT NULL,
-  `habilitado` tinyint(4) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `habilitado` tinyint(4) NOT NULL,
+  `es_administrador` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`, `user`, `password`, `habilitado`) VALUES
-(1, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', 'e10adc3949ba59abbe56e057f20f883e', 0);
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`, `user`, `password`, `habilitado`, `es_administrador`) VALUES
+(1, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 0, 0),
+(2, 'Andrea', 'Gherbi', 'F', '1989-09-22', 'gherbiandrea@gmail.com', 'andrea2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 0),
+(3, 'Analia', 'Carrizo', 'F', '1980-09-22', 'analiacarrizo22@gmail.com', 'analia2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 0),
+(4, 'Roberto', 'Carrizo', 'M', '1988-02-22', 'admin@hotmail.com', 'admin', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 1),
+(5, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@hotmail.com', 'noelia', '$2y$10$gTY8P1wNkygrhG/SpOjO9eSvKQzEOD2evEcwCWLBlrINT25sTwdO2', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -107,6 +137,14 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`,
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `habitacion_id` (`habitacion_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indices de la tabla `habitacion`
@@ -121,7 +159,9 @@ ALTER TABLE `habitacion`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user` (`user`),
-  ADD UNIQUE KEY `user_2` (`user`);
+  ADD UNIQUE KEY `user_2` (`user`),
+  ADD UNIQUE KEY `user_3` (`user`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -131,20 +171,32 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`habitacion_id`) REFERENCES `habitacion` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `habitacion`

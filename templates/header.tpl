@@ -16,9 +16,20 @@
                 <li class="nav-item">
                   <a class="nav-link" href="contacto">Contacto</a>
                 </li>
-                <li class="nav-item ml-auto">
-                  <a class="nav-link" href="login">Iniciar sesión</a>
-                </li>
+                {* si inicio session y es usuario -- NO ADMINISTRADOR *}
+                {if ($smarty.session.USER && $smarty.session.TIPO_USER == 0)}
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto">Contanos tu experiencia</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="logout">Bienvenido {$smarty.session.USER} (Cerrar sesión)</a>
+                    </li>
+                {else}
+                    {* si inicio session todavia *}
+                    <li class="nav-item ml-auto">
+                      <a class="nav-link" href="login">Iniciar sesión</a>
+                    </li>
+                {/if}
               </ul>
             </div>
           </nav>

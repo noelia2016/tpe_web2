@@ -101,17 +101,37 @@ class UsuarioController {
         $user=$_POST['user'];
         $password=$_POST['clave'];
         
-        /* debo verificar que el usuario no este registrado antes de que inserte pero con ajax */
-        
-        // hago el insert de datos en la base de datos
-        $id= $this->model->insertar($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password);
-        if ($id){
-            // si se registro correctamente redireciono al login
-            $this->view->login("Se registro correctamente. Ingrese sus datos por favor.");
+        /* debo verificar que el usuario no este registrado antes de que inserte */
+        $existe_user=$this->model->existe_user($user);
+        if ($existe_user > 0){
+            $mensaje="El nombre de usuario ya esta registrado. Ingrese otro por favor.";
+            $this->view->registrar($mensaje);
         }else{
-            // si no se registra en la base de datos
-            $this->view->registrar("Ups!! Ocurrio un error vuelva a intentarlo.");
-        }           
+            // si no hay coincidencias con el nombre de usuario continuo chequeando email
+            $exite_email=$this->model->verificarDatos($email);
+            if (!empty($exite_email)){
+                $mensaje="El email ya esta registrado para otro usuario. Ingrese otro por favor.";
+                $this->view->registrar($mensaje);
+            }else{
+                // hago el insert de datos en la base de datos
+                $id= $this->model->insertar($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password);
+                if ($id){
+                    // si se registro correctamente redireciono al login
+                    //$this->view->login("Se registro correctamente. Ingrese sus datos por favor.");
+                    // si esta todo ok -- logueo al usuario y le muestro la pantalla segun corresponda
+                    /**
+                      ** aca tenemos que mostrar la pantalla de usuario normal 
+                    **/
+                    // busco los datos del usuario recientemente insertado
+                    $user=$this->model->obtener_usuario($id);
+                    // le creo la session para el autologin
+                    $this->sesionHelper->login($user);                    
+                }else{
+                    // si no se registra en la base de datos
+                    $this->view->registrar("Ups!! Ocurrio un error vuelva a intentarlo.");
+                } 
+            } // fin del else de existe_email
+        } // fin del else de existe_user
    
     }   
     
@@ -168,22 +188,26 @@ class UsuarioController {
        
        // verifico que el usuario esté logueado siempre
        $this->sesionHelper->checkLogged();
-       if (is_numeric($id)){
-           $idU= $this->model->eliminar($id);
-           if ($idU > 0){
-               //echo "entro por aca eliminando bien el usuario";
-               $mensaje="El usuario fue eliminado correctamente";
+       if (($_SESSION['TIPO_USER'] == 1)) {
+           if (is_numeric($id)){
+               $idU= $this->model->eliminar($id);
+               if ($idU > 0){
+                   //echo "entro por aca eliminando bien el usuario";
+                   $mensaje="El usuario fue eliminado correctamente";
+               }else{
+                   //echo "entro por error";
+                   $mensaje="Ups!! Ocurrio un error vuelva a intentar";
+               }          
+                // obtiene las diferentes categorias del modelo
+                $usuarios = $this->model->obtenerUsuarios();
+                $this->view->mostrarUsuarios($usuarios,$mensaje); 
            }else{
-               //echo "entro por error";
-               $mensaje="Ups!! Ocurrio un error vuelva a intentar";
-           }          
-            // obtiene las diferentes categorias del modelo
-            $usuarios = $this->model->obtenerUsuarios();
-            $this->view->mostrarUsuarios($usuarios,$mensaje); 
+               // si no viene un numero por parametro
+               $camino='listar_usuarios';
+               $this->view->pantallaDeError($camino);
+           }
        }else{
-           // si no viene un numero por parametro
-           $camino='listar_usuarios';
-           $this->view->pantallaDeError($camino);
+           echo "usted no tiene permisos para realizar esta operacion";
        }
     }
     
