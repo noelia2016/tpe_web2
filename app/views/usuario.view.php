@@ -43,7 +43,7 @@ class UsuarioView {
      /* 
         Muestra todos los usuarios registrados 
     */
-    function mostrarUsuarios($usuarios, $mensaje) {
+    function mostrarUsuarios($usuarios, $mensaje = null) {
         
         $smarty = new Smarty();
         
@@ -51,7 +51,7 @@ class UsuarioView {
         
         $smarty->assign('mensaje', $mensaje);
 
-        $smarty->display('templates/listar.usuarios.tpl');
+        $smarty->display('templates/admin.lista.usu.tpl');
 
     }
     
@@ -67,6 +67,23 @@ class UsuarioView {
         $smarty->assign('mensaje', "Esta intentando ingresar a una seccion no valida.");
     
         $smarty->display('templates/notFound.tpl');
+    }
+
+    function editarUsuarioVista($usuario){
+        $smarty = new Smarty();
+        
+        $smarty->assign('usuario', $usuario);
+        $smarty->debugging = true;
+
+        //Completar opciones de estados de perfil de usuario
+        $smarty->assign('txt_habilitado', array('Habilitado','Deshabilitado'));
+        $smarty->assign('opc_habilitado', array('1','0'));
+        //Completar opciones de tipo de usuario
+        $smarty->assign('txt_tipo_usu', array('Administrador','Usuario'));
+        $smarty->assign('opc_tipo_usu', array('1','0'));
+
+        $smarty->display('templates/admin.form.edit.usuario.tpl');
+
     }
     
 }

@@ -1,9 +1,16 @@
     {include 'admin.header.tpl'}
         
-    <h3>Listado de Usuarios</h3>
-    {if isset($mensaje) && !empty($mensaje)}
-        <div class="alert alert-dismissible alert-info">
-          <strong>{$mensaje}</strong>
+    <h2>Listado de Usuarios</h2>
+    {if (!empty($mensaje) && isset($mensaje))}
+        <div class="alert alert-dismissible alert-warning">
+            <h4 class="alert-heading">Datos erróneos</h4>
+            <p>{$mensaje}</p>
+        </div>
+    {/if}
+    {if (!empty($mensajeBien) && isset($mensajeBien))}
+        <div class="alert alert-dismissible alert-success" role="alert">
+            <h4 class="alert-heading">Datos actualizados</h4>
+            <p>{$mensajeBien}</p>
         </div>
     {/if}
     {if !empty($usuarios)}
@@ -14,6 +21,7 @@
                          <th>Apellido, Nombre</th>
                          <th>Email</th>
                          <th>Usuario</th>
+                         <th>Tipo</th>
                          <th>Estado</th>
                          <th>Operaciones</th>
                      </tr>
@@ -32,16 +40,19 @@
                                  <td>
                                      {$users->user}
                                  </td>
-                                 
-                                     {if ($users->habilitado == 0) }
-                                        <td>habilitado</td>
+                                    {if ($users->es_administrador == 1) }
+                                        <td>Administrador</td>
+                                    {else}
+                                        <td>Usuario</td>
+                                    {/if}
+                                    {if ($users->habilitado == 1) }
+                                        <td>Habilitado</td>
                                      {else}
-                                        <td>deshabilitado</td>
+                                        <td>Deshabilitado</td>
                                      {/if}
-                                 </td>
-                                 <td>
+                                <td>
                                      <a class='btn btn-danger btn-sm' href='eliminar_usuario/{$users->id}'>Eliminar</a> 
-                                     <!--a class='btn btn-info btn-sm' href='deshabilitar_usuario/{$users->id}'>Des/habilitar</a-->
+                                     <a class='btn btn-info btn-sm' href='editar_usuario/{$users->id}'>Editar</a>
                                  </td>
                              </tr>
                           {/if}

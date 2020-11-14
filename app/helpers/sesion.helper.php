@@ -1,6 +1,6 @@
 <?php
 // no muestra las notificaciones de php en el navegador
-//error_reporting(0);
+error_reporting(0);
 class SesionHelper {
     public function __construct() {
         

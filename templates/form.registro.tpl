@@ -48,7 +48,8 @@
             <input type="submit" id="btn_agregar" class="btn btn-primary" value="<< AGREGAR >>"/>
        </div>
     </form>
+    <script type="text/javascript" src="js/validar_formulario.js"></script>
 </main>
 <!-- Optional JavaScript -->
-<script type="text/javascript" src="js/validad_formulario.js"></script>
+
 {include 'footer.tpl'}
