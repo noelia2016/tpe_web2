@@ -39,7 +39,7 @@ class UsuarioModel {
         
         // guardo la contraseña encriptandola
         $hash = password_hash($password, PASSWORD_DEFAULT); 
-        var_dump($hash);
+        //var_dump($hash);
         /* el usuario a insertar simpre va hacer usuario normal ... el unico que lo puede modificar es el administrador para que sea usuario administrador */
         $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado, es_administrador) VALUES (?,?,?,?,?,?,?,?,?)');
         $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, $hash, 1, 0]);
@@ -97,9 +97,10 @@ class UsuarioModel {
      * Deshabilita el usuario temporalmete 
      */
     function actualizarPass($passwordNueva,$id) {
-
+       
+       $passHash = password_hash($passwordNueva, PASSWORD_DEFAULT); 
        $query = $this->db->prepare("UPDATE usuario SET password = ? WHERE id = ?");
-       $query->execute([md5($passwordNueva),$id]);
+       $query->execute([$passHash,$id]);
        if ($query == TRUE){
            return TRUE;
        }else{

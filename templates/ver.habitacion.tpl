@@ -27,6 +27,12 @@
             <h4 class="alert-heading">Importante!</h4>
             <p>No hay detalles especificos para la habitacion elegida.</p>
         </div>    
-    {/if}  
+    {/if}
+    {* agregarlo solo si es usuario registrado *}
+    {include 'form_comentario.tpl'}
+    {* mostrar todos los comentarios de la habitacion *}
+    {include 'listar_comentario.tpl'}
+    
+    {* fin de mostrar los comentarios de la habitacion *}
     </main>
     {include file='footer.tpl'}

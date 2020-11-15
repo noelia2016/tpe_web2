@@ -93,7 +93,7 @@ class HabitacionModel {
          //ejecutar sentencia de insert con los valores de los parámetros
          $query->execute([$nro_habitacion, $capacidad, $estado, 
          $categoria_id, $comodidades, $ubicacion, $id]);   
-         return $query->fetch(PDO::FETCH_OBJ);;
+         return $query->fetch(PDO::FETCH_OBJ);
 
     }
     

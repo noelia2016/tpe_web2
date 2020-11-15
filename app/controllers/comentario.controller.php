@@ -16,10 +16,10 @@ class ComentarioController
     {
         $this->model = new ComentarioModel();
         $this->view = new ComentarioView();
-        $this->authHelper = new SesionHelper();
+        $this->sessionHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
-        $this->authHelper->checkLogged();
+        $this->sessionHelper->checkLogged();
     }
 
     /**
