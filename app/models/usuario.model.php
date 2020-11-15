@@ -35,11 +35,10 @@ class UsuarioModel {
     /**
      * Inserta un nuevo usuario.
      */
-    function insertar ($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
+    function insertarUsuario($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password){
         
         // guardo la contraseña encriptandola
         $hash = password_hash($password, PASSWORD_DEFAULT); 
-        //var_dump($hash);
         /* el usuario a insertar simpre va hacer usuario normal ... el unico que lo puede modificar es el administrador para que sea usuario administrador */
         $query = $this->db->prepare('INSERT INTO usuario (nombre, apellido, sexo, fecha_nac, email, user, password, habilitado, es_administrador) VALUES (?,?,?,?,?,?,?,?,?)');
         $query->execute([$nombre, $apellido, $sexo, $fecha_nac, $email, $user, $hash, 1, 0]);
@@ -52,7 +51,7 @@ class UsuarioModel {
     /**
      * Elimina el usuario
      */
-    function eliminar($id) {  
+    function eliminarUsuarioMdl($id) {  
   
         $query = $this->db->prepare('DELETE FROM usuario WHERE id = ?');
         $query->execute([$id]);
@@ -60,21 +59,19 @@ class UsuarioModel {
         return $query->rowCount();
     }
     
-    /**
-     * Deshabilita el usuario temporalmete 
-     */
-    function bloquear($id, $accion) {
-        
-       $query = $this->db->prepare('UPDATE usuario SET habilitado = ? WHERE id = ?');
-       $query->execute([$id, $accion]);
-       return $query->fetch(PDO::FETCH_OBJ);
+   
+    function actualizarUsuarioMdl($id, $habilitado, $es_administrador){
+        $query = $this->db->prepare('
+            UPDATE usuario SET habilitado = ?, es_administrador = ? WHERE id = ?');
+        $query->execute([$habilitado, $es_administrador, $id]);
+        $query->fetch(PDO::FETCH_OBJ);
+        return $query->rowCount();
     }
-    
     /**
      * Verifica los datos del inicio de usuario
      */
 
-    function verificar($user) {  
+    function verificarUsuario($user) {  
   
         $query = $this->db->prepare('SELECT * FROM usuario WHERE user = ?');
         $query->execute([$user]);
@@ -122,12 +119,20 @@ class UsuarioModel {
     /**
      * Verifica si el usuario elegido ya se encuentra registrado
      */
-    function obtener_usuario($id) {  
+    function obtenerUsuario($id) {  
   
         $query = $this->db->prepare('select * FROM usuario WHERE id = ?');
         $query->execute([$id]);
-        // devuelve numero de columnas afectadas a la eliminacion
         return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function obtenerHabilitadoUsuario($id) {  
+  
+        $query = $this->db->prepare('select habilitado FROM usuario WHERE id = ?');
+        $query->execute([$id]);
+        $usuario = $query->fetch(PDO::FETCH_ASSOC);
+        $estadoUsu= $usuario['habilitado'];
+        return $estadoUsu ; 
     }
 
 }

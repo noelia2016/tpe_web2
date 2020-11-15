@@ -131,13 +131,17 @@ switch ($params[0]) {
     case 'eliminar_usuario':
         $controller = new UsuarioController();
         $id = $params[1];
-        $controller->eliminar($id);
+        $controller->eliminarUsuario($id);
         break;
-    case 'deshabilitar_usuario':
+    case 'editar_usuario':
         $controller = new UsuarioController();
         $id = $params[1];
-        $controller->deshabilitar($id);
+        $controller->editarUsuario($id);
         break;
+    case 'guardar_usu':
+        $controller = new UsuarioController();
+        $controller->guardarUsuario();
+        break;    
     default:
         echo ('404 Page not found');
         break;
