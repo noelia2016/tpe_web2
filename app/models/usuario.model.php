@@ -59,21 +59,13 @@ class UsuarioModel {
         return $query->rowCount();
     }
     
-    /**
-     * Deshabilita el usuario temporalmete 
-     */
-    function actualizarHabilitadoUsuario($id, $accion) {
-        
-       $query = $this->db->prepare('UPDATE usuario SET habilitado = ? WHERE id = ?');
-       $query->execute([$id, $accion]);
-       return $query->fetch(PDO::FETCH_OBJ);
-    }
-    
+   
     function actualizarUsuarioMdl($id, $habilitado, $es_administrador){
         $query = $this->db->prepare('
             UPDATE usuario SET habilitado = ?, es_administrador = ? WHERE id = ?');
         $query->execute([$habilitado, $es_administrador, $id]);
-        return $query->fetch(PDO::FETCH_OBJ);
+        $query->fetch(PDO::FETCH_OBJ);
+        return $query->rowCount();
     }
     /**
      * Verifica los datos del inicio de usuario

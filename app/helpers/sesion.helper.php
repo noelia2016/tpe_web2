@@ -33,6 +33,7 @@ class SesionHelper {
         $_SESSION['USER'] = $user->user;
         // para poder saber el tipo de usuario que es y controlar permisos
         $_SESSION['TIPO_USER'] = $user->es_administrador;
+        
     }
 
 

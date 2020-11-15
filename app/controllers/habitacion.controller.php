@@ -13,7 +13,7 @@ class HabitacionController
     private $view, $viewAdmin;
     private $modelCat;
     private $sesionHelper;
-
+    
     function __construct()
     {
         $this->model = new HabitacionModel();
@@ -25,14 +25,6 @@ class HabitacionController
         // verifico que el usuario esté logueado siempre
         $this->authHelper->checkLogged();
 
-    }
-
-    function mostrarHabitaciones()
-    {
-        // obtiene todas las habitaciones del modelo
-        $habitaciones = $this->model->obtenerHabitaciones();
-        // actualizo la vista
-        $this->viewAdmin->mostrarHabitaciones($habitaciones);
     }
 
     /**
@@ -52,7 +44,10 @@ class HabitacionController
     }
 
     function editarHabitacion($id)
-    {   $estadoActualiz = false ;
+
+    {   //revisar 
+        
+        $estadoActualiz = false ;
         $mensaje = "No se pudieron recuperar datos de la 
                     habitación en la base de datos";
         // obtener los datos de una habitación del modelo
@@ -146,5 +141,31 @@ class HabitacionController
     {
         $habitaciones = $this->model->obtenerHabitaciones();
         $this->viewAdmin->mostrarMensajeActuHabitacion($habitaciones, $mensaje, $actualizado);
+    }
+
+    function mostrarHabitaciones($pagina = null)
+    {   //1) obtener número total de habitaciones para paginar
+        $total_registros = $this->model->obtenerCantHabitaciones();
+     
+        //constante
+        $itemsPagina = 5 ;
+        //averiguar según número de página
+        $inicio = 0;
+        if ($total_registros > 0) {
+           
+            if (!$pagina) {
+                $inicio = 0;
+                $pagina = 1;
+            } else {
+                $inicio = ($pagina - 1) * $itemsPagina ;
+            }
+            //calculo el total de paginas
+           
+            $habitaciones = $this->model->obtenerHabitaciones() ;
+            //    obtenerHabitacionesPaginado($inicio, $itemsPagina);
+            //if (isset($habitacion)){
+                $this->viewAdmin->mostrarHabitaciones($habitaciones);
+            //}
+        }
     }
 }

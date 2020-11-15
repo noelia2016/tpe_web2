@@ -43,14 +43,17 @@ class UsuarioView {
      /* 
         Muestra todos los usuarios registrados 
     */
-    function mostrarUsuarios($usuarios, $mensaje = null) {
+    function mostrarUsuarios($usuarios, $mensaje, $exito) {
         
         $smarty = new Smarty();
         
         $smarty->assign('usuarios', $usuarios);
-        
-        $smarty->assign('mensaje', $mensaje);
-
+        if ($exito == true){
+            $smarty->assign('mensajeBien', $mensaje);
+        }
+        else {
+            $smarty->assign('mensaje', $mensaje);
+        }
         $smarty->display('templates/admin.lista.usu.tpl');
 
     }
@@ -73,8 +76,7 @@ class UsuarioView {
         $smarty = new Smarty();
         
         $smarty->assign('usuario', $usuario);
-        $smarty->debugging = true;
-
+       
         //Completar opciones de estados de perfil de usuario
         $smarty->assign('txt_habilitado', array('Habilitado','Deshabilitado'));
         $smarty->assign('opc_habilitado', array('1','0'));
