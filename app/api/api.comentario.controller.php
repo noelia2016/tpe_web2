@@ -40,7 +40,7 @@ class ApiComentarioController {
     /**
      * Elimina un comentario especifico
      */
-    public function eliminar_comentario($params = null) {
+    public function eliminarComentario($params = null) {
         
         // obtengo el id del paramentro a eliminar
         $idComentario = $params[':ID'];
@@ -58,16 +58,25 @@ class ApiComentarioController {
     /**
      * Inserta un nuevo comentario 
      */
+     
+    // $params es un array asociativo con los parámetros de la ruta
     public function crearComentario($params = null) {
         
-        // $params es un array asociativo con los parámetros de la ruta
+        // obtengo los datos ingresados por el usuario en el formulario
         $puntos = $params[':puntuacion'];
         $mensaje = $params[':mensaje'];
-        $comentario = $this->model->insertarComentario($puntuacion, $mensaje);
-        if ($comentario)
+        $habitacion = $params[':habitacion'];
+        $usuario = $params[':usuario'];
+        
+        // lo inserto en mi BD
+        $comentario = $this->model->insertarComentario($puntuacion, $mensaje, $usuario, $habitacion);
+        // si inserto el comentario muestro la respuesta de todo ok
+        if ($comentario > 0){
             $this->view->response($comentario, 200);
-        else
+        }else{
+            // si ocurrio un error notifico
             $this->view->response("Ups!! ocurrio un error al intentar insertar comentario.", 404);
+        }
     }
 
 

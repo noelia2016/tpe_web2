@@ -26,21 +26,6 @@ class HabitacionController
         $this->authHelper->checkLogged();
     }
 
-    /**
-     * Imprime los detalles de la habitacion
-     */
-    function mostrarHabitacion($id)
-    {
-        $habitacion = $this->model->mostrarHabitacion($id);
-
-        // actualizo la vista
-        if ($habitacion) {
-            $this->view->mostrarDetalleHabitacion($habitacion);
-        } else {
-            //no se encontró la habitacion con ese id
-        }
-    }
-
     function editarHabitacion($id)
 
     {   //revisar 
@@ -73,12 +58,22 @@ class HabitacionController
     {
         // eliminar una habitación 
         $this->sesionHelper->checkLogged();
+
         if (($_SESSION['TIPO_USER'] == 1)) {
             if (is_numeric($id)) {
                 $filas = $this->model->eliminarHabitacionMdl($id);
                 if ($filas > 0){
                     $mensaje = "La habitación ha sido eliminada";
                     $borrado = true ;
+                    // si tiene comentarios asociados esa habitacion debo eliminarlos
+                    $tieneComentarios=$this->model->tieneComentariosAsociados($id);
+                    if ($tieneComentarios){
+                        $comentarios=$this->model->eliminarComentariosDeHabitacion($id);
+                        if($comentarios > 0){
+                            // si borro comentarios se lo agrego al mensaje que notifico.
+                            $mensaje .="Los comentarios asociados tambien fueron eliminados correctamente.";
+                        }
+                    }
                 }
             } else {
                 $mensaje = "No se pudo eliminar la habitación en la base de datos";
@@ -88,6 +83,7 @@ class HabitacionController
         } else {
             echo "usted no tiene permisos para realizar esta operacion";
         }
+       
     }
 
     function guardarHabitacion()

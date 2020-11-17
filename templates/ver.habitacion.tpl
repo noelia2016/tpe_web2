@@ -29,9 +29,17 @@
         </div>    
     {/if}
     {* agregarlo solo si es usuario registrado *}
-    {include 'form_comentario.tpl'}
+    {if (isset($mostrar) && (!$mostrar))}
+        <div class="alert alert-info" role="alert">
+            <span>Tu opinion nos interesa!!</span>
+            <p>Si queres comentar como fue tu estadia y todavia sos usuario. Por favor registrate <a href="registrar">aqui</a></p>   
+        </div>
+    {else}
+        {include 'form.comentario.tpl'}
+    {/if}   
     {* mostrar todos los comentarios de la habitacion *}
-    {include 'listar_comentario.tpl'}
+    
+    {include 'listar.comentarios.tpl'}
     
     {* fin de mostrar los comentarios de la habitacion *}
     </main>

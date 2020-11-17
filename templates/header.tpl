@@ -17,14 +17,14 @@
                   <a class="nav-link" href="contacto">Contacto</a>
                 </li>
                 {* si inicio session y es usuario -- NO ADMINISTRADOR *}
-                {if ($smarty.session.USER && $smarty.session.TIPO_USER == 0)}
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="logout">Bienvenido {$smarty.session.USER} (Cerrar sesión)</a>
-                    </li>
-                {else}
-                    {* si inicio session todavia *}
+                {if (isset($mostrar) && (!$mostrar))}
+                    {* si no inicio session todavia *}
                     <li class="nav-item ml-auto">
                       <a class="nav-link" href="login">Iniciar sesión</a>
+                    </li>  
+                {else}             
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="logout">Bienvenido {$smarty.session.USER} (Cerrar sesión)</a>
                     </li>
                 {/if}
               </ul>

@@ -82,6 +82,30 @@ class HabitacionModel {
     }
     
     /**
+     * Chequea si posee comentarios la habitación según id pasado como parámetro .
+     */
+    function tieneComentariosAsociados($id){
+        
+        $query = $this->db->prepare('
+        SELECT FROM comentario where habitacion_id = ?'); 
+        $query->execute([$id]);
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->rowCount();
+    }
+    
+    /**
+     * Eliminar los comentarios de la habitación según id pasado como parámetro .
+     */
+    function eliminarComentariosDeHabitacion($id){
+        
+        $query = $this->db->prepare('
+        DELETE FROM comentario where habitacion_id = ?'); 
+        $query->execute([$id]);
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->rowCount();
+    }
+    
+    /**
      * Actualiza los campos de la habitación según id pasado como parámetro .
      */
     function actualizarHabitacionMdl($id, $nro_habitacion, $estado, $categoria_id, $capacidad, $comodidades, $ubicacion){

@@ -1,6 +1,6 @@
 <?php
 // no muestra las notificaciones de php en el navegador
-error_reporting(0);
+//error_reporting(0);
 class SesionHelper {
     public function __construct() {
         
@@ -26,6 +26,9 @@ class SesionHelper {
         header("Location: " . BASE_URL . 'login');
     }    
 
+    /**
+     * Registra las variables de inicio de sesion de usuario
+     */
     function login($user) {
         session_start();
         $_SESSION['ID_USER'] = $user->id;
@@ -34,6 +37,18 @@ class SesionHelper {
         // para poder saber el tipo de usuario que es y controlar permisos
         $_SESSION['TIPO_USER'] = $user->es_administrador;
         
+    }
+    
+    /**
+     * Verifica que el usuario logueado es usuario no administrador
+     */
+    function esta_logueadoUserNormal(){
+        session_start();
+        if ((isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] == 0)) {
+            return TRUE; 
+        }else{
+            return FALSE;
+        }
     }
 
 
