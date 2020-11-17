@@ -121,11 +121,6 @@ class UsuarioController
                 $id = $this->model->insertarUsuario($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password);
                 if ($id) {
                     // si se registro correctamente redireciono al login
-                    //$this->view->login("Se registro correctamente. Ingrese sus datos por favor.");
-                    // si esta todo ok -- logueo al usuario y le muestro la pantalla segun corresponda
-                    /**
-                     ** aca tenemos que mostrar la pantalla de usuario normal 
-                     **/
                     // busco los datos del usuario recientemente insertado
                     $user = $this->model->obtenerUsuario($id);
                     // le creo la session para el autologin

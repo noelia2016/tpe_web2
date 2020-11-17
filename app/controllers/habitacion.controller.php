@@ -20,10 +20,10 @@ class HabitacionController
         $this->modelCat = new CategoriaModel();
         $this->viewAdmin = new AdminHabitacionView();
         $this->view = new HabitacionView();
-        $this->authHelper = new SesionHelper();
+        $this->sessionHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
-        $this->authHelper->checkLogged();
+        $this->sessionHelper->checkLogged();
 
     }
 
