@@ -21,7 +21,9 @@ class CategoriaController
         $this->authHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
-        $this->authHelper->checkLogged();
+        //$this->authHelper->checkLogged();
+        //Verifico usuario administrador, si no, redirige al login
+        $this->authHelper->esta_logueadoAdministrador() ;
     }
 
     /**
@@ -45,8 +47,11 @@ class CategoriaController
         $categoria = $this->model->obtenerCategoria($id);
         $habitaciones = $this->model->obtenerHabitacionesdeCategoria($id);
 
+        // debo verificar si esta registrado como usuario comun para permitirle comentar
+        $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+
         // actualizo la vista
-        $this->view->mostrarCategoria($categoria, $habitaciones);
+        $this->view->mostrarCategoria($categoria, $habitaciones, $mostrar);
     }
 
     function eliminarCategoria($id)

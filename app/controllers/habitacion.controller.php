@@ -23,13 +23,15 @@ class HabitacionController
         $this->authHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
-        $this->authHelper->checkLogged();
+        //$this->authHelper->checkLogged();
+        //Verifico usuario administrador, si no, redirige al login
+        $this->authHelper->esta_logueadoAdministrador() ;
     }
 
     function editarHabitacion($id)
 
     {   //revisar 
-        $this->sesionHelper->checkLogged();
+       
         if (($_SESSION['TIPO_USER'] == 1)) {
             $estadoActualiz = false;
             $mensaje = "No se pudieron recuperar datos de la 
@@ -57,8 +59,6 @@ class HabitacionController
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 
-        $this->sesionHelper->checkLogged();
-
         if (($_SESSION['TIPO_USER'] == 1)) {
             if (is_numeric($id)) {
                 $filas = $this->model->eliminarHabitacionMdl($id);
@@ -88,7 +88,6 @@ class HabitacionController
 
     function guardarHabitacion()
     {
-        $this->sesionHelper->checkLogged();
         if (($_SESSION['TIPO_USER'] == 1)) {
             $estadoActualiz = false;
 

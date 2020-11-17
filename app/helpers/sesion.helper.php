@@ -36,6 +36,7 @@ class SesionHelper {
         $_SESSION['USER'] = $user->user;
         // para poder saber el tipo de usuario que es y controlar permisos
         $_SESSION['TIPO_USER'] = $user->es_administrador;
+        $_SESSION['LOGUEADO'] = true;
         
     }
     
@@ -44,12 +45,27 @@ class SesionHelper {
      */
     function esta_logueadoUserNormal(){
         session_start();
-        if ((isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] == 0)) {
+        if ((isset($_SESSION['LOGUEADO'])) && ($_SESSION['TIPO_USER'] == 0)) {
             return TRUE; 
         }else{
             return FALSE;
         }
     }
+
+     /**
+     * Verifica que el usuario logueado es administrador
+     */
+    function esta_logueadoAdministrador(){
+        session_start();
+        if ( (isset($_SESSION['LOGUEADO'])) && ($_SESSION['TIPO_USER'] == '1')) {
+            return TRUE; 
+        }else{
+            return FALSE;
+            header("Location: " . BASE_URL . "home");
+            die(); 
+        }
+    }
+
 
 
 }

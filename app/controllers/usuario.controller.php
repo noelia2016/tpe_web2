@@ -24,9 +24,7 @@ class UsuarioController
     function mostrarTodos($mensaje = null)
     {
         // verifico que el usuario esté logueado siempre
-        $this->sesionHelper->checkLogged();
-
-        if (($_SESSION['TIPO_USER'] == 1)) {
+        if ($this->sesionHelper->esta_logueadoAdministrador()) {
             $this->redirigirListaUsuPostActualiz($mensaje);
         } else {
             echo "usted no tiene permisos para realizar esta operacion";
@@ -34,34 +32,35 @@ class UsuarioController
     }
 
     function mostrarUsuariosPaginado($pagina = null, $mensaje = null)
-    {   
-        $this->sesionHelper->checkLogged();
-        //1) obtener número total de habitaciones para paginar
-        $total_registros = $this->model->obtenerCantUsuarios();
-      
-        //constante
-        $itemsPagina = 5;
-        //averiguar según número de página
-        $inicio = 0;
-        //calculo el total de paginas
-        $paginas = intval($total_registros/ $itemsPagina) ;
-        $resto = $total_registros % $itemsPagina ;
-        //si hay resto, sumo 1 a cantidad de páginas
-        if ($resto>0){
-            $paginas ++;
-        }
-        if ($total_registros > 0) {
-            if ((!$pagina) || ($pagina > $paginas)) {
-                $inicio = 0;
-                $pagina = 1;
-            } else {
-                $inicio = ($pagina - 1) * $itemsPagina;
+    {
+        if ($this->sesionHelper->esta_logueadoAdministrador()) {
+            //1) obtener número total de habitaciones para paginar
+            $total_registros = $this->model->obtenerCantUsuarios();
+
+            //constante
+            $itemsPagina = 5;
+            //averiguar según número de página
+            $inicio = 0;
+            //calculo el total de paginas
+            $paginas = intval($total_registros / $itemsPagina);
+            $resto = $total_registros % $itemsPagina;
+            //si hay resto, sumo 1 a cantidad de páginas
+            if ($resto > 0) {
+                $paginas++;
             }
-                  
-            $usuarios = $this->model->obtenerUsuariosPaginado($inicio, $itemsPagina);
-           
-            if (isset($usuarios)) {
-                $this->view->mostrarUsuarios($usuarios);
+            if ($total_registros > 0) {
+                if ((!$pagina) || ($pagina > $paginas)) {
+                    $inicio = 0;
+                    $pagina = 1;
+                } else {
+                    $inicio = ($pagina - 1) * $itemsPagina;
+                }
+
+                $usuarios = $this->model->obtenerUsuariosPaginado($inicio, $itemsPagina);
+
+                if (isset($usuarios)) {
+                    $this->view->mostrarUsuarios($usuarios);
+                }
             }
         }
     }
@@ -158,18 +157,12 @@ class UsuarioController
                 // hago el insert de datos en la base de datos
                 $id = $this->model->insertarUsuario($nombre, $apellido, $sexo, $fecha_nac, $email, $user, $password);
                 if ($id) {
-                    // si se registro correctamente redireciono al login
-                    //$this->view->login("Se registro correctamente. Ingrese sus datos por favor.");
-                    // si esta todo ok -- logueo al usuario y le muestro la pantalla segun corresponda
-                    /**
-                     ** aca tenemos que mostrar la pantalla de usuario normal 
-                     **/
                     // busco los datos del usuario recientemente insertado
                     $user = $this->model->obtenerUsuario($id);
                     // le creo la session para el autologin
                     $this->sesionHelper->login($user);
                     // si se registro correctamente le muestro la home del usuario visitante
-                    header("Location: " . BASE_URL . 'home'); 
+                    header("Location: " . BASE_URL . 'home');
                 } else {
                     // si no se registra en la base de datos
                     $this->view->registrar("Ups!! Ocurrio un error vuelva a intentarlo.");
@@ -211,7 +204,6 @@ class UsuarioController
             $id = $this->model->actualizarPass($passwordNueva, $datos->id);
 
             // comprobamos que el número de filas afectadas que devuelve la consulta sea mayor que 0
-            /*if ($id->rowCount() > 0){*/
             if ($id) {
                 // si se registro el cambio correctamente lo direcciono al login
                 $this->view->login('El cambio se registro correctamente. Ingrese con su nuevo password');
@@ -233,8 +225,7 @@ class UsuarioController
         // elimino el usuario de la BD
         $exito = false;
         // verifico que el usuario esté logueado siempre
-        $this->sesionHelper->checkLogged();
-        if (($_SESSION['TIPO_USER'] == 1)) {
+        if ($this->sesionHelper->esta_logueadoAdministrador()) {
             if (is_numeric($id)) {
                 $idU = $this->model->eliminarUsuarioMdl($id);
                 if ($idU > 0) {
@@ -259,10 +250,8 @@ class UsuarioController
 
     function editarUsuario($id)
     {
-        // verifico que el usuario esté logueado siempre
-        $this->sesionHelper->checkLogged();
         /* verifico que el usuario sea administrador para poder realizar operacion */
-        if (($_SESSION['TIPO_USER'] == 1)) {
+        if ($this->sesionHelper->esta_logueadoAdministrador()) {
             if (is_numeric($id)) {
                 $usuario = $this->model->obtenerUsuario($id);
                 // actualizo la vista cargando los datos en el formulario de usuario
@@ -285,28 +274,29 @@ class UsuarioController
     }
     function guardarUsuario()
     {
-        $this->sesionHelper->checkLogged();
-        $exito = false;
-        $habilitado = $_POST['habilitado'];
-        $es_administrador = $_POST['es_administrador'];
-        // verifico campos obligatorios
-        if (!isset($habilitado) || !isset($es_administrador)) {
-            $mensaje = "Debe indicar datos de usuario a actualizar";
-        } else {
-            if (isset($_POST['id_usuario'])) {
-                $id = $_POST['id_usuario'];
-                $exito = ($this->model->actualizarUsuarioMdl(
-                    $id,
-                    $habilitado,
-                    $es_administrador
-                )) > 0;
-                $mensaje = "Se actualizaron los datos del usuario";
+        if ($this->sesionHelper->esta_logueadoAdministrador()) {
+            $exito = false;
+            $habilitado = $_POST['habilitado'];
+            $es_administrador = $_POST['es_administrador'];
+            // verifico campos obligatorios
+            if (!isset($habilitado) || !isset($es_administrador)) {
+                $mensaje = "Debe indicar datos de usuario a actualizar";
             } else {
+                if (isset($_POST['id_usuario'])) {
+                    $id = $_POST['id_usuario'];
+                    $exito = ($this->model->actualizarUsuarioMdl(
+                        $id,
+                        $habilitado,
+                        $es_administrador
+                    )) > 0;
+                    $mensaje = "Se actualizaron los datos del usuario";
+                } else {
 
-                //Si el administrador tuviera opción de alta de usuario
+                    //Si el administrador tuviera opción de alta de usuario
+                }
             }
+            $this->redirigirListaUsuPostActualiz($mensaje, $exito);
         }
-        $this->redirigirListaUsuPostActualiz($mensaje, $exito);
     }
 
     function redirigirListaUsuPostActualiz($mensaje, $exito = null)
