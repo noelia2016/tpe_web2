@@ -112,28 +112,5 @@ class HabitacionModel {
         return $this->db->lastInsertId();
 
     }
-
-    function obtenerCantHabitaciones() {
-        $query = $this->db->prepare(
-            'SELECT count(*) FROM habitacion') ;
-        $query->execute() ;
-        $total = $query->fetch(PDO::FETCH_NUM);
-        return $total[0];
-                        
-    }
-
-    function obtenerHabitacionesPaginado($inicio, $cantidad) {
-         // $inicio es a partir de que registro y $cantidad cuantos voy a devolver
-        $query = $this->db->prepare('SELECT a.id, a.nro, a.capacidad, a.estado, 
-                b.nombre as nombre_cat, a.categoria_id, a.comodidades, a.ubicacion
-                FROM habitacion a join categoria b on a.categoria_id = b.id 
-                order by a.nro LIMIT ?, ?');
-        $query->execute(([$inicio, $cantidad]));
-
-        // Obtengo la respuesta con un fetchAll 
-        $habitaciones = $query->fetchAll(PDO::FETCH_OBJ);
-        //var_dump($habitaciones);
-        //die();
-        return $habitaciones;
-    }
+  
 }

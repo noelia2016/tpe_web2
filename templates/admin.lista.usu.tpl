@@ -59,6 +59,19 @@
                      {/foreach}
                  </tbody>
              </table>
+             <nav aria-label="Page navigation example">
+             <ul class="pagination justify-content-center">
+                 <li class="page-item disabled">
+                     <a class="page-link fondo_oscuro" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                 </li>
+                 <li class="page-item"><a class="page-link fondo_oscuro" href="#">1</a></li>
+                 <li class="page-item"><a class="page-link fondo_oscuro" href="#">2</a></li>
+                 <li class="page-item"><a class="page-link fondo_oscuro" href="#">3</a></li>
+                 <li class="page-item">
+                     <a class="page-link fondo_oscuro" href="#">Siguiente</a>
+                 </li>
+             </ul>
+         </nav>
          </div>
     {else}
         {* en caso que no se dispongan de datos a mostrar notifico *}

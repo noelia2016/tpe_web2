@@ -126,7 +126,9 @@ switch ($params[0]) {
         break;
     case 'listar_usuarios':
         $controller = new UsuarioController();
-        $controller->mostrarTodos();
+        //$controller->mostrarTodos();
+        $pagina = $params[1];
+        $controller->mostrarUsuariosPaginado($pagina);
         break;
     case 'eliminar_usuario':
         $controller = new UsuarioController();

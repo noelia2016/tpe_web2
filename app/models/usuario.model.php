@@ -135,4 +135,22 @@ class UsuarioModel {
         return $estadoUsu ; 
     }
 
+    function obtenerCantUsuarios() {
+        $query = $this->db->prepare(
+            'SELECT count(*) FROM usuario') ;
+        $query->execute() ;
+        $total = $query->fetch(PDO::FETCH_NUM);
+        return $total[0];
+                        
+    }
+
+    function obtenerUsuariosPaginado($inicio, $cantidad) {
+       // $inicio es a partir de que registro y $cantidad cuantos voy a devolver
+       $sql = 'SELECT * FROM usuario order by id LIMIT ' . $inicio . ', ' . $cantidad ;
+       $query = $this->db->prepare($sql);
+       $query->execute();
+       $usuarios = $query->fetchAll(PDO::FETCH_OBJ);
+       return $usuarios;
+   }
+
 }

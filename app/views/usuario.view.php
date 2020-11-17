@@ -43,7 +43,7 @@ class UsuarioView {
      /* 
         Muestra todos los usuarios registrados 
     */
-    function mostrarUsuarios($usuarios, $mensaje, $exito) {
+    function mostrarUsuarios($usuarios, $mensaje = null, $exito = null) {
         
         $smarty = new Smarty();
         

@@ -25,8 +25,45 @@ class UsuarioController
     {
         // verifico que el usuario esté logueado siempre
         $this->sesionHelper->checkLogged();
-    
-        $this->redirigirListaUsuPostActualiz($mensaje) ;
+
+        if (($_SESSION['TIPO_USER'] == 1)) {
+            $this->redirigirListaUsuPostActualiz($mensaje);
+        } else {
+            echo "usted no tiene permisos para realizar esta operacion";
+        }
+    }
+
+    function mostrarUsuariosPaginado($pagina = null, $mensaje = null)
+    {   
+        $this->sesionHelper->checkLogged();
+        //1) obtener número total de habitaciones para paginar
+        $total_registros = $this->model->obtenerCantUsuarios();
+      
+        //constante
+        $itemsPagina = 5;
+        //averiguar según número de página
+        $inicio = 0;
+        //calculo el total de paginas
+        $paginas = intval($total_registros/ $itemsPagina) ;
+        $resto = $total_registros % $itemsPagina ;
+        //si hay resto, sumo 1 a cantidad de páginas
+        if ($resto>0){
+            $paginas ++;
+        }
+        if ($total_registros > 0) {
+            if ((!$pagina) || ($pagina > $paginas)) {
+                $inicio = 0;
+                $pagina = 1;
+            } else {
+                $inicio = ($pagina - 1) * $itemsPagina;
+            }
+                  
+            $usuarios = $this->model->obtenerUsuariosPaginado($inicio, $itemsPagina);
+           
+            if (isset($usuarios)) {
+                $this->view->mostrarUsuarios($usuarios);
+            }
+        }
     }
 
     /**
@@ -52,18 +89,19 @@ class UsuarioController
 
         /* verifico que los datos ingresados sean correctos */
         // si el usuario y la contraseña ingresado con correctos
-        if (!empty($usuario) && password_verify($passIngresado, $usuario->password)
-            && ($usuario->habilitado == 1)) {
+        if (
+            !empty($usuario) && password_verify($passIngresado, $usuario->password)
+            && ($usuario->habilitado == 1)
+        ) {
             // si no devuelve la mando a iniciar session nuevamente notificandolo
             // armo la sesion del usuario
             $this->sesionHelper->login($usuario);
-                if ( $usuario->es_administrador == 1){
-                    // redirigimos al listado de habitaciones
-                    header("Location: " . BASE_URL . 'admhab');
-                }
-                else {
-                    header("Location: " . BASE_URL . 'home');   
-                }
+            if ($usuario->es_administrador == 1) {
+                // redirigimos al listado de habitaciones
+                header("Location: " . BASE_URL . 'admhab');
+            } else {
+                header("Location: " . BASE_URL . 'home');
+            }
         } else {
             //$this->view->login("Credenciales inválidas");
             //echo "entra con error";
@@ -191,7 +229,7 @@ class UsuarioController
     function eliminarUsuario($id)
     {
         // elimino el usuario de la BD
-        $exito = false ;
+        $exito = false;
         // verifico que el usuario esté logueado siempre
         $this->sesionHelper->checkLogged();
         if (($_SESSION['TIPO_USER'] == 1)) {
@@ -200,12 +238,12 @@ class UsuarioController
                 if ($idU > 0) {
                     //echo "entro por aca eliminando bien el usuario";
                     $mensaje = "El usuario fue eliminado correctamente";
-                    $exito = true ;
+                    $exito = true;
                 } else {
                     //echo "entro por error";
                     $mensaje = "Ups!! Ocurrio un error vuelva a intentar";
                 }
-                $this->redirigirListaUsuPostActualiz($mensaje, $exito) ;
+                $this->redirigirListaUsuPostActualiz($mensaje, $exito);
             } else {
                 // si no viene un numero por parametro
                 $camino = 'listar_usuarios';
@@ -216,7 +254,7 @@ class UsuarioController
         }
     }
 
-   
+
     function editarUsuario($id)
     {
         // verifico que el usuario esté logueado siempre
@@ -229,8 +267,8 @@ class UsuarioController
                 if ($usuario) {
                     $this->view->editarUsuarioVista($usuario);
                 } else {
-                    $mensaje = "No se pudo recuperar el usuario solicitado" ;
-                   $this->mostrarTodos($mensaje);
+                    $mensaje = "No se pudo recuperar el usuario solicitado";
+                    $this->mostrarTodos($mensaje);
                 }
             } else {
                 $camino = 'listar_usuarios';
@@ -244,27 +282,26 @@ class UsuarioController
         }
     }
     function guardarUsuario()
-    {   
+    {
         $this->sesionHelper->checkLogged();
-        $exito = false ;
+        $exito = false;
         $habilitado = $_POST['habilitado'];
         $es_administrador = $_POST['es_administrador'];
         // verifico campos obligatorios
         if (!isset($habilitado) || !isset($es_administrador)) {
-                $mensaje = "Debe indicar datos de usuario a actualizar";
-            }
-        else{
-            if (isset($_POST['id_usuario']) )
-            {  
-                $id = $_POST['id_usuario'] ;
+            $mensaje = "Debe indicar datos de usuario a actualizar";
+        } else {
+            if (isset($_POST['id_usuario'])) {
+                $id = $_POST['id_usuario'];
                 $exito = ($this->model->actualizarUsuarioMdl(
-                                $id, $habilitado, $es_administrador)) > 0;
+                    $id,
+                    $habilitado,
+                    $es_administrador
+                )) > 0;
                 $mensaje = "Se actualizaron los datos del usuario";
-            }
-            else
-            {
-            
-              //Si el administrador tuviera opción de alta de usuario
+            } else {
+
+                //Si el administrador tuviera opción de alta de usuario
             }
         }
         $this->redirigirListaUsuPostActualiz($mensaje, $exito);
@@ -275,6 +312,4 @@ class UsuarioController
         $usuarios = $this->model->obtenerUsuarios();
         $this->view->mostrarUsuarios($usuarios, $mensaje, $exito);
     }
-
-    
 }
