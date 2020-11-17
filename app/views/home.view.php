@@ -5,7 +5,7 @@ require_once('libs/smarty/libs/Smarty.class.php');
 class HomeView {
 
     /** 
-        Muestra la pagina principal del sitio para el visitante 
+      *  Muestra la pagina principal del sitio para el visitante 
     **/
     function mostrarHome($categorias, $mostrar) {
         
@@ -22,7 +22,7 @@ class HomeView {
     }
     
     /** 
-        Muestra la pagina de servicios para el visitante 
+      *  Muestra la pagina de servicios para el visitante 
     **/
     function mostrarServicios($mostrar) {
         
@@ -34,7 +34,7 @@ class HomeView {
     }
     
     /** 
-        Muestra la pagina de contactos para poder comunicarse con nosotros 
+      *  Muestra la pagina de contactos para poder comunicarse con nosotros 
     **/
     function mostrarContacto($mostrar) {
         
