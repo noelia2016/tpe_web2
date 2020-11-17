@@ -7,13 +7,14 @@ class HomeView {
     /** 
         Muestra la pagina principal del sitio para el visitante 
     **/
-    function mostrarHome($categorias) {
+    function mostrarHome($categorias, $mostrar) {
         
         // instancio el smarty
         $smarty = new Smarty();
         
         // asigno las categorias para usarla en la vista
         $smarty->assign('categorias', $categorias);
+        $smarty->assign('mostrar', $mostrar);
         
         // llamo al tpl que necesito
         $smarty->display('templates/home.tpl');
@@ -23,11 +24,11 @@ class HomeView {
     /** 
         Muestra la pagina de servicios para el visitante 
     **/
-    function mostrarServicios() {
+    function mostrarServicios($mostrar) {
         
         
         $smarty = new Smarty();
-    
+        $smarty->assign('mostrar', $mostrar);
         $smarty->display('templates/servicios.tpl');
 
     }
@@ -35,11 +36,11 @@ class HomeView {
     /** 
         Muestra la pagina de contactos para poder comunicarse con nosotros 
     **/
-    function mostrarContacto() {
+    function mostrarContacto($mostrar) {
         
         
         $smarty = new Smarty();
-    
+        $smarty->assign('mostrar', $mostrar);
         $smarty->display('templates/contacto.tpl');
 
     }
@@ -47,26 +48,16 @@ class HomeView {
     /** 
      *  Muestra la categoria elegida con sus detalles y habitaciones que posee asociadas
     **/
-    function mostrarCategoria ($categoria, $habitaciones){
+    function mostrarCategoria ($categoria, $habitaciones, $mostrar){
         
         $smarty = new Smarty();
         $smarty->debugging = true;
         $smarty->assign('categoria', $categoria);
         $smarty->assign('habitaciones', $habitaciones);
+        // para cambiar el menu de la forma que se ve si inicio session o no
+        $smarty->assign('mostrar', $mostrar);
         $smarty->display('templates/ver.categoria.tpl');
 
-    }
-    
-    /**
-     * Imprime los detalles de una habitacion
-     */
-    function mostrarDetalleHabitacion($habitacion) {
-        
-        $smarty = new Smarty();
-
-        $smarty->assign('habitacion', $habitacion);
-    
-        $smarty->display('templates/ver.habitacion.tpl');
     }
     
     /**
@@ -77,7 +68,6 @@ class HomeView {
         $smarty = new Smarty();
         
         $smarty->assign('camino', $camino);
-
         $smarty->assign('mensaje', "Esta intentando ingresar a una seccion no valida.");
     
         $smarty->display('templates/notFound.tpl');

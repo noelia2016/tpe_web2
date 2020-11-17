@@ -65,7 +65,7 @@ class UsuarioController
                     header("Location: " . BASE_URL . 'home');   
                 }
         } else {
-            //$this->view->login("Credenciales inválidas");
+            $this->view->login("Credenciales inválidas");
             //echo "entra con error";
         }
     }
@@ -130,6 +130,8 @@ class UsuarioController
                     $user = $this->model->obtenerUsuario($id);
                     // le creo la session para el autologin
                     $this->sesionHelper->login($user);
+                    // si se registro correctamente le muestro la home del usuario visitante
+                    header("Location: " . BASE_URL . 'home'); 
                 } else {
                     // si no se registra en la base de datos
                     $this->view->registrar("Ups!! Ocurrio un error vuelva a intentarlo.");

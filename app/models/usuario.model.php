@@ -59,7 +59,8 @@ class UsuarioModel {
         return $query->rowCount();
     }
     
-   
+    /**Actualiza los datos del usuario
+     */
     function actualizarUsuarioMdl($id, $habilitado, $es_administrador){
         $query = $this->db->prepare('
             UPDATE usuario SET habilitado = ?, es_administrador = ? WHERE id = ?');

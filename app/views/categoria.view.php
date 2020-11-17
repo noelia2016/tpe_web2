@@ -19,12 +19,13 @@ class CategoriaView {
     /** 
      *  Muestra la categoria elegida con sus detalles y habitaciones que posee asociadas
     **/
-    function mostrarCategoria ($categoria, $habitaciones){
+    function mostrarCategoria ($categoria, $habitaciones, $mostrar){
         
         $smarty = new Smarty();
         //$smarty->debugging = true;
         $smarty->assign('categoria', $categoria);
         $smarty->assign('habitaciones', $habitaciones);
+        $smarty->assign('mostrar', $mostrar);
         $smarty->display('templates/ver.categoria.tpl');
 
     }

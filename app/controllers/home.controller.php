@@ -5,6 +5,7 @@ include_once 'app/models/categoria.model.php';
 include_once 'app/views/home.view.php';
 include_once 'app/views/categoria.view.php';
 include_once 'app/views/habitacion.view.php';
+include_once 'app/helpers/sesion.helper.php';
 
 class HomeController {
 
@@ -18,6 +19,7 @@ class HomeController {
         $this->view = new HomeView();
         $this->viewH = new HabitacionView();
         $this->viewC = new CategoriaView();
+        $this->sesionHelper = new SesionHelper();
     }
 
     /**
@@ -25,8 +27,10 @@ class HomeController {
      */
     function mostrarHome(){
         
+        // chequeo el usuario que esta logueado
+        $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
         $categorias=$this->modelC->obtenerCategorias();
-        $this->view->mostrarHome($categorias);
+        $this->view->mostrarHome($categorias,$mostrar);
     }
     
     /**
@@ -34,7 +38,9 @@ class HomeController {
      */
     function mostrarServicios(){
         
-        $this->view->mostrarServicios();
+        // chequeo el usuario que esta logueado
+        $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+        $this->view->mostrarServicios($mostrar);
     }
     
     /**
@@ -42,7 +48,10 @@ class HomeController {
      */
     function mostrarContacto(){
         
-        $this->view->mostrarContacto();
+        // chequeo el usuario que esta logueado
+        $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+        // llama a la vista que necesita para mostrar los datos de contacto
+        $this->view->mostrarContacto($mostrar);
     }
     
     /**
@@ -55,8 +64,12 @@ class HomeController {
             $categoria = $this->modelC->obtenerCategoria($id);
             // obtengo las habitaciones asociadas a la categoria elegida
             $habitaciones = $this->modelC->obtenerHabitacionesdeCategoria($id);
+            
+            // chequeo el usuario que esta logueado
+            $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+                        
             // actualizo la vista
-            $this->viewC->mostrarCategoria($categoria, $habitaciones);
+            $this->viewC->mostrarCategoria($categoria, $habitaciones, $mostrar);
        }else{
            // si no viene un numero por parametro
            $camino='home';
@@ -70,16 +83,21 @@ class HomeController {
      */
     function mostrarHabitacion($id)
     {
-
+       // si esl parametro ingresado es un numero
         if (is_numeric($id)){
             // se obtiene la habtacion con sus respectivos detalles y con los datos de la categoria
             $habitacion = $this->modelH->obtenerHabitacion($id);
-            // actualizo la vista
-            $this->viewH->mostrarDetalleHabitacion($habitacion);
+            
+            // debo verificar si esta registrado como usuario comun para permitirle comentar
+            $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+            
+            //$comentarios = json_decode( file_get_contents("api/comentarios/"'.$id'), true );
+            // llamo a la vista para mostrar los detalles de la habitacion
+            $this->viewH->mostrarDetalleHabitacion($habitacion, $mostrar, $id);
         }else{
            // si no viene un numero por parametro
            $camino='home';
-           $this->view->pantallaDeError($camino);     
+           $this->view->pantallaDeError($camino, $mostrar);     
         }
     }
 

@@ -72,14 +72,32 @@ class HabitacionController
     {   
         // eliminar una habitación 
         if (is_numeric($id)) {
-            $this->model->eliminarHabitacionMdl($id);
-            $mensaje = "La habitación ha sido eliminada";
-            $borrado = true ;
-            $this->redirigirListaHabPostActualiz($mensaje, $borrado);           
+            $hab=$this->model->eliminarHabitacionMdl($id);
+            // si se borro la habitacion controlo que los comentarios tambien se borren
+            if ($hab > 0){
+                $mensaje = "La habitación ha sido eliminada. ";
+                $borrado = true ;
+                // si tiene comentarios asociados esa habitacion debo eliminarlos
+                $tieneComentarios=$this->model->tieneComentariosAsociados($id);
+                if ($tieneComentarios){
+                    $comentarios=$this->model->eliminarComentariosDeHabitacion($id);
+                    if($comentarios > 0){
+                        // si borro comentarios se lo agrego al mensaje que notifico.
+                        $mensaje .="Los comentarios asociados tambien fueron eliminados correctamente.";
+                    }
+                }
+                $this->redirigirListaHabPostActualiz($mensaje, $borrado);       
+            }else{
+               // si se borro la habitacion notifico
+               $mensaje = "No se pudo eliminar la habitación en la base de datos";
+               $borrado = false ;
+               $this->redirigirListaHabPostActualiz($mensaje, $borrado);
+            }                
         }
         else
         {   
-            $mensaje = "No se pudo eliminar la habitación en la base de datos";
+            // si el id pasado por parametro no es numerico
+            $mensaje = "No se pudo eliminar la habitación. Intentelo nuevamente!!!.";
             $borrado = false ;
             $this->redirigirListaHabPostActualiz($mensaje, $borrado);
 
