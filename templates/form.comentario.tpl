@@ -8,7 +8,7 @@
         <span>Tu opinion nos interesa!!</span>
         <p>Por favor comentanos como pasaste tu estadia en nuestras instalaciones.</p>
     </div>
-    <form class='form-signin' id="form_comentario" action='api/nuevo_comentario' method='POST'> 
+    <form class='form-signin' id="opinion-form" action='insertarComentario' method='POST'> 
         <div class="form-group">
             <input type="hidden" id="usuario" name="usuario" value={$smarty.session.ID_USER} required/>
        </div>
@@ -21,7 +21,7 @@
        </div>
        <div class="form-group">
             <label for="opinion">Opinion:</label>
-            <textarea class="form-control" id="opinion" rows="3"></textarea>
+            <textarea class="form-control" id="opinion" name="opinion" rows="3"></textarea>
        </div>
        <div class="form-group">
             <input type="submit" id="btn_agregar" class="btn btn-primary" value="<< COMENTAR >>"/>

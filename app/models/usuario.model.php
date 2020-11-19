@@ -1,20 +1,17 @@
 <?php
 
+include_once 'app/helpers/DB.helper.php';
+
 class UsuarioModel {
     
     private $db;
+    private $dbHelper;
 
     function __construct() {
-         // Abro la conexión
-        $this->db = $this->connect();
-    }
-
-    /**
-     * Abre conexión a la base de datos;
-     */
-    private function connect() {
-        $db = new PDO('mysql:host=localhost;'.'dbname=db_hotel;charset=utf8', 'unicen2020', 'bDUGAV6c0rgJVPdT');
-        return $db;
+        
+        $this->dbHelper = new DBHelper();
+        // me conecto a la BD
+        $this->db = $this->dbHelper->connect();
     }
 
     /**

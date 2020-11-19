@@ -1,14 +1,19 @@
 <?php
 
+include_once 'app/helpers/DB.helper.php';
+
 class ComentarioModel
 {
-
     private $db;
+    private $dbHelper;
 
     function __construct()
     {
-        // Abro la conexión
-        $this->db = $this->connect();
+        
+        $this->dbHelper = new DBHelper();
+        // me conecto a la BD
+        $this->db = $this->dbHelper->connect();
+        $this->data = file_get_contents("php://input");
     }
 
     /**
@@ -51,6 +56,22 @@ class ComentarioModel
 
         return $comentario;
     }
+    
+    /**
+     * Devuelve un comentario especifico.
+     */
+    function obtenerComentarioDeHabitacion($id)
+    {
+
+        // Enviar la consulta 
+        $query = $this->db->prepare('SELECT * FROM comentario where id_habitacion = ? ');
+        $query->execute([$id]);
+
+        // Obtengo la respuesta con un fetchAll 
+        $comentarios = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $comentarios;
+    }
 
     /**
      * Eliminar un comentario según id pasado como parámetro 
@@ -81,11 +102,12 @@ class ComentarioModel
     function insertarComentario($puntuacion, $mensaje, $usuario, $habitacion)
     {
         // guardo la fecha actual en una variable
-        $fecha=date("d-m-Y");
+        $fecha= date ("Y-m-d");
         $query = $this->db->prepare('
         INSERT INTO comentario (puntuacion, mensaje, usuario_id, habitacion_id, fecha_realizado )
                 VALUES ( ? , ? , ?, ?, ?)');
-        $query->execute([$puntuacion, $mensaje, $usuario, $habtacion, $fecha]);
+        var_dump("La query es " + $query);
+        $query->execute([$puntuacion, $mensaje, $usuario, $habitacion, $fecha]);
         return $this->db->lastInsertId();
     }
     

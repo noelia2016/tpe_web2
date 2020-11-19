@@ -144,6 +144,10 @@ switch ($params[0]) {
         $controller = new UsuarioController();
         $controller->guardarUsuario();
         break;    
+    case 'insertarComentario':
+        $controller = new ComentarioController();
+        $controller->insertarComentario();
+        break;
     default:
         echo ('404 Page not found');
         break;

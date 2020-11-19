@@ -26,7 +26,7 @@ class HabitacionController
         $this->sessionHelper->checkLogged();
 
         //Verifico usuario administrador, si no, redirige al login
-        $this->authHelper->esta_logueadoAdministrador() ;
+        $this->sessionHelper->esta_logueadoAdministrador() ;
 
     }
 
