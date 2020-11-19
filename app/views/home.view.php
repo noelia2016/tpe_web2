@@ -73,13 +73,13 @@ class HomeView {
         $smarty->display('templates/notFound.tpl');
     }
     
-    function mostrarDetalleHabitacion($habitacion, $mostrar, $id) {
+    function mostrarDetalleHabitacion($habitacion, $mostrar) {
         
         $smarty = new Smarty();
 
         $smarty->assign('habitacion', $habitacion);
         $smarty->assign('mostrar', $mostrar);
-        $smarty->assign('id', $id);
+        $smarty->assign('id', $habitacion->id);
     
         $smarty->display('templates/ver.habitacion.tpl');
     }
