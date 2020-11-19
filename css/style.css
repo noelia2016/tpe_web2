@@ -85,6 +85,11 @@ th {
 .fondo_oscuro{
   background-color: #883E3E !important;
 }
+.page-link-actual{
+  text-decoration: none;
+  
+}
+
 textarea{
   resize: none;
   white-space: normal;

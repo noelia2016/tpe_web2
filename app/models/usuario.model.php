@@ -147,7 +147,8 @@ class UsuarioModel {
 
     function obtenerUsuariosPaginado($inicio, $cantidad) {
        // $inicio es a partir de que registro y $cantidad cuantos voy a devolver
-       $sql = 'SELECT * FROM usuario order by id LIMIT ' . $inicio . ', ' . $cantidad ;
+       $sql = 'SELECT * FROM usuario order by apellido, nombre
+               LIMIT ' . $inicio . ', ' . $cantidad ;
        $query = $this->db->prepare($sql);
        $query->execute();
        $usuarios = $query->fetchAll(PDO::FETCH_OBJ);

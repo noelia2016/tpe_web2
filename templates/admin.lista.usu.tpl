@@ -61,15 +61,33 @@
              </table>
              <nav aria-label="Page navigation example">
              <ul class="pagination justify-content-center">
-                 <li class="page-item disabled">
-                     <a class="page-link fondo_oscuro" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-                 </li>
-                 <li class="page-item"><a class="page-link fondo_oscuro" href="#">1</a></li>
-                 <li class="page-item"><a class="page-link fondo_oscuro" href="#">2</a></li>
-                 <li class="page-item"><a class="page-link fondo_oscuro" href="#">3</a></li>
-                 <li class="page-item">
-                     <a class="page-link fondo_oscuro" href="#">Siguiente</a>
-                 </li>
+                {if ($pagina_act != 1)} 
+                    <li class="pag-item">
+                        <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act-1}">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                {/if}
+                {foreach $tot_paginas as $pag}
+                    {if ($pag == $pagina_act)}
+                        <li class="pag-item">
+                            <a class="page-link fondo_oscuro page-link-actual" href="listar_usuarpag/{$pag}">{$pag}
+                            </a>
+                        </li>   
+                    {else}
+                        <li class="pag-item">
+                            <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pag}">{$pag}
+                            </a>
+                        </li>       
+                    {/if}  
+                {/foreach}
+                {if ($pagina_act != $tot_paginas)}
+                    <li class="pag-item">
+                        <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act+1}">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {/if}
+                                 
              </ul>
          </nav>
          </div>

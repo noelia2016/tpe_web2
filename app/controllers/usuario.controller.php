@@ -31,7 +31,7 @@ class UsuarioController
         }
     }
 
-    function mostrarUsuariosPaginado($pagina = null, $mensaje = null)
+    function mostrarUsuariosPaginado($pagina = null, $mensaje = null, $exito = null)
     {
         if ($this->sesionHelper->esta_logueadoAdministrador()) {
             //1) obtener número total de habitaciones para paginar
@@ -42,14 +42,14 @@ class UsuarioController
             //averiguar según número de página
             $inicio = 0;
             //calculo el total de paginas
-            $paginas = intval($total_registros / $itemsPagina);
+            $tot_paginas = intval($total_registros / $itemsPagina);
             $resto = $total_registros % $itemsPagina;
             //si hay resto, sumo 1 a cantidad de páginas
             if ($resto > 0) {
-                $paginas++;
+                $tot_paginas++;
             }
             if ($total_registros > 0) {
-                if ((!$pagina) || ($pagina > $paginas)) {
+                if ((!$pagina) || ($pagina > $tot_paginas)) {
                     $inicio = 0;
                     $pagina = 1;
                 } else {
@@ -57,9 +57,12 @@ class UsuarioController
                 }
 
                 $usuarios = $this->model->obtenerUsuariosPaginado($inicio, $itemsPagina);
-
+                for ($i = 1; $i<= $tot_paginas; $i++)
+                {
+                    $arregloPag[$i-1] = $i;
+                }
                 if (isset($usuarios)) {
-                    $this->view->mostrarUsuarios($usuarios);
+                    $this->view->mostrarUsuariosPag($usuarios, $pagina, $arregloPag, $mensaje, $exito);
                 }
             }
         }
@@ -224,6 +227,7 @@ class UsuarioController
     {
         // elimino el usuario de la BD
         $exito = false;
+        $pagina = 1 ;
         // verifico que el usuario esté logueado siempre
         if ($this->sesionHelper->esta_logueadoAdministrador()) {
             if (is_numeric($id)) {
@@ -236,7 +240,8 @@ class UsuarioController
                     //echo "entro por error";
                     $mensaje = "Ups!! Ocurrio un error vuelva a intentar";
                 }
-                $this->redirigirListaUsuPostActualiz($mensaje, $exito);
+                
+                $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);
             } else {
                 // si no viene un numero por parametro
                 $camino = 'listar_usuarios';
@@ -274,6 +279,7 @@ class UsuarioController
     }
     function guardarUsuario()
     {
+        $pagina = 1 ;    
         if ($this->sesionHelper->esta_logueadoAdministrador()) {
             $exito = false;
             $habilitado = $_POST['habilitado'];
@@ -295,13 +301,14 @@ class UsuarioController
                     //Si el administrador tuviera opción de alta de usuario
                 }
             }
-            $this->redirigirListaUsuPostActualiz($mensaje, $exito);
+            $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);
+        } else {
+             // si no es administrador debe notificarle que no puede realizar esa accion
+             $camino = 'home';
+             $this->view->pantallaDeError($camino);
         }
+        
     }
 
-    function redirigirListaUsuPostActualiz($mensaje, $exito = null)
-    {
-        $usuarios = $this->model->obtenerUsuarios();
-        $this->view->mostrarUsuarios($usuarios, $mensaje, $exito);
-    }
+
 }
