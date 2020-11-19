@@ -24,6 +24,6 @@
             <textarea class="form-control" id="opinion" name="opinion" rows="3"></textarea>
        </div>
        <div class="form-group">
-            <input type="submit" id="btn_agregar" class="btn btn-primary" value="<< COMENTAR >>"/>
+            <input type="submit" class="btn btn-primary" value="<< COMENTAR >>"/>
        </div>
     </form>

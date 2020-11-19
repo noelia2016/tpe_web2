@@ -79,7 +79,9 @@ class HomeView {
 
         $smarty->assign('habitacion', $habitacion);
         $smarty->assign('mostrar', $mostrar);
-        $smarty->assign('id', $habitacion->id);   
+
+        $smarty->assign('id', $habitacion->id);
+    
         $smarty->display('templates/ver.habitacion.tpl');
     }
     

@@ -32,7 +32,7 @@ class ComentarioModel
     {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT * FROM comentario order by id');
+        $query = $this->db->prepare('SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id inner join usuario as u on u.id = c.usuario_id order by c.fecha_realizado');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 
@@ -48,7 +48,7 @@ class ComentarioModel
     {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT * FROM comentario where id = ? ');
+        $query = $this->db->prepare('SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id inner join usuario as u on u.id = c.usuario_id where c.id = ? ');
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 
@@ -64,7 +64,7 @@ class ComentarioModel
     {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT * FROM comentario where id_habitacion = ? ');
+        $query = $this->db->prepare('SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id inner join usuario as u on u.id = c.usuario_id where habitacion_id = ? ');
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 

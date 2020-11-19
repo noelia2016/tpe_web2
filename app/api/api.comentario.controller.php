@@ -19,7 +19,7 @@ class ApiComentarioController {
      * Muestra todos los comentarios de los usuarios
      */
     public function obtenerComentarios($params = null) {
-        
+
         $comentarios = $this->model->obtenerComentarios();
         $this->view->response($comentarios, 200);
     }
@@ -61,7 +61,7 @@ class ApiComentarioController {
         
         // obtengo el id del paramentro a eliminar
         $idComentario = $params[':ID'];
-        $comentario = $this->model->remove($idComentario);
+        $comentario = $this->model->eliminarComentario($idComentario);
         
         // si afecto datos en la base es porque elimino correctamente el comentario
         if ($comentario > 0) {
@@ -83,9 +83,9 @@ class ApiComentarioController {
         
         // obtengo los datos ingresados por el usuario en el formulario       
         $puntuacion = $body->puntos;
-        $descripcion = $body->opinion;
-        $usuario = $body->usuario;
-        $habitacion = $body->habitacion;
+        $mensaje = $body->mensaje;
+        $usuario = $body->usuario_id;
+        $habitacion = $body->habitacion_id;
         
         var_dump($puntuacion, $mensaje, $usuario, $habitacion);
         // lo inserto en mi BD
