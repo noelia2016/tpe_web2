@@ -25,7 +25,7 @@ class UsuarioController
     {
         // verifico que el usuario esté logueado siempre
         if ($this->sesionHelper->esta_logueadoAdministrador()) {
-            $this->redirigirListaUsuPostActualiz($mensaje);
+           // $this->redirigirListaUsuPostActualiz($mensaje);
         } else {
             echo "usted no tiene permisos para realizar esta operacion";
         }

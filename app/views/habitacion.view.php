@@ -7,14 +7,12 @@ class HabitacionView {
     /**
      * Imprime los detalles de una habitacion
      */
-    function mostrarDetalleHabitacion($habitacion, $mostrar) {
+    function mostrarDetalleHabitacion($habitacion) {
         
         $smarty = new Smarty();
 
         $smarty->assign('habitacion', $habitacion);
-        $smarty->assign('mostrar', $mostrar);
-        $smarty->assign('id', $habitacion->id);
-    
+          
         $smarty->display('templates/ver.habitacion.tpl');
     }
     

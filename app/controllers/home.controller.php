@@ -93,7 +93,7 @@ class HomeController {
             
             //$comentarios = json_decode( file_get_contents("api/comentarios/"'.$id'), true );
             // llamo a la vista para mostrar los detalles de la habitacion
-            $this->viewH->mostrarDetalleHabitacion($habitacion, $mostrar);
+            $this->view->mostrarDetalleHabitacion($habitacion, $mostrar);
         }else{
            // si no viene un numero por parametro
            $camino='home';
