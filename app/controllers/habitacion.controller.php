@@ -20,12 +20,31 @@ class HabitacionController
         $this->modelCat = new CategoriaModel();
         $this->viewAdmin = new AdminHabitacionView();
         $this->view = new HabitacionView();
-        $this->authHelper = new SesionHelper();
+        $this->sessionHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
-        //$this->authHelper->checkLogged();
+        $this->sessionHelper->checkLogged();
+
         //Verifico usuario administrador, si no, redirige al login
-        $this->authHelper->esta_logueadoAdministrador() ;
+        $this->sessionHelper->esta_logueadoAdministrador() ;
+
+    }
+
+    /**
+     * Imprime los detalles de la habitacion
+     */
+    function mostrarHabitacion($id)
+    {
+
+        $habitacion = $this->model->mostrarHabitacion($id);
+        
+        // actualizo la vista
+        if ($habitacion) {
+            $this->view->mostrarDetalleHabitacion($habitacion);
+        } else {
+            //no se encontró la habitacion con ese id
+        }
+
     }
 
     function editarHabitacion($id)

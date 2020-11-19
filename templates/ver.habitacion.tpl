@@ -39,8 +39,14 @@
     {/if}   
     {* mostrar todos los comentarios de la habitacion *}
     
-    {include 'listar.comentarios.tpl'}
+    {* va a mostrar los comentarios para dicha habitacion*}
+    <div class="col-md-8">
+        {include file="vue/comentarioList.vue"}
+    </div>
     
     {* fin de mostrar los comentarios de la habitacion *}
     </main>
+    
+    <!-- incluyo JS para CSR -->
+    <script src="js/comentarios.js"></script>
     {include file='footer.tpl'}

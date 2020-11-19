@@ -12,6 +12,7 @@ class ApiComentarioController {
         
         $this->model = new ComentarioModel();
         $this->view = new ApiComentarioView();
+        $this->data = file_get_contents("php://input");
     }
 
     /**
@@ -38,9 +39,25 @@ class ApiComentarioController {
     }
     
     /**
+     * Obtiene todos los comentarios de una habitacion especifica
+     */    
+    function obtenerComentariosDeHabitacion($params = null) {
+        // obtengo el id del paramentro a eliminar
+        $idHabitacion = $params[':ID'];
+        $comentarios = $this->model->obtenerComentarioDeHabitacion($idHabitacion);
+        // si afecto datos en la base es porque elimino correctamente el comentario
+        if ($comentarios) {
+            $this->view->response($comentarios, 200);
+        }
+        else { 
+            $this->view->response("La habitacion con id=$idHabitacion no existe", 404);
+        }
+    }
+    
+    /**
      * Elimina un comentario especifico
      */
-    public function eliminarComentario($params = null) {
+    function eliminarComentario($params = null) {
         
         // obtengo el id del paramentro a eliminar
         $idComentario = $params[':ID'];
@@ -60,25 +77,34 @@ class ApiComentarioController {
      */
      
     // $params es un array asociativo con los parámetros de la ruta
-    public function crearComentario($params = null) {
+    public function insertarComentario($params = null) {
         
-        // obtengo los datos ingresados por el usuario en el formulario
-        $puntos = $params[':puntuacion'];
-        $mensaje = $params[':mensaje'];
-        $habitacion = $params[':habitacion'];
-        $usuario = $params[':usuario'];
+        $body = $this->getData();
         
+        // obtengo los datos ingresados por el usuario en el formulario       
+        $puntuacion = $body->puntos;
+        $descripcion = $body->opinion;
+        $usuario = $body->usuario;
+        $habitacion = $body->habitacion;
+        
+        var_dump($puntuacion, $mensaje, $usuario, $habitacion);
         // lo inserto en mi BD
-        $comentario = $this->model->insertarComentario($puntuacion, $mensaje, $usuario, $habitacion);
+        $id = $this->model->insertarComentario($puntuacion, $mensaje, $usuario, $habitacion);
         // si inserto el comentario muestro la respuesta de todo ok
-        if ($comentario > 0){
+        var_dump($id);
+        if ($id > 0){
+            echo "inserto el comentario";
+            $comentario = $this->model->obtenerComentario($id);
             $this->view->response($comentario, 200);
         }else{
             // si ocurrio un error notifico
-            $this->view->response("Ups!! ocurrio un error al intentar insertar comentario.", 404);
+            echo "NOOOOOO inserto el comentario";
+            $this->view->response("Ups!! ocurrio un error al intentar insertar comentario.", 500);
         }
     }
 
-
+    public function show404($params = null) {
+        $this->view->response("El recurso solicitado no existe", 404);
+    }
 }
 ?>

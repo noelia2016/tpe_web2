@@ -37,15 +37,21 @@ class SesionHelper {
         // para poder saber el tipo de usuario que es y controlar permisos
         $_SESSION['TIPO_USER'] = $user->es_administrador;
         $_SESSION['LOGUEADO'] = true;
-        
+
     }
     
     /**
      * Verifica que el usuario logueado es usuario no administrador
      */
     function esta_logueadoUserNormal(){
-        session_start();
-        if ((isset($_SESSION['LOGUEADO'])) && ($_SESSION['TIPO_USER'] == 0)) {
+        
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
+        
+        // verifico que sea usuario comun
+        if ((isset($_SESSION['LOGUEADO'])) && ($_SESSION['LOGUEADO'] == true) && (isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] == 0)) {
             return TRUE; 
         }else{
             return FALSE;
@@ -56,13 +62,15 @@ class SesionHelper {
      * Verifica que el usuario logueado es administrador
      */
     function esta_logueadoAdministrador(){
-        session_start();
-        if ( (isset($_SESSION['LOGUEADO'])) && ($_SESSION['TIPO_USER'] == '1')) {
-            return TRUE; 
-        }else{
-            return FALSE;
-            header("Location: " . BASE_URL . "home");
-            die(); 
+        
+         if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
+        // verifico que sea usuario administrador para ingresar a esa seccion sino lo redirecciono
+        if ((isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] != 1)) {
+            // si no es administrador lo vuelvo a la home normal
+            header("Location: " . BASE_URL); 
         }
     }
 
