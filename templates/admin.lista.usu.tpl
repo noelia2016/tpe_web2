@@ -15,6 +15,7 @@
     {/if}
     {if !empty($usuarios)}
          <div class="table-responsive">
+         <input type="hidden" name="cant_paginas" value={$cant_paginas}>
              <table class="table mt-3 text-left" id="tablaHabitaciones">
                  <thead>
                      <tr>
@@ -69,19 +70,20 @@
                 {/if}
                 {foreach $tot_paginas as $pag}
                     {if ($pag == $pagina_act)}
-                        <li class="pag-item">
-                            <a class="page-link fondo_oscuro page-link-actual" href="listar_usuarpag/{$pag}">{$pag}
-                            </a>
+                        <li class="page-item active" aria-current="page">
+                        <span class="page-link">{$pag}
+                        <span class="sr-only">(current)</span>
+                        </span>
                         </li>   
                     {else}
-                        <li class="pag-item">
+                        <li class="page-item">
                             <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pag}">{$pag}
                             </a>
                         </li>       
                     {/if}  
                 {/foreach}
-                {if ($pagina_act != $tot_paginas)}
-                    <li class="pag-item">
+                {if ($pagina_act != $cant_paginas)}
+                    <li class="page-item">
                         <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act+1}">
                         <span aria-hidden="true">&raquo;</span>
                         </a>

@@ -27,7 +27,7 @@ class UsuarioController
         if ($this->sesionHelper->esta_logueadoAdministrador()) {
            // $this->redirigirListaUsuPostActualiz($mensaje);
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            echo "Usted no tiene permisos para realizar esta operacion";
         }
     }
 
@@ -65,6 +65,9 @@ class UsuarioController
                     $this->view->mostrarUsuariosPag($usuarios, $pagina, $arregloPag, $mensaje, $exito);
                 }
             }
+        }
+        else{
+            echo "Usted no tiene permisos para realizar esta operacion";
         }
     }
 
