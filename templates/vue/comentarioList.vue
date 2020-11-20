@@ -1,6 +1,6 @@
 {literal}
-<section id="app">
-    <ul class="list-group mt-5">
+<section id="app" class="list-group mt-3">
+    <ul class="list-group mt-3">
         <li v-if="!comentarios.length">No hay ningun comentario.</li>
         <li v-for="comentario in comentarios" class="list-group-item d-flex justify-content-between">             
             <div class="list-group">

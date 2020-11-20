@@ -33,7 +33,8 @@ class UsuarioController
 
     function mostrarUsuariosPaginado($pagina = null, $mensaje = null, $exito = null)
     {
-        if ($this->sesionHelper->esta_logueadoAdministrador()) {
+        // chequeo que sea administrador para poder consultar el listado
+        $this->sesionHelper->esta_logueadoAdministrador();
             //1) obtener número total de habitaciones para paginar
             $total_registros = $this->model->obtenerCantUsuarios();
 
@@ -65,7 +66,6 @@ class UsuarioController
                     $this->view->mostrarUsuariosPag($usuarios, $pagina, $arregloPag, $mensaje, $exito);
                 }
             }
-        }
     }
 
     /**
@@ -90,11 +90,9 @@ class UsuarioController
         $usuario = $this->model->verificarUsuario($user);
 
         /* verifico que los datos ingresados sean correctos */
-        // si el usuario y la contraseña ingresado con correctos
-        if (
-            !empty($usuario) && password_verify($passIngresado, $usuario->password)
-            && ($usuario->habilitado == 1)
-        ) {
+        // si el usuario y la contraseña ingresado con correctos y esta habilitado el usuario
+        if (!empty($usuario) && password_verify($passIngresado, $usuario->password) && ($usuario->habilitado == 1))
+        {
             // si no devuelve la mando a iniciar session nuevamente notificandolo
             // armo la sesion del usuario
             $this->sesionHelper->login($usuario);
@@ -105,8 +103,12 @@ class UsuarioController
                 header("Location: " . BASE_URL . 'home');
             }
         } else {
-            $this->view->login("Credenciales inválidas");
-            //echo "entra con error";
+            // chequeo que el usuario no se pudo loguear por que no estaba habilitado
+            if (($usuario->habilitado != 1)) {
+                $this->view->login("El usuario esta inhabilitado. Comuniquese con el adminitrador del siteo.");
+            }else{
+                $this->view->login("Credenciales inválidas");
+            }
         }
     }
 
@@ -230,84 +232,76 @@ class UsuarioController
         $exito = false;
         $pagina = 1 ;
         // verifico que el usuario esté logueado siempre
-        if ($this->sesionHelper->esta_logueadoAdministrador()) {
-            if (is_numeric($id)) {
-                $idU = $this->model->eliminarUsuarioMdl($id);
-                if ($idU > 0) {
-                    //echo "entro por aca eliminando bien el usuario";
-                    $mensaje = "El usuario fue eliminado correctamente";
-                    $exito = true;
-                } else {
-                    //echo "entro por error";
-                    $mensaje = "Ups!! Ocurrio un error vuelva a intentar";
-                }
-                
-                $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);
+        $this->sesionHelper->esta_logueadoAdministrador();
+        if (is_numeric($id)) {
+            $idU = $this->model->eliminarUsuarioMdl($id);
+            if ($idU > 0) {
+                //echo "entro por aca eliminando bien el usuario";
+                $mensaje = "El usuario fue eliminado correctamente";
+                $exito = true;
             } else {
-                // si no viene un numero por parametro
-                $camino = 'listar_usuarios';
-                $this->view->pantallaDeError($camino);
+                //echo "entro por error";
+                $mensaje = "Ups!! Ocurrio un error vuelva a intentar";
             }
+            
+            $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
-        }
-    }
-
-
-    function editarUsuario($id)
-    {
-        /* verifico que el usuario sea administrador para poder realizar operacion */
-        if ($this->sesionHelper->esta_logueadoAdministrador()) {
-            if (is_numeric($id)) {
-                $usuario = $this->model->obtenerUsuario($id);
-                // actualizo la vista cargando los datos en el formulario de usuario
-                if ($usuario) {
-                    $this->view->editarUsuarioVista($usuario);
-                } else {
-                    $mensaje = "No se pudo recuperar el usuario solicitado";
-                    $this->mostrarTodos($mensaje);
-                }
-            } else {
-                $camino = 'listar_usuarios';
-                $this->view->pantallaDeError($camino);
-            }
-        } else {
-            // si no es usuario debe notificarle que no puede realizar esa accion
-            $camino = 'home';
-            // VER COMO NOTIFICO EL ERROR
+            // si no viene un numero por parametro
+            $camino = 'listar_usuarios';
             $this->view->pantallaDeError($camino);
         }
     }
+
+    /**
+     * Edita un usuario registrado
+     */
+    function editarUsuario($id)
+    {
+        /* verifico que el usuario sea administrador para poder realizar operacion */
+        $this->sesionHelper->esta_logueadoAdministrador();
+        if (is_numeric($id)) {
+            $usuario = $this->model->obtenerUsuario($id);
+            // actualizo la vista cargando los datos en el formulario de usuario
+            if ($usuario) {
+                $this->view->editarUsuarioVista($usuario);
+            } else {
+                $mensaje = "No se pudo recuperar el usuario solicitado";
+                $this->mostrarTodos($mensaje);
+            }
+        } else {
+            $camino = 'listar_usuarios';
+            $this->view->pantallaDeError($camino);
+        } 
+    }
+    
+    /**
+     * Actualiza los datos cambiados de un usuario registrado
+     */
     function guardarUsuario()
     {
         $pagina = 1 ;    
-        if ($this->sesionHelper->esta_logueadoAdministrador()) {
-            $exito = false;
-            $habilitado = $_POST['habilitado'];
-            $es_administrador = $_POST['es_administrador'];
-            // verifico campos obligatorios
-            if (!isset($habilitado) || !isset($es_administrador)) {
-                $mensaje = "Debe indicar datos de usuario a actualizar";
-            } else {
-                if (isset($_POST['id_usuario'])) {
-                    $id = $_POST['id_usuario'];
-                    $exito = ($this->model->actualizarUsuarioMdl(
-                        $id,
-                        $habilitado,
-                        $es_administrador
-                    )) > 0;
-                    $mensaje = "Se actualizaron los datos del usuario";
-                } else {
-
-                    //Si el administrador tuviera opción de alta de usuario
-                }
-            }
-            $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);
+        $this->sesionHelper->esta_logueadoAdministrador();
+        $exito = false;
+        $habilitado = $_POST['habilitado'];
+        $es_administrador = $_POST['es_administrador'];
+        // verifico campos obligatorios
+        if (!isset($habilitado) || !isset($es_administrador)) {
+            $mensaje = "Debe indicar datos de usuario a actualizar";
         } else {
-             // si no es administrador debe notificarle que no puede realizar esa accion
-             $camino = 'home';
-             $this->view->pantallaDeError($camino);
+            if (isset($_POST['id_usuario'])) {
+                $id = $_POST['id_usuario'];
+                $exito = ($this->model->actualizarUsuarioMdl(
+                    $id,
+                    $habilitado,
+                    $es_administrador
+                )) > 0;
+                $mensaje = "Se actualizaron los datos del usuario";
+            } else {
+
+                //Si el administrador tuviera opción de alta de usuario
+            }
         }
+        $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);
         
     }
 

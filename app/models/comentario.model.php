@@ -13,7 +13,7 @@ class ComentarioModel
         $this->dbHelper = new DBHelper();
         // me conecto a la BD
         $this->db = $this->dbHelper->connect();
-        $this->data = file_get_contents("php://input");
+
     }
 
     /**
@@ -48,7 +48,8 @@ class ComentarioModel
     {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id inner join usuario as u on u.id = c.usuario_id where c.id = ? ');
+        $query = $this->db->prepare('SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab 
+                                     FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id inner join usuario as u on u.id = c.usuario_id where c.id = ? ');
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 
@@ -99,7 +100,7 @@ class ComentarioModel
     /**
      * Inserta un nuevo comentario con los datos ingresados por el usuario
      */
-    function insertarComentario($puntuacion, $mensaje, $usuario, $habitacion)
+    function agregarComentario($puntuacion, $mensaje, $usuario, $habitacion)
     {
         // guardo la fecha actual en una variable
         $fecha= date ("Y-m-d");

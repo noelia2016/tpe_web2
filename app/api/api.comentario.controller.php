@@ -32,6 +32,8 @@ class ApiComentarioController {
         // $params es un array asociativo con los parámetros de la ruta
         $idComentario = $params[':ID'];
         $comentario = $this->model->obtenerComentario($idComentario);
+        echo "entre a obtener comentario en modelo";
+        var_dump($comentario);
         if ($comentario)
             $this->view->response($comentario, 200);
         else
@@ -77,23 +79,25 @@ class ApiComentarioController {
      */
      
     // $params es un array asociativo con los parámetros de la ruta
-    public function insertarComentario($params = null) {
+    public function insertarComentario ($params = null) {
         
         $body = $this->getData();
         
         // obtengo los datos ingresados por el usuario en el formulario       
-        $puntuacion = $body->puntos;
-        $mensaje = $body->opinion;
-        $usuario = $body->usuario;
-        $habitacion = $body->habitacion;
+        $puntuacion = $body->puntuacion;
+        $mensaje = $body->mensaje;
+        $usuario = $body->usuario_id;
+        $habitacion = $body->habitacion_id;
         
+        echo "entro al insertar controller";
         var_dump($puntuacion, $mensaje, $usuario, $habitacion);
         // lo inserto en mi BD
-        $id = $this->model->insertarComentario($puntuacion, $mensaje, $usuario, $habitacion);
+        $id = $this->model->agregarComentario($puntuacion, $mensaje, $usuario, $habitacion);
         // si inserto el comentario muestro la respuesta de todo ok
         var_dump($id);
         if ($id > 0){
             echo "inserto el comentario";
+            // si lo inserto bien lo busco y lo devuelvo
             $comentario = $this->model->obtenerComentario($id);
             $this->view->response($comentario, 200);
         }else{
@@ -103,10 +107,12 @@ class ApiComentarioController {
         }
     }
 
+    // En caso de error muestra este error
     public function show404($params = null) {
         $this->view->response("El recurso solicitado no existe", 404);
     }
-
+    
+    // Lee la variable asociada a la entrada estandar y la convierte en JSON
     function getData(){ 
         return json_decode($this->data); 
     } 

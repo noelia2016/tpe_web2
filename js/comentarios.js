@@ -40,10 +40,10 @@ async function addComentario() {
     
     // armo mi nuevo comentario
     const comentario = {
-        puntuacion: document.querySelector('input[name=puntos]').value,
+        puntuacion: parseInt(document.querySelector('input[name=puntos]').value),
         mensaje: document.querySelector('textarea[name=opinion]').value,
-        usuario_id: document.querySelector('input[name=usuario]').value,
-        habitacion_id: document.querySelector('input[name=habitacion]').value
+        usuario_id: parseInt(document.querySelector('input[name=usuario]').value),
+        habitacion_id: parseInt(document.querySelector('input[name=habitacion]').value)
     };
     console.log(comentario);
    
@@ -51,14 +51,15 @@ async function addComentario() {
         const response = await fetch('api/comentarios' , {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}, 
+            // convierte un objeto a un json
             body: JSON.stringify(comentario)
        
         });
 
         const t = await response.json();
-      
+        console.log(t);
         // agrega el comentario a la lista de comentarios
-        app.comentarios.push(t);
+        //app.comentarios.push(t);
 
     } catch(e) {
         console.log(e);
