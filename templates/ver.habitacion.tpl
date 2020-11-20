@@ -32,7 +32,7 @@
     {if (isset($mostrar) && (!$mostrar))}
         <div class="alert alert-info" role="alert">
             <span>Tu opinion nos interesa!!</span>
-            <p>Si queres comentar como fue tu estadia y todavia sos usuario. Por favor registrate <a href="registrar">aqui</a></p>   
+            <p>Si queres comentar como fue tu estadia y todavia no sos usuario. Por favor registrate <a href="registrar">aqui</a></p>   
         </div>
     {else}
         {include 'form.comentario.tpl'}

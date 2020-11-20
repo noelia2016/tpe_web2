@@ -83,9 +83,9 @@ class ApiComentarioController {
         
         // obtengo los datos ingresados por el usuario en el formulario       
         $puntuacion = $body->puntos;
-        $mensaje = $body->mensaje;
-        $usuario = $body->usuario_id;
-        $habitacion = $body->habitacion_id;
+        $mensaje = $body->opinion;
+        $usuario = $body->usuario;
+        $habitacion = $body->habitacion;
         
         var_dump($puntuacion, $mensaje, $usuario, $habitacion);
         // lo inserto en mi BD
@@ -106,5 +106,9 @@ class ApiComentarioController {
     public function show404($params = null) {
         $this->view->response("El recurso solicitado no existe", 404);
     }
+
+    function getData(){ 
+        return json_decode($this->data); 
+    } 
 }
 ?>

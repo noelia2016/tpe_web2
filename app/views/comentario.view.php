@@ -13,7 +13,7 @@ class ComentarioView {
 
         $smarty->assign('habitaciones', $habitaciones);
     
-        $smarty->display('templates/form_comentario.tpl');
+        $smarty->display('templates/form.comentario.tpl');
     }
     
 }

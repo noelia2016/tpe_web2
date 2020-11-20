@@ -46,14 +46,17 @@ async function addComentario() {
         habitacion_id: document.querySelector('input[name=habitacion]').value
     };
     console.log(comentario);
+   
     try {
         const response = await fetch('api/comentarios' , {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}, 
             body: JSON.stringify(comentario)
+       
         });
 
         const t = await response.json();
+      
         // agrega el comentario a la lista de comentarios
         app.comentarios.push(t);
 
