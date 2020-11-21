@@ -51,7 +51,8 @@ class SesionHelper {
         } 
         
         // verifico que sea usuario comun
-        if ((isset($_SESSION['LOGUEADO'])) && ($_SESSION['LOGUEADO'] == true) && (isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] == 0)) {
+        if ((isset($_SESSION['LOGUEADO'])) && ($_SESSION['LOGUEADO'] == true) 
+        && (isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] == 0)) {
             return TRUE; 
         }else{
             return FALSE;
@@ -68,12 +69,14 @@ class SesionHelper {
             session_start(); 
         } 
         // verifico que sea usuario administrador para ingresar a esa seccion sino lo redirecciono
-        if ((isset($_SESSION['TIPO_USER'])) && ($_SESSION['TIPO_USER'] != 1)) {
+        if ((isset($_SESSION['LOGUEADO']) && ($_SESSION['LOGUEADO'] == true) 
+        && isset($_SESSION['TIPO_USER']) && $_SESSION['TIPO_USER'] == 1)) 
+        {
+            return TRUE; 
+        }else{
             // si no es administrador lo vuelvo a la home normal
             header("Location: " . BASE_URL); 
+            return false;
         }
     }
-
-
-
 }

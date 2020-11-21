@@ -49,11 +49,14 @@ class UsuarioView
     {
 
         $smarty = new Smarty();
-        $smarty->debugging = true;
+       
         $smarty->assign('usuarios', $usuarios);
         //pagina actual activa
         $smarty->assign('pagina_act', $pagina);
-        //total de páginas
+        $cant_paginas = sizeof($tot_paginas);
+        //Número total de páginas
+        $smarty->assign('cant_paginas',$cant_paginas);
+        //total de páginas es un arreglo
         $smarty->assign('tot_paginas', $tot_paginas);
         if (isset($exito) && isset($mensaje)) {
             if ($exito == true) {

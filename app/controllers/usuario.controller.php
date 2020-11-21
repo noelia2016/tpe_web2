@@ -27,7 +27,7 @@ class UsuarioController
         if ($this->sesionHelper->esta_logueadoAdministrador()) {
            // $this->redirigirListaUsuPostActualiz($mensaje);
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            echo "Usted no tiene permisos para realizar esta operacion";
         }
     }
 
@@ -35,37 +35,37 @@ class UsuarioController
     {
         // chequeo que sea administrador para poder consultar el listado
         $this->sesionHelper->esta_logueadoAdministrador();
-            //1) obtener número total de habitaciones para paginar
-            $total_registros = $this->model->obtenerCantUsuarios();
+        //1) obtener número total de habitaciones para paginar
+        $total_registros = $this->model->obtenerCantUsuarios();
 
-            //constante
-            $itemsPagina = 5;
-            //averiguar según número de página
-            $inicio = 0;
-            //calculo el total de paginas
-            $tot_paginas = intval($total_registros / $itemsPagina);
-            $resto = $total_registros % $itemsPagina;
-            //si hay resto, sumo 1 a cantidad de páginas
-            if ($resto > 0) {
-                $tot_paginas++;
+        //constante
+        $itemsPagina = 5;
+        //averiguar según número de página
+        $inicio = 0;
+        //calculo el total de paginas
+        $tot_paginas = intval($total_registros / $itemsPagina);
+        $resto = $total_registros % $itemsPagina;
+        //si hay resto, sumo 1 a cantidad de páginas
+        if ($resto > 0) {
+            $tot_paginas++;
+        }
+        if ($total_registros > 0) {
+            if ((!$pagina) || ($pagina > $tot_paginas)) {
+                $inicio = 0;
+                $pagina = 1;
+            } else {
+                $inicio = ($pagina - 1) * $itemsPagina;
             }
-            if ($total_registros > 0) {
-                if ((!$pagina) || ($pagina > $tot_paginas)) {
-                    $inicio = 0;
-                    $pagina = 1;
-                } else {
-                    $inicio = ($pagina - 1) * $itemsPagina;
-                }
 
-                $usuarios = $this->model->obtenerUsuariosPaginado($inicio, $itemsPagina);
-                for ($i = 1; $i<= $tot_paginas; $i++)
-                {
-                    $arregloPag[$i-1] = $i;
-                }
-                if (isset($usuarios)) {
-                    $this->view->mostrarUsuariosPag($usuarios, $pagina, $arregloPag, $mensaje, $exito);
-                }
+            $usuarios = $this->model->obtenerUsuariosPaginado($inicio, $itemsPagina);
+            for ($i = 1; $i<= $tot_paginas; $i++)
+            {
+                $arregloPag[$i-1] = $i;
             }
+            if (isset($usuarios)) {
+                $this->view->mostrarUsuariosPag($usuarios, $pagina, $arregloPag, $mensaje, $exito);
+            }
+        }
     }
 
     /**
