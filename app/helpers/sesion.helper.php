@@ -79,4 +79,21 @@ class SesionHelper {
             return false;
         }
     }
+    
+    /**
+     * Devuelve el usuario que esta logueado
+     */
+    function obtenerTipoUsuario(){
+        
+         if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
+        // verifico que sea usuario administrador para ingresar a esa seccion sino lo redirecciono
+        if ((isset($_SESSION['LOGUEADO']) && ($_SESSION['LOGUEADO'] == true) 
+        && isset($_SESSION['TIPO_USER']) )) 
+        {
+            return $_SESSION['TIPO_USER']; 
+        }
+    }
 }

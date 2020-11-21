@@ -27,10 +27,16 @@ class HomeController {
      */
     function mostrarHome(){
         
-        // chequeo el usuario que esta logueado
+        // chequeo el usuario que esta logueado no es el visitante
         $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
-        $categorias=$this->modelC->obtenerCategorias();
-        $this->view->mostrarHome($categorias,$mostrar);
+        
+        // si es administrador no lo dejo entrar
+        if ($mostrar == false){
+             header("Location: " . BASE_URL . 'admhab'); 
+        }else{
+            $categorias=$this->modelC->obtenerCategorias();
+            $this->view->mostrarHome($categorias,$mostrar);
+        }
     }
     
     /**
@@ -40,7 +46,12 @@ class HomeController {
         
         // chequeo el usuario que esta logueado
         $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
-        $this->view->mostrarServicios($mostrar);
+        // si es administrador no lo dejo entrar
+        if ($mostrar == false){
+             header("Location: " . BASE_URL . 'admhab'); 
+        }else{
+            $this->view->mostrarServicios($mostrar);
+        }
     }
     
     /**
@@ -50,8 +61,13 @@ class HomeController {
         
         // chequeo el usuario que esta logueado
         $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
-        // llama a la vista que necesita para mostrar los datos de contacto
-        $this->view->mostrarContacto($mostrar);
+        // si es administrador no lo dejo entrar
+        if ($mostrar == false){
+             header("Location: " . BASE_URL . 'admhab'); 
+        }else{
+            // llama a la vista que necesita para mostrar los datos de contacto
+            $this->view->mostrarContacto($mostrar);
+        }
     }
     
     /**
@@ -90,10 +106,12 @@ class HomeController {
             
             // debo verificar si esta registrado como usuario comun para permitirle comentar
             $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
-            
-            //$comentarios = json_decode( file_get_contents("api/comentarios/"'.$id'), true );
-            // llamo a la vista para mostrar los detalles de la habitacion
-            $this->view->mostrarDetalleHabitacion($habitacion, $mostrar);
+            // si es administrador no lo dejo entrar
+            if ($mostrar == false){
+                 header("Location: " . BASE_URL . 'admhab'); 
+            }else{
+                $this->view->mostrarDetalleHabitacion($habitacion, $mostrar);
+            }
         }else{
            // si no viene un numero por parametro
            $camino='home';
