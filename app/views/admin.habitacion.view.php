@@ -35,6 +35,7 @@ class AdminHabitacionView
         $smarty->display('templates/admin.form.alta.habit.tpl'); 
 
     }
+    
     function mostrarMensajeActuHabitacion($habitaciones, $mensaje, $estado){
         $smarty = new Smarty(); 
         if ($estado){
@@ -46,5 +47,19 @@ class AdminHabitacionView
         $smarty->assign('habitaciones', $habitaciones);
         $smarty->display('templates/admin.lista.hab.tpl');
     }
+    
+    /**
+       * Muestra el fomulario para cargar imagen para la galeria de una habitacion
+    */
+    function cargarImagen($mensaje = null, $habitaciones) {
+        
+        $smarty = new Smarty();
+        
+        $smarty->assign('habitaciones', $habitaciones);
+        $smarty->assign('mensaje', $mensaje);
+
+        $smarty->display('templates/form.cargar.imagen.tpl');
+    }
+    
 
 }

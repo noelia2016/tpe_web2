@@ -52,10 +52,9 @@ async function addComentario() {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}, 
             // convierte un objeto a un json
-            body: JSON.stringify(comentario)
-       
+            body: JSON.stringify(comentario)      
         });
-
+        console.log(comentario);
         const t = await response.json();
         console.log(t);
         // agrega el comentario a la lista de comentarios

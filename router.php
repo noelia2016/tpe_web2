@@ -146,7 +146,15 @@ switch ($params[0]) {
     case 'guardar_usu':
         $controller = new UsuarioController();
         $controller->guardarUsuario();
-        break;    
+        break; 
+    case 'cargar_imagen':
+        $controller = new HabitacionController();
+        $controller->cargarImagen();
+        break; 
+    case 'guardar_imagen':
+        $controller = new HabitacionController();
+        $controller->guardarImagen();
+        break; 
     default:
         echo ('404 Page not found');
         break;

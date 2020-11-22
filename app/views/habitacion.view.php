@@ -16,5 +16,4 @@ class HabitacionView {
         $smarty->display('templates/ver.habitacion.tpl');
     }
     
-
 }

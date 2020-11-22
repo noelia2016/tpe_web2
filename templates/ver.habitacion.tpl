@@ -1,7 +1,11 @@
     {include 'header.tpl'}
-      
-    {include 'carrusel.tpl'}
-        
+    
+    {if ($mostrarCarrusel == TRUE)}
+        {include 'carrusel.tpl'}
+    {else}
+        {include 'carrusel.de.habitacion.tpl'}
+    {/if}
+    
     <div class="col mt-3 mb-1">
         <h3>Habitación</h3>
         {if !empty($habitacion)}

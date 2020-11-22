@@ -6,11 +6,14 @@ include_once 'app/views/home.view.php';
 include_once 'app/views/categoria.view.php';
 include_once 'app/views/habitacion.view.php';
 include_once 'app/helpers/sesion.helper.php';
+include_once 'app/helpers/error.helper.php';
 
 class HomeController {
 
     private $model, $modelH;
     private $view, $viewC, $viewH;
+    private $sesionHelper;
+    private $errorHelper;
 
     function __construct() {
         
@@ -20,6 +23,7 @@ class HomeController {
         $this->viewH = new HabitacionView();
         $this->viewC = new CategoriaView();
         $this->sesionHelper = new SesionHelper();
+        $this->errorHelper = new SesionHelper();
     }
 
     /**
@@ -89,7 +93,7 @@ class HomeController {
        }else{
            // si no viene un numero por parametro
            $camino='home';
-           $this->view->pantallaDeError($camino);
+           $this->errorHelper->pantallaDeError($camino);
        }
 
     }  
@@ -100,22 +104,29 @@ class HomeController {
     function mostrarHabitacion($id)
     {
        // si esl parametro ingresado es un numero
-        if (is_numeric($id)){
+       $mostrarCarrusel=TRUE;
+       if (is_numeric($id)){
             // se obtiene la habtacion con sus respectivos detalles y con los datos de la categoria
-            $habitacion = $this->modelH->obtenerHabitacion($id);
+            $habitacion = $this->modelH->obtenerHabitacion($id); 
             
+            // obtengo las imagenes para mostrar en la galeria 
+            $imagenes=$this->modelH->obtenerImagenes($id);
+            if ($imagenes){
+                // si hay imagenes muestro el carrusel con las imagenes que se le asignaron
+                $mostrarCarrusel=FALSE;
+            }
             // debo verificar si esta registrado como usuario comun para permitirle comentar
             $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
             // si es administrador no lo dejo entrar
             if ($mostrar == false){
                  header("Location: " . BASE_URL . 'admhab'); 
             }else{
-                $this->view->mostrarDetalleHabitacion($habitacion, $mostrar);
+                $this->view->mostrarDetalleHabitacion($habitacion, $mostrar, $imagenes, $mostrarCarrusel);
             }
         }else{
            // si no viene un numero por parametro
            $camino='home';
-           $this->view->pantallaDeError($camino);     
+           $this->errorHelper->pantallaDeError($camino);     
         }
     }
 

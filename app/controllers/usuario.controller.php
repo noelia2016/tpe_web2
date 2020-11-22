@@ -3,6 +3,7 @@
 include_once 'app/models/usuario.model.php';
 include_once 'app/views/usuario.view.php';
 include_once 'app/helpers/sesion.helper.php';
+include_once 'app/helpers/error.helper.php';
 
 class UsuarioController
 {
@@ -10,12 +11,14 @@ class UsuarioController
     private $model;
     private $view;
     private $sesionHelper;
+    private $errorHelper;
 
     function __construct()
     {
         $this->model = new UsuarioModel();
         $this->view = new UsuarioView();
         $this->sesionHelper = new SesionHelper();
+        $this->errorHelper = new ErrorHelper();
     }
 
     /**
@@ -248,7 +251,7 @@ class UsuarioController
         } else {
             // si no viene un numero por parametro
             $camino = 'listar_usuarios';
-            $this->view->pantallaDeError($camino);
+            $this->errorHelper->pantallaDeError($camino);
         }
     }
 
@@ -270,7 +273,7 @@ class UsuarioController
             }
         } else {
             $camino = 'listar_usuarios';
-            $this->view->pantallaDeError($camino);
+            $this->errorHelper->pantallaDeError($camino);
         } 
     }
     

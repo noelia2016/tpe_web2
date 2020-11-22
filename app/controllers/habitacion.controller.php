@@ -5,6 +5,7 @@ include_once 'app/views/admin.habitacion.view.php';
 include_once 'app/views/habitacion.view.php';
 include_once 'app/models/categoria.model.php';
 include_once 'app/helpers/sesion.helper.php';
+include_once 'app/helpers/error.helper.php';
 
 class HabitacionController
 {
@@ -13,6 +14,7 @@ class HabitacionController
     private $view, $viewAdmin;
     private $modelCat;
     private $sesionHelper;
+    private $errorHelper;
 
     function __construct()
     {
@@ -21,6 +23,7 @@ class HabitacionController
         $this->viewAdmin = new AdminHabitacionView();
         $this->view = new HabitacionView();
         $this->sessionHelper = new SesionHelper();
+        $this->errorHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
         $this->sessionHelper->checkLogged();
@@ -35,18 +38,23 @@ class HabitacionController
      */
     function mostrarHabitacion($id)
     {
-
-        $habitacion = $this->model->mostrarHabitacion($id);
-        
-        // actualizo la vista
-        if ($habitacion) {
-            $this->view->mostrarDetalleHabitacion($habitacion);
+        if(is_numeric($id)){
+            $habitacion = $this->model->mostrarHabitacion($id);         
+            // actualizo la vista
+            if ($habitacion) {
+                $this->view->mostrarDetalleHabitacion($habitacion);
+            }
         } else {
             //no se encontró la habitacion con ese id
+            $camino = 'admhab';
+            $this->errorHelper->pantallaDeError($camino);
         }
 
     }
-
+    
+    /**
+     * Edita los detalles de la habitacion pasada por parametro
+     */
     function editarHabitacion($id)
 
     {   //revisar 
@@ -71,10 +79,15 @@ class HabitacionController
                 $this->redirigirListaHabPostActualiz($mensaje, $estadoActualiz);
             }
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            //no se encontró la habitacion con ese id
+            $camino = 'admhab';
+            $this->errorHelper->pantallaDeError($camino);
         }
     }
-
+    
+    /**
+     * Elimina una habitacion especifica
+     */
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 
@@ -100,11 +113,16 @@ class HabitacionController
             }
             $this->redirigirListaHabPostActualiz($mensaje, $borrado);
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            //no se encontró la habitacion con ese id
+            $camino = 'admhab';
+            $this->errorHelper->pantallaDeError($camino);
         }
        
     }
-
+    
+    /**
+     * Guarda los detalles de la habitacion ingresados por formulario
+     */
     function guardarHabitacion()
     {
         if (($_SESSION['TIPO_USER'] == 1)) {
@@ -157,28 +175,75 @@ class HabitacionController
                 }
             }
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            //no se encontró la habitacion con ese id
+            $camino = 'admhab';
+            $this->errorHelper->pantallaDeError($camino);
         }
     }
-
+    
+    /**
+     * Muestra el formulario de alta de habitacion
+     */
     function nuevaHabitacion()
     {
         // obtener los datos de las categorias del modelo
         $lista_cat = $this->modelCat->obtenerCategorias();
         $this->viewAdmin->altaHabitacionVista($lista_cat);
     }
-
+    
+    /**
+     * Paginado de item de habitacion
+     */
     function redirigirListaHabPostActualiz($mensaje, $actualizado)
     {
         $habitaciones = $this->model->obtenerHabitaciones();
         $this->viewAdmin->mostrarMensajeActuHabitacion($habitaciones, $mensaje, $actualizado);
     }
 
+    /**
+     * Obtiene todas las habitaciones
+     */
     function mostrarHabitaciones()
     {
         // obtiene todas las habitaciones del modelo
         $habitaciones = $this->model->obtenerHabitaciones();
         // actualizo la vista
         $this->viewAdmin->mostrarHabitaciones($habitaciones);
+        
+    }
+    
+    /**
+     * Imprime los detalles de la habitacion
+     */
+     function cargarImagen(){
+         
+        // obtiene todas las habitaciones disponibles
+        $habitaciones = $this->model->obtenerHabitaciones();
+        // actualizo la vista
+        $this->viewAdmin->cargarImagen('', $habitaciones);
+     }
+    
+    /**
+     * Carga una imagen para la galeria de una habitacion particular
+     */
+    function guardarImagen(){
+        
+        // obtiene todas las habitaciones disponibles
+        $habitaciones = $this->model->obtenerHabitaciones();
+            
+        // obtiene la imagen y la habitacion ingresada en el form
+        $hab=$_POST['id_habitacion'];
+        if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png"){
+           $id=$this->model->guardarImagen($hab, $_FILES['input_name']['tmp_name']);
+           // si agrego la imagen asociada muestro el mensaje de exito
+           if($id > 0){
+               $this->viewAdmin->cargarImagen('La imagen se agrego correctamente', $habitaciones);
+           }else{
+               // sino se agrego notifico
+               $this->viewAdmin->cargarImagen('Ups!! Ocurrio un error, nose puedo cargar la imagen', $habitaciones);
+           }
+        }else{
+            $this->viewAdmin->cargarImagen('La imagen cargada no es de las extensiones permitidas', $habitaciones);
+        }
     }
 }

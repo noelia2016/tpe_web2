@@ -133,5 +133,46 @@ class HabitacionModel {
         return $this->db->lastInsertId();
 
     }
+    
+     /**
+     * Inserto una nueva imagen para la habitacion.
+     */
+    function guardarImagen($hab, $imagen){
+        
+        $pathImg = null;
+        if ($imagen)
+            $pathImg = $this->uploadImage($imagen);
+        $query = $this->db->prepare('INSERT INTO imagen_galeria (imagen, habitacion_id )
+        VALUES ( ? , ?)');
+        //ejecutar sentencia de insert con los valores de los parámetros
+        $query->execute([$pathImg, $hab]);
+        
+        //Obtengo y devuelo el ID de la nueva habitación
+        return $this->db->lastInsertId();
+    }
+    
+    /**
+     * Nombre unico para la imagen
+     */
+    private function uploadImage($image){
+        $target = 'img/habitacion/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
+    }
+    
+    /**
+     * Obtengo todas las imagenes de la habitacion.
+     */
+    function obtenerImagenes($id){
+        
+        $query = $this->db->prepare('SELECT * FROM imagen_galeria where habitacion_id = ?');
+        $query->execute([$id]);
+
+        // Obtengo la respuesta con un fetchAll 
+        $imagenes = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $imagenes;
+    }
+
   
 }

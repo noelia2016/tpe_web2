@@ -60,25 +60,17 @@ class HomeView {
 
     }
     
-    /**
-     * Muestra pantalla de error para el visitante
-     */
-    function pantallaDeError($camino) {
-        
-        $smarty = new Smarty();
-        
-        $smarty->assign('camino', $camino);
-        $smarty->assign('mensaje', "Esta intentando ingresar a una seccion no valida.");
-    
-        $smarty->display('templates/notFound.tpl');
-    }
-    
-    function mostrarDetalleHabitacion($habitacion, $mostrar) {
+    /** 
+     *  Muestra la habitacion elegida con sus detalles y imagenes que posee asociadas en su galeria
+    **/
+    function mostrarDetalleHabitacion($habitacion, $mostrar, $imagenes = null, $mostrarCarrusel) {
         
         $smarty = new Smarty();
 
         $smarty->assign('habitacion', $habitacion);
         $smarty->assign('mostrar', $mostrar);
+        $smarty->assign('imagenes', $imagenes);
+        $smarty->assign('mostrarCarrusel', $mostrarCarrusel);
 
         $smarty->assign('id', $habitacion->id);
     
