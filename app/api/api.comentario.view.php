@@ -1,5 +1,7 @@
 <?php
 
+require_once('libs/smarty/libs/Smarty.class.php');
+
 /**
  * Vista para la API REST.
  * 
@@ -21,6 +23,15 @@ class APIComentarioView {
           500 => "Internal Server Error"
         );
         return (isset($status[$code])) ? $status[$code] : $status[500];
+    }
+    
+    function mostrarComentarios($comentarios){
+        
+        $smarty = new Smarty(); 
+       
+        $smarty->assign('comentarios', $comentarios);
+
+        $smarty->display('templates/admin.comentarios.tpl'); 
     }
 
 }

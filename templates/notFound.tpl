@@ -1,17 +1,17 @@
-    {include 'header.tpl'}
+    {include 'head.tpl'}
       
     {include 'carrusel.tpl'}
         
-    <h3>Importante!!</h3>
+    <h3 class="m-3">Notificacion de error!!</h3>
     {if !empty($mensaje)}
-        <div class="alert alert-dismissible alert-warning">
+        <div class="alert alert-danger m-3">
             <h4 class="alert-heading">Importante!</h4>
             <p>{$mensaje}</p>
         </div>     
     {/if} 
-    
     {if !empty($camino)}
-        <a href="{$camino}">volver atras</a>
+        <a class="btn btn-secondary m-3" href="{$camino}">volver atras</a>
     {/if}
+ 
     </main>
     {include file='footer.tpl'}

@@ -13,7 +13,7 @@ class HabitacionController
     private $model;
     private $view, $viewAdmin;
     private $modelCat;
-    private $sesionHelper;
+    private $sessionHelper;
     private $errorHelper;
 
     function __construct()

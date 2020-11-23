@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2020 a las 20:39:51
+-- Tiempo de generación: 23-11-2020 a las 22:34:22
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -100,6 +100,25 @@ INSERT INTO `habitacion` (`id`, `nro`, `capacidad`, `comodidades`, `estado`, `ub
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `imagen_galeria`
+--
+
+CREATE TABLE `imagen_galeria` (
+  `id` int(11) NOT NULL,
+  `imagen` varchar(165) NOT NULL,
+  `habitacion_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Volcado de datos para la tabla `imagen_galeria`
+--
+
+INSERT INTO `imagen_galeria` (`id`, `imagen`, `habitacion_id`) VALUES
+(1, 'img/habitacion/5fbab4bfd444d.jpg', 16);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -121,11 +140,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `sexo`, `fecha_nac`, `email`, `user`, `password`, `habilitado`, `es_administrador`) VALUES
-(1, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 0, 0),
+(1, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@gmail.com', 'noelia2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 0),
 (2, 'Andrea', 'Gherbi', 'F', '1989-09-22', 'gherbiandrea@gmail.com', 'andrea2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 0),
 (3, 'Analia', 'Carrizo', 'F', '1980-09-22', 'analiacarrizo22@gmail.com', 'analia2020', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 0),
-(4, 'Roberto', 'Carrizo', 'M', '1988-02-22', 'admin@hotmail.com', 'admin', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 1),
-(5, 'Noelia', 'Carrizo', 'F', '1989-09-22', 'noeliacarrizo22@hotmail.com', 'noelia', '$2y$10$gTY8P1wNkygrhG/SpOjO9eSvKQzEOD2evEcwCWLBlrINT25sTwdO2', 1, 0);
+(4, 'Roberto', 'Carrizo', 'M', '1988-02-22', 'admin@hotmail.com', 'admin', '$2y$12$zCg7rBy.Z03XQpaloPYWW.qQBuwAfUxZ43h.2cIwT3pvkbaK6/fFG', 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -143,6 +161,7 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `comentario`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `usuario_id_2` (`usuario_id`,`habitacion_id`),
   ADD KEY `habitacion_id` (`habitacion_id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
@@ -152,6 +171,15 @@ ALTER TABLE `comentario`
 ALTER TABLE `habitacion`
   ADD PRIMARY KEY (`id`),
   ADD KEY `categoria_id` (`categoria_id`);
+
+--
+-- Indices de la tabla `imagen_galeria`
+--
+ALTER TABLE `imagen_galeria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `habitacion_id` (`habitacion_id`),
+  ADD KEY `habitacion_id_2` (`habitacion_id`),
+  ADD KEY `habitacion_id_3` (`habitacion_id`);
 
 --
 -- Indices de la tabla `usuario`
@@ -176,17 +204,22 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
+-- AUTO_INCREMENT de la tabla `imagen_galeria`
+--
+ALTER TABLE `imagen_galeria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --
@@ -203,6 +236,12 @@ ALTER TABLE `comentario`
 --
 ALTER TABLE `habitacion`
   ADD CONSTRAINT `habitacion_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`);
+
+--
+-- Filtros para la tabla `imagen_galeria`
+--
+ALTER TABLE `imagen_galeria`
+  ADD CONSTRAINT `imagen_galeria_ibfk_1` FOREIGN KEY (`habitacion_id`) REFERENCES `habitacion` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

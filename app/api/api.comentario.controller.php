@@ -21,7 +21,7 @@ class ApiComentarioController {
     public function obtenerComentarios($params = null) {
 
         $comentarios = $this->model->obtenerComentarios();
-        $this->view->response($comentarios, 200);
+        $this->view->mostrarComentarios($comentarios);
     }
     
     /**
@@ -52,7 +52,8 @@ class ApiComentarioController {
             $this->view->response($comentarios, 200);
         }
         else { 
-            $this->view->response("La habitacion con id=$idHabitacion no existe", 404);
+            // retorna 0 si no encuentra comentarios
+            $this->view->response(0, 404);
         }
     }
     

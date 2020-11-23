@@ -3,6 +3,7 @@ include_once 'app/controllers/habitacion.controller.php';
 include_once 'app/controllers/usuario.controller.php';
 include_once 'app/controllers/home.controller.php';
 include_once 'app/controllers/categoria.controller.php';
+include_once 'app/helpers/error.helper.php';
 
 // defino la base url para la construccion de links con urls semánticas
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
@@ -156,6 +157,7 @@ switch ($params[0]) {
         $controller->guardarImagen();
         break; 
     default:
-        echo ('404 Page not found');
+        $error=new ErrorHelper();
+        $error->recursoNoExiste('home');
         break;
 }

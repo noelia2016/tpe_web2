@@ -4,6 +4,7 @@ include_once 'app/models/categoria.model.php';
 include_once 'app/views/admin.categoria.view.php';
 include_once 'app/views/categoria.view.php';
 include_once 'app/helpers/sesion.helper.php';
+include_once 'app/helpers/error.helper.php';
 
 class CategoriaController
 {
@@ -12,18 +13,20 @@ class CategoriaController
     private $view;
     private $viewAdmin;
     private $sesionHelper;
+    private $errorHelper;
 
     function __construct()
     {
         $this->model = new CategoriaModel();
         $this->view = new CategoriaView();
         $this->viewAdmin = new AdminCategoriaView();
-        $this->authHelper = new SesionHelper();
+        $this->sesionHelper = new SesionHelper();
+        $this->errorHelper = new ErrorHelper();
 
         // verifico que el usuario esté logueado siempre
         //$this->authHelper->checkLogged();
         //Verifico usuario administrador, si no, redirige al login
-        $this->authHelper->esta_logueadoAdministrador() ;
+        $this->sesionHelper->esta_logueadoAdministrador() ;
     }
 
     /**
@@ -71,7 +74,9 @@ class CategoriaController
             }
             $this->redirigirListaCatMensaje($mensaje, $borrado);
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+           // si no viene un numero por parametro
+            $camino = 'admcat';
+            $this->errorHelper->pantallaDeError($camino);
         }
     }
 
@@ -100,7 +105,9 @@ class CategoriaController
                 $this->redirigirListaCatMensaje($mensaje, $valido);
             }
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            // si no viene un numero por parametro
+            $camino = 'admcat';
+            $this->errorHelper->pantallaDeError($camino);
         }
     }
     function guardarCategoria()
@@ -134,7 +141,9 @@ class CategoriaController
                 }
             }
         } else {
-            echo "usted no tiene permisos para realizar esta operacion";
+            // si no viene un numero por parametro
+            $camino = 'admcat';
+            $this->errorHelper->pantallaDeError($camino);
         }
     }
 
