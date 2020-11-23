@@ -21,7 +21,7 @@ class ApiComentarioController {
     public function obtenerComentarios($params = null) {
 
         $comentarios = $this->model->obtenerComentarios();
-        $this->view->response($comentarios, 200);
+        $this->view->mostrarComentarios($comentarios);
     }
     
     /**
@@ -32,8 +32,7 @@ class ApiComentarioController {
         // $params es un array asociativo con los parámetros de la ruta
         $idComentario = $params[':ID'];
         $comentario = $this->model->obtenerComentario($idComentario);
-        echo "entre a obtener comentario en modelo";
-        var_dump($comentario);
+                  
         if ($comentario)
             $this->view->response($comentario, 200);
         else
@@ -52,7 +51,8 @@ class ApiComentarioController {
             $this->view->response($comentarios, 200);
         }
         else { 
-            $this->view->response("La habitacion con id=$idHabitacion no existe", 404);
+            // retorna 0 si no encuentra comentarios
+            $this->view->response(0, 404);
         }
     }
     
@@ -117,7 +117,12 @@ class ApiComentarioController {
     } 
 
     function listarComentariosAdm() {
-        $this->obtenerComentarios();
+        $comentarios = $this->model->obtenerComentarios();
+                       
+        if ($comentarios)
+            $this->view->response($comentarios, 200);
+        else
+            $this->view->response(0, 404);
        
     }
 }

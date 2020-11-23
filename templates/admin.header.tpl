@@ -17,7 +17,7 @@
             <a class="nav-link" href="cargar_imagen">Cargar Imagen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="api/comentariosAdm">Comentarios</a>
+            <a class="nav-link" href="comentarios_adm">Comentarios</a>
           </li>
           <li class="nav-item ml-auto">
             <a class="nav-link" href="logout">Bienvenido {$smarty.session.USER} (Cerrar sesión)</a>

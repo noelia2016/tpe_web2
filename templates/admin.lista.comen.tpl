@@ -18,4 +18,5 @@
             {include file="vue/admin.lista.comen.vue"}
         </div>
     </section>    
+    <script src="js/admin.comentarios.js"></script>
     {include file='footer.tpl'}

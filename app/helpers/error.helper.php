@@ -22,6 +22,21 @@ class ErrorHelper {
         $smarty->display('templates/notFound.tpl');
     }
     
+     /**
+     * Muestra pantalla de error para el usuario
+     */
+    function recursoNoExiste($camino)
+    {
+
+        $smarty = new Smarty();
+
+        $smarty->assign('camino', $camino);
+
+        $smarty->assign('mensaje', "El recurso que intenta acceder no existe.");
+
+        $smarty->display('templates/notFound.tpl');
+    }
+    
 }
 
 ?>

@@ -23,7 +23,7 @@ class HomeController {
         $this->viewH = new HabitacionView();
         $this->viewC = new CategoriaView();
         $this->sesionHelper = new SesionHelper();
-        $this->errorHelper = new SesionHelper();
+        $this->errorHelper = new ErrorHelper();
     }
 
     /**
@@ -35,12 +35,12 @@ class HomeController {
         $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
         
         // si es administrador no lo dejo entrar
-        if ($mostrar == false){
+        if ($mostrar == false && $user=$this->sesionHelper->obtenerTipoUsuario() == 1){
              header("Location: " . BASE_URL . 'admhab'); 
         }else{
             $categorias=$this->modelC->obtenerCategorias();
             $this->view->mostrarHome($categorias,$mostrar);
-        }
+       }
     }
     
     /**
@@ -51,7 +51,7 @@ class HomeController {
         // chequeo el usuario que esta logueado
         $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
         // si es administrador no lo dejo entrar
-        if ($mostrar == false){
+        if ($mostrar == false && $user=$this->sesionHelper->obtenerTipoUsuario() == 1){
              header("Location: " . BASE_URL . 'admhab'); 
         }else{
             $this->view->mostrarServicios($mostrar);
@@ -66,7 +66,7 @@ class HomeController {
         // chequeo el usuario que esta logueado
         $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
         // si es administrador no lo dejo entrar
-        if ($mostrar == false){
+        if ($mostrar == false && $user=$this->sesionHelper->obtenerTipoUsuario() == 1){
              header("Location: " . BASE_URL . 'admhab'); 
         }else{
             // llama a la vista que necesita para mostrar los datos de contacto
@@ -82,14 +82,20 @@ class HomeController {
        if (is_numeric($id)){
             // obtiene los detalles de la categoria elegida
             $categoria = $this->modelC->obtenerCategoria($id);
-            // obtengo las habitaciones asociadas a la categoria elegida
-            $habitaciones = $this->modelC->obtenerHabitacionesdeCategoria($id);
             
-            // chequeo el usuario que esta logueado
-            $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
-                        
-            // actualizo la vista
-            $this->viewC->mostrarCategoria($categoria, $habitaciones, $mostrar);
+            // si no existe la categoria que intenta acceder
+            if ($categoria == false){
+                $this->errorHelper->recursoNoExiste('home');
+            }else{
+                // obtengo las habitaciones asociadas a la categoria elegida
+                $habitaciones = $this->modelC->obtenerHabitacionesdeCategoria($id);
+                
+                // chequeo el usuario que esta logueado
+                $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+                            
+                // actualizo la vista
+                $this->viewC->mostrarCategoria($categoria, $habitaciones, $mostrar);
+            }
        }else{
            // si no viene un numero por parametro
            $camino='home';
@@ -108,20 +114,25 @@ class HomeController {
        if (is_numeric($id)){
             // se obtiene la habtacion con sus respectivos detalles y con los datos de la categoria
             $habitacion = $this->modelH->obtenerHabitacion($id); 
-            
-            // obtengo las imagenes para mostrar en la galeria 
-            $imagenes=$this->modelH->obtenerImagenes($id);
-            if ($imagenes){
-                // si hay imagenes muestro el carrusel con las imagenes que se le asignaron
-                $mostrarCarrusel=FALSE;
-            }
-            // debo verificar si esta registrado como usuario comun para permitirle comentar
-            $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
-            // si es administrador no lo dejo entrar
-            if ($mostrar == false){
-                 header("Location: " . BASE_URL . 'admhab'); 
+            // si no existe la habitacion muestro error
+            if ($habitacion == false){
+                $this->errorHelper->recursoNoExiste('home');
             }else{
-                $this->view->mostrarDetalleHabitacion($habitacion, $mostrar, $imagenes, $mostrarCarrusel);
+                // si existe la habitacion voy a seguir sino tiro todo
+                // obtengo las imagenes para mostrar en la galeria 
+                $imagenes=$this->modelH->obtenerImagenes($id);
+                if ($imagenes){
+                    // si hay imagenes muestro el carrusel con las imagenes que se le asignaron
+                    $mostrarCarrusel=FALSE;
+                }
+                // debo verificar si esta registrado como usuario comun para permitirle comentar
+                $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
+                // si es administrador no lo dejo entrar
+                if ($mostrar == false){
+                     header("Location: " . BASE_URL . 'admhab'); 
+                }else{
+                    $this->view->mostrarDetalleHabitacion($habitacion, $mostrar, $imagenes, $mostrarCarrusel);
+                }
             }
         }else{
            // si no viene un numero por parametro

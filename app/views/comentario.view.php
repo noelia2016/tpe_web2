@@ -15,5 +15,12 @@ class ComentarioView {
     
         $smarty->display('templates/form.comentario.tpl');
     }
+
+    function listarComentarios() {
+        
+        $smarty = new Smarty();
+
+        $smarty->display('templates/admin.lista.comen.tpl');
+    }
     
 }

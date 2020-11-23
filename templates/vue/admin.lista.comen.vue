@@ -9,6 +9,7 @@
                      <th>Usuario</th>
                      <th>Puntuación</th>
                      <th>Comentario</th>
+                     <th>Acción</th>
                 </tr>
              </thead>
             <tbody id="tabla-Body">

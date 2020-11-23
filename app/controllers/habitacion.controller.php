@@ -13,7 +13,7 @@ class HabitacionController
     private $model;
     private $view, $viewAdmin;
     private $modelCat;
-    private $sesionHelper;
+    private $sessionHelper;
     private $errorHelper;
 
     function __construct()
@@ -235,6 +235,8 @@ class HabitacionController
         $hab=$_POST['id_habitacion'];
         if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png"){
            $id=$this->model->guardarImagen($hab, $_FILES['input_name']['tmp_name']);
+           var_dump($id);
+           die();
            // si agrego la imagen asociada muestro el mensaje de exito
            if($id > 0){
                $this->viewAdmin->cargarImagen('La imagen se agrego correctamente', $habitaciones);

@@ -25,8 +25,13 @@ async function getComentarios(hab) {
         const response = await fetch('api/comentarios/' + hab);
         const comentarios = await response.json();
         
-        // imprimo los comentarios en este caso todos porque el filtro no me anda aun
-        app.comentarios = comentarios;
+        if(comentarios.length > 0){
+            // imprimo los comentarios en este caso todos porque el filtro no me anda aun
+            app.comentarios = comentarios;
+        }else{
+            return 0;
+        }
+        
 
     } catch(e) {
         console.log(e);

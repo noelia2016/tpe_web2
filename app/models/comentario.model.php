@@ -70,8 +70,12 @@ class ComentarioModel
 
         // Obtengo la respuesta con un fetchAll 
         $comentarios = $query->fetchAll(PDO::FETCH_OBJ);
-
-        return $comentarios;
+        
+        if (!empty($comentarios)){
+            return $comentarios;
+        }else{
+            return 0;
+        }
     }
 
     /**
@@ -104,11 +108,13 @@ class ComentarioModel
     {
         // guardo la fecha actual en una variable
         $fecha= date ("Y-m-d");
+       
         $query = $this->db->prepare('
         INSERT INTO comentario (puntuacion, mensaje, usuario_id, habitacion_id, fecha_realizado )
                 VALUES ( ? , ? , ?, ?, ?)');
-       
+
         $query->execute([$puntuacion, $mensaje, $usuario, $habitacion, $fecha]);
+       
         return $this->db->lastInsertId();
     }
     
