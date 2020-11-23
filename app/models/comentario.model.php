@@ -107,7 +107,7 @@ class ComentarioModel
         $query = $this->db->prepare('
         INSERT INTO comentario (puntuacion, mensaje, usuario_id, habitacion_id, fecha_realizado )
                 VALUES ( ? , ? , ?, ?, ?)');
-        var_dump("La query es " + $query);
+       
         $query->execute([$puntuacion, $mensaje, $usuario, $habitacion, $fecha]);
         return $this->db->lastInsertId();
     }

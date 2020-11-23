@@ -89,22 +89,21 @@ class ApiComentarioController {
         $usuario = $body->usuario_id;
         $habitacion = $body->habitacion_id;
         
-        echo "entro al insertar controller";
-        var_dump($puntuacion, $mensaje, $usuario, $habitacion);
+    
         // lo inserto en mi BD
         $id = $this->model->agregarComentario($puntuacion, $mensaje, $usuario, $habitacion);
         // si inserto el comentario muestro la respuesta de todo ok
-        var_dump($id);
-        if ($id > 0){
-            echo "inserto el comentario";
+       
+         if ($id > 0){
+            
             // si lo inserto bien lo busco y lo devuelvo
             $comentario = $this->model->obtenerComentario($id);
             $this->view->response($comentario, 200);
         }else{
             // si ocurrio un error notifico
-            echo "NOOOOOO inserto el comentario";
+          
             $this->view->response("Ups!! ocurrio un error al intentar insertar comentario.", 500);
-        }
+        } 
     }
 
     // En caso de error muestra este error
@@ -116,5 +115,10 @@ class ApiComentarioController {
     function getData(){ 
         return json_decode($this->data); 
     } 
+
+    function listarComentariosAdm() {
+        $this->obtenerComentarios();
+       
+    }
 }
 ?>

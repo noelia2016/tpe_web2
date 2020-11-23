@@ -10,6 +10,7 @@ $router->addRoute('comentarios', 'GET', 'ApiComentarioController', 'obtenerComen
 $router->addRoute('comentarios/:ID', 'GET', 'ApiComentarioController', 'obtenerComentariosDeHabitacion');
 $router->addRoute('comentario/:ID', 'GET', 'ApiComentarioController', 'obtenerComentario');
 $router->addRoute('comentarios/:ID', 'DELETE', 'ApiComentarioController', 'eliminarComentario');
+$router->addRoute('comentariosAdm', 'GET', 'ApiComentarioController', 'listarComentariosAdm');
 
 $router->addRoute('comentarios', 'POST', 'ApiComentarioController', 'insertarComentario');
 

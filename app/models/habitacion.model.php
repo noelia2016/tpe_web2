@@ -74,7 +74,12 @@ class HabitacionModel {
         DELETE FROM habitacion where id = ?'); 
         $query->execute([$id]);
         // devuelve numero de columnas afectadas a la eliminacion
-        return $query->rowCount();
+        $eliminada = $query->rowCount();
+        if ($eliminada > 0) {
+            $this->eliminarComentariosDeHabitacion($id);
+           
+        }
+        return $eliminada ;
 
     }
     

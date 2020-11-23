@@ -19,8 +19,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
 });
 
-//async function getComentarios(hab) {
-    async function getComentarios(hab) {
+async function getComentarios(hab) {
     // obtengo todos los comentarios para la habitacion pasada por parametro
     try {
         const response = await fetch('api/comentarios/' + hab);
@@ -37,16 +36,18 @@ document.addEventListener('DOMContentLoaded', e => {
 
 async function addComentario() {
     // inserto un nuevo comentario    
-    
+    let id_habitacion = parseInt(document.querySelector('input[name=habitacion]').value) ;
+    let puntos = document.querySelector('input[name=puntos]') ;
+    let mensaje = document.querySelector('textarea[name=opinion]') ;
+    let usuario_id = document.querySelector('input[name=usuario]') ;
     // armo mi nuevo comentario
     const comentario = {
-        puntuacion: parseInt(document.querySelector('input[name=puntos]').value),
-        mensaje: document.querySelector('textarea[name=opinion]').value,
-        usuario_id: parseInt(document.querySelector('input[name=usuario]').value),
-        habitacion_id: parseInt(document.querySelector('input[name=habitacion]').value)
+        puntuacion: parseInt(puntos.value),
+        mensaje: mensaje.value,
+        usuario_id: parseInt(usuario_id.value),
+        habitacion_id: id_habitacion
     };
-    console.log(comentario);
-   
+       
     try {
         const response = await fetch('api/comentarios' , {
             method: 'POST',
@@ -54,12 +55,11 @@ async function addComentario() {
             // convierte un objeto a un json
             body: JSON.stringify(comentario)      
         });
-        console.log(comentario);
+               
         const t = await response.json();
-        console.log(t);
         // agrega el comentario a la lista de comentarios
-        //app.comentarios.push(t);
-
+        app.comentarios.push(t);
+  
     } catch(e) {
         console.log(e);
     }

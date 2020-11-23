@@ -8,7 +8,7 @@
         <span>Tu opinion nos interesa!!</span>
         <p>Por favor comentanos como pasaste tu estadia en nuestras instalaciones.</p>
     </div>
-    <form class='form-signin' id="opinion-form" action='insertarComentario' method='POST'> 
+    <form class='form-signin' id="opinion-form" action='insertarComentario' method='POST'enctype="multipart/form-data"> 
         <div class="form-group">
             <input type="hidden" id="usuario" name="usuario" value={$smarty.session.ID_USER} required/>
        </div>
