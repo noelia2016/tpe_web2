@@ -22,9 +22,9 @@
         <div class="col-12 col-sm-6">
           <div class="form-group mt-3">
             <label for="exampleFormControlFile1">Cargue imagen:</label>
-            <input type="file" class="form-control-file" name="input_name" id="imageToUpload" required>
+            <input type="file" class="form-control-file" name="input_name" id="imageToUpload" accept="image/png, jpeg, .jpg" required>
             <small id="passwordHelpBlock" class="form-text text-muted">
-              Las imagenes deben tener extension .mpeg o .png
+              Las imagenes deben tener extension .jpeg, .jpg o .png
             </small>
           </div>
         </div>

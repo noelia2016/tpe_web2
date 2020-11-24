@@ -2,7 +2,7 @@
 {include file= 'admin.header.tpl'}
 <section class="container-fluid center fondo_container">
 <h2>Alta habitación</h2>
-    <form action="guardar_hab" method="POST" class="my-4">
+    <form action="guardar_hab" method="POST" class="my-4" enctype="multipart/form-data">
         <div class="row mt-5">
             <div class="col-12 col-sm-6">
                 <div class="form-group-row">
@@ -33,6 +33,15 @@
                     <input name="ubicacion" type="text" class="form-control" value = ''>
                 </div>
             </div>
+			<div class="col-12 col-sm-6">
+				<div class="form-group mt-3">
+					<label for="exampleFormControlFile1">Cargue imagen:</label>
+					<input type="file" class="form-control-file" name="input_name" id="imageToUpload" accept="image/png, jpeg, .jpg">
+					<small id="passwordHelpBlock" class="form-text text-muted">
+					  Las imagenes deben tener extension .jpeg, .jpg o .png
+					</small>
+				</div>
+			</div>
         </div>
         <div class="btn-group m-5">
             <input class='btn btn-info btn-sm' value="Guardar" type="submit">
