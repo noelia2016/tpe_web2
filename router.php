@@ -151,11 +151,16 @@ switch ($params[0]) {
         break; 
     case 'cargar_imagen':
         $controller = new HabitacionController();
-        $controller->cargarImagen();
+        $controller->cargarImagen('');
         break; 
     case 'guardar_imagen':
         $controller = new HabitacionController();
         $controller->guardarImagen();
+        break; 
+	case 'eliminar_imagen':
+        $controller = new HabitacionController();
+		$id = $params[1];
+        $controller->eliminarImagen($id);
         break; 
     case 'comentarios_adm':
             $controller = new ComentarioController();

@@ -178,6 +178,30 @@ class HabitacionModel {
 
         return $imagenes;
     }
+	
+	/**
+     * Obtengo todas las imagenes cargadas
+     */
+    function obtenerTodasLasImagenes(){
+        
+        $query = $this->db->prepare('SELECT ig.id as id_img, ig.imagen, h.id, h.nro as nro_hab FROM imagen_galeria as ig inner join habitacion as h on ig.habitacion_id = h.id');
+        $query->execute();
+
+        // Obtengo la respuesta con un fetchAll 
+        $imagenes = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $imagenes;
+    }
+	
+	/**
+     * Elimino un imagen de la habitacion
+     */
+    function eliminarImagenDeHab($id){
+		$query = $this->db->prepare('DELETE FROM imagen_galeria where id = ?'); 
+        $query->execute([$id]);
+        // devuelve numero de columnas afectadas a la eliminacion
+        return $query->rowCount();
+	}
 
   
 }

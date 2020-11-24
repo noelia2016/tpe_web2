@@ -51,11 +51,12 @@ class AdminHabitacionView
     /**
        * Muestra el fomulario para cargar imagen para la galeria de una habitacion
     */
-    function cargarImagen($mensaje = null, $habitaciones) {
+    function cargarImagen($mensaje = null, $habitaciones, $imagenes) {
         
         $smarty = new Smarty();
         
         $smarty->assign('habitaciones', $habitaciones);
+		 $smarty->assign('imagenes', $imagenes);
         $smarty->assign('mensaje', $mensaje);
 
         $smarty->display('templates/form.cargar.imagen.tpl');
