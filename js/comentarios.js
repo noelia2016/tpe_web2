@@ -9,9 +9,11 @@ const app = new Vue({
 
 document.addEventListener('DOMContentLoaded', e => {
     // obtengo todos los comentarios de la habitacion
-    let hab=document.querySelector('#habitacion');
-
-    getComentarios(hab.value);
+	
+	// obtengo el id de habitacion
+    let hab=window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1);
+	
+    getComentarios(hab);
     document.querySelector('#opinion-form').addEventListener('submit', e => {
         e.preventDefault();
         addComentario();

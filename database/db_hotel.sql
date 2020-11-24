@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2020 a las 22:34:22
+-- Tiempo de generación: 24-11-2020 a las 11:58:54
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -66,7 +66,9 @@ INSERT INTO `comentario` (`id`, `puntuacion`, `mensaje`, `usuario_id`, `habitaci
 (1, 5, 'Excelente atencion. Bello lugar.', 1, 13, '2020-10-01'),
 (2, 1, 'Deprolable atencion. Las habitaciones re chicas.', 3, 14, '2020-10-05'),
 (3, 5, 'Excelente atencion. Los empleados muy amables. Comida excelente. ', 1, 16, '2020-07-07'),
-(4, 1, 'Deprolable atencion. Las habitaciones bastante chica. El baño re chiquito. El spa la pileta climatizada el agua fria. Horrible la pase!!', 2, 13, '2020-10-07');
+(4, 1, 'Deprolable atencion. Las habitaciones bastante chica. El baño re chiquito. El spa la pileta climatizada el agua fria. Horrible la pase!!', 2, 13, '2020-10-07'),
+(12, 5, 'Hollaaaaa', 1, 13, '2020-11-24'),
+(13, 5, 'Holaaaaaaaaaaaaaaaaaaaaaa', 1, 16, '2020-11-24');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,6 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `comentario`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `usuario_id_2` (`usuario_id`,`habitacion_id`),
   ADD KEY `habitacion_id` (`habitacion_id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
@@ -204,7 +205,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
