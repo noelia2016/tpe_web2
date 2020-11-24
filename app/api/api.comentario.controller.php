@@ -7,11 +7,12 @@ class ApiComentarioController {
 
     private $model;
     private $view;
-
+   
     function __construct() {
         
         $this->model = new ComentarioModel();
         $this->view = new ApiComentarioView();
+        $this->sesionHelper = new SesionHelper();
         $this->data = file_get_contents("php://input");
     }
 
@@ -117,6 +118,7 @@ class ApiComentarioController {
     } 
 
     function listarComentariosAdm() {
+     
         $comentarios = $this->model->obtenerComentarios();
                        
         if ($comentarios)

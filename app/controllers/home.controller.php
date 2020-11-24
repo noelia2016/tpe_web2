@@ -128,7 +128,7 @@ class HomeController {
                 // debo verificar si esta registrado como usuario comun para permitirle comentar
                 $mostrar=$this->sesionHelper->esta_logueadoUserNormal();
                 // si es administrador no lo dejo entrar
-                if ($mostrar == false){
+                if ($mostrar == false && $user=$this->sesionHelper->obtenerTipoUsuario() == 1){
                      header("Location: " . BASE_URL . 'admhab'); 
                 }else{
                     $this->view->mostrarDetalleHabitacion($habitacion, $mostrar, $imagenes, $mostrarCarrusel);

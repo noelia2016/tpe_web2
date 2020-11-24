@@ -64,6 +64,7 @@ async function addComentario() {
         const t = await response.json();
         // agrega el comentario a la lista de comentarios
         app.comentarios.push(t);
+     
   
     } catch(e) {
         console.log(e);

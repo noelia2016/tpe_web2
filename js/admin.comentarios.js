@@ -18,7 +18,7 @@ async function getComentarios() {
 
     // obtengo todos los comentarios para la habitacion pasada por parametro
     try {
-        const response = await fetch('api/comentariosAdm/');
+        const response = await fetch('api/comentariosadm/');
         const comentarios = await response.json();
         
         // imprimo los comentarios en este caso todos porque el filtro no me anda aun

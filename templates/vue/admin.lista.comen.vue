@@ -20,7 +20,7 @@
                     <td>{{ comentario.puntuacion }} </td>
                     <td>{{ comentario.mensaje }}</td>
                     <td>
-                        <a class='btn btn-danger btn-sm' href='eliminarComentario/{{$comentario.id}}'>Eliminar</a> 
+                        <a class="btn btn-danger btn-sm" href="eliminarComentario/($comentario.id)">Eliminar</a> 
                     </td>
                 </tr>
             </tbody>

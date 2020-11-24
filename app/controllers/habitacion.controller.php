@@ -13,7 +13,7 @@ class HabitacionController
     private $model;
     private $view, $viewAdmin;
     private $modelCat;
-    private $sessionHelper;
+    private $sesionHelper;
     private $errorHelper;
 
     function __construct()
@@ -22,14 +22,14 @@ class HabitacionController
         $this->modelCat = new CategoriaModel();
         $this->viewAdmin = new AdminHabitacionView();
         $this->view = new HabitacionView();
-        $this->sessionHelper = new SesionHelper();
+        $this->sesionHelper = new SesionHelper();
         $this->errorHelper = new SesionHelper();
 
         // verifico que el usuario esté logueado siempre
-        $this->sessionHelper->checkLogged();
+        $this->sesionHelper->checkLogged();
 
         //Verifico usuario administrador, si no, redirige al login
-        $this->sessionHelper->esta_logueadoAdministrador() ;
+        $this->sesionHelper->esta_logueadoAdministrador() ;
 
     }
 
