@@ -12,6 +12,7 @@ class ComentarioController {
         
         $this->view = new ComentarioView();
         $this->sesionHelper = new SesionHelper(); 
+        $this->sesionHelper->checkLogged();
         $this->sesionHelper->esta_logueadoAdministrador();
   
     }
