@@ -44,7 +44,7 @@ class HabitacionController
             if ($habitacion) {
                 $this->view->mostrarDetalleHabitacion($habitacion);
             }
-        } else {
+        }else{
             //no se encontró la habitacion con ese id
             $camino = 'admhab';
             $this->errorHelper->pantallaDeError($camino);
@@ -91,32 +91,26 @@ class HabitacionController
     function eliminarHabitacion($id)
     {
         // eliminar una habitación 
-        if (($_SESSION['TIPO_USER'] == 1)) {
-            if (is_numeric($id)) {
-                $filas = $this->model->eliminarHabitacionMdl($id);
-                if ($filas > 0){
-                    $mensaje = "La habitación ha sido eliminada";
-                    $borrado = true ;
-                    // si tiene comentarios asociados esa habitacion debo eliminarlos
-                    $tieneComentarios=$this->model->tieneComentariosAsociados($id);
-                    if ($tieneComentarios){
-                        $comentarios=$this->model->eliminarComentariosDeHabitacion($id);
-                        if($comentarios > 0){
-                            // si borro comentarios se lo agrego al mensaje que notifico.
-                            $mensaje .="Los comentarios asociados tambien fueron eliminados correctamente.";
-                        }
-                    }
-                }
-            } else {
-                $mensaje = "No se pudo eliminar la habitación en la base de datos";
-                $borrado = false;
-            }
-            $this->redirigirListaHabPostActualiz($mensaje, $borrado);
-        } else {
-            //no se encontró la habitacion con ese id
-            $camino = 'admhab';
-            $this->errorHelper->pantallaDeError($camino);
-        }
+		if (is_numeric($id)) {
+			$filas = $this->model->eliminarHabitacionMdl($id);
+			if ($filas > 0){
+				$mensaje = "La habitación ha sido eliminada";
+				$borrado = true ;
+				// si tiene comentarios asociados esa habitacion debo eliminarlos
+				$tieneComentarios=$this->model->tieneComentariosAsociados($id);
+				if ($tieneComentarios){
+					$comentarios=$this->model->eliminarComentariosDeHabitacion($id);
+					if($comentarios > 0){
+						// si borro comentarios se lo agrego al mensaje que notifico.
+						$mensaje .="Los comentarios asociados tambien fueron eliminados correctamente.";
+					}
+				}
+			}
+		} else {
+			$mensaje = "No se pudo eliminar la habitación en la base de datos";
+			$borrado = false;
+		}
+		$this->redirigirListaHabPostActualiz($mensaje, $borrado);
        
     }
     
@@ -134,8 +128,15 @@ class HabitacionController
             $estado = $_POST['estado'];
             $comodidades = $_POST['comodidades'];
             $ubicacion = $_POST['ubicacion'];
-
-            // verifico campos obligatorios
+			
+			// verifico si mando una foto para asociar
+			if(isset($_FILES['input_name']) && ($_FILES['input_name'] != null)){
+				// si mando verifico las extensiones
+				if($_FILES['input_name']['type'] != "image/jpg" || $_FILES['input_name']['type'] != "image/jpeg" || $_FILES['input_name']['type'] != "image/png"){
+					$mensaje = "La extension elegida del archivo no es valida.";
+				}
+            }
+			// verifico campos obligatorios
             if (
                 empty($categoria_id) || empty($nro_habitacion) ||
                 empty($capacidad) || empty($ubicacion)
@@ -168,6 +169,13 @@ class HabitacionController
                         $ubicacion
                     );
                     if (!is_null($id) && ($id > 0)) {
+						// agrego la imagen asociada si se cargo en archivo
+						if(isset($_FILES['input_name']) && ($_FILES['input_name'] != null)){
+							$idImg=$this->model->guardarImagen($id, $_FILES['input_name']['tmp_name']);
+							if ($idImg > 0){
+								$mensaje .=" con imagen.";
+							}
+						}
                         $mensaje = "Se creó la habitación de manera exitosa";
                         $estadoActualiz = true;
                         $this->redirigirListaHabPostActualiz($mensaje, $estadoActualiz);;
@@ -265,7 +273,11 @@ class HabitacionController
 			}else{
 				$mensaje="Ups!! Ocurrio un error, nose puedo borrar la imagen.";
 			}
-			$this->cargarImagen($mensaje);
+            // obtiene todas las habitaciones disponibles
+            $habitaciones = $this->model->obtenerHabitaciones();
+            // obtengo las imagenes cargadas
+            $imagenes = $this->model->obtenerTodasLasImagenes();
+            $this->viewAdmin->cargarImagen($mensaje, $habitaciones, $imagenes);
 		}else{
 			 //no se encontró la habitacion con ese id
             $camino = 'cargar_imagen';
