@@ -7,11 +7,11 @@
     {/if}
     
     <div class="col mt-3 mb-1">
-        <h3>Habitación</h3>
+        <h3>Detalles de  la Habitación</h3>
         {if !empty($habitacion)}
             <ul class="list-group mt-5">
                 <li class="list-group-item">
-                    Habitación N° {$habitacion->nro} - {$habitacion->ubicacion}
+                    N° {$habitacion->nro} - {$habitacion->ubicacion}
                 </li>
                 <li class="list-group-item">
                     Categoria: {$habitacion->nombre_cat} 
