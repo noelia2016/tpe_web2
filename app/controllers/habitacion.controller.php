@@ -273,7 +273,11 @@ class HabitacionController
 			}else{
 				$mensaje="Ups!! Ocurrio un error, nose puedo borrar la imagen.";
 			}
-			$this->cargarImagen($mensaje);
+            // obtiene todas las habitaciones disponibles
+            $habitaciones = $this->model->obtenerHabitaciones();
+            // obtengo las imagenes cargadas
+            $imagenes = $this->model->obtenerTodasLasImagenes();
+            $this->viewAdmin->cargarImagen($mensaje, $habitaciones, $imagenes);
 		}else{
 			 //no se encontró la habitacion con ese id
             $camino = 'cargar_imagen';
