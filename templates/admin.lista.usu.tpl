@@ -61,37 +61,37 @@
                  </tbody>
              </table>
              <nav aria-label="Page navigation example">
-             <ul class="pagination justify-content-center">
-                {if ($pagina_act != 1)} 
-                    <li class="pag-item">
-                        <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act-1}">
-                        <span aria-hidden="true">&laquo;</span>
-                        </a>
-                {/if}
-                {foreach $tot_paginas as $pag}
-                    {if ($pag == $pagina_act)}
-                        <li class="page-item active" aria-current="page">
-                        <span class="page-link">{$pag}
-                        <span class="sr-only">(current)</span>
-                        </span>
-                        </li>   
-                    {else}
-                        <li class="page-item">
-                            <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pag}">{$pag}
+                 <ul class="pagination justify-content-center">
+                    {if ($pagina_act != 1)} 
+                        <li class="pag-item">
+                            <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act-1}">
+                            <span aria-hidden="true">&laquo;</span>
                             </a>
-                        </li>       
-                    {/if}  
-                {/foreach}
-                {if ($pagina_act != $cant_paginas)}
-                    <li class="page-item">
-                        <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act+1}">
-                        <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                {/if}
-                                 
-             </ul>
-         </nav>
+                    {/if}
+                    {foreach $tot_paginas as $pag}
+                        {if ($pag == $pagina_act)}
+                            <li class="page-item active" aria-current="page">
+                            <span class="page-link">{$pag}
+                            <span class="sr-only">(current)</span>
+                            </span>
+                            </li>   
+                        {else}
+                            <li class="page-item">
+                                <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pag}">{$pag}
+                                </a>
+                            </li>       
+                        {/if}  
+                    {/foreach}
+                    {if ($pagina_act != $cant_paginas)}
+                        <li class="page-item">
+                            <a class="page-link fondo_oscuro" href="listar_usuarpag/{$pagina_act+1}">
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {/if}
+                                     
+                 </ul>
+             </nav>
          </div>
     {else}
         {* en caso que no se dispongan de datos a mostrar notifico *}

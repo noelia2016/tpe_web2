@@ -38,6 +38,8 @@ class AdminHabitacionView
     
     function mostrarMensajeActuHabitacion($habitaciones, $mensaje, $estado){
         $smarty = new Smarty(); 
+        
+        //pagina actual activa
         if ($estado){
             $smarty->assign('mensajeBien', $mensaje);
         }

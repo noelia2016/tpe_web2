@@ -11,7 +11,6 @@ class ApiComentarioController
 
     function __construct()
     {
-
         $this->model = new ComentarioModel();
         $this->view = new ApiComentarioView();
         $this->data = file_get_contents("php://input");

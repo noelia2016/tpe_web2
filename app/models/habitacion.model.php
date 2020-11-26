@@ -20,9 +20,9 @@ class HabitacionModel {
     function obtenerHabitaciones() {
 
         // Se envia la consulta
-        $query = $this->db->prepare('SELECT a.id, a.nro, a.capacidad, a.estado, b.nombre as nombre_cat, a.categoria_id, a.comodidades, a.ubicacion
-            FROM habitacion a join categoria b on a.categoria_id = b.id 
-            order by a.nro');
+        $query = $this->db->prepare('SELECT h.id, h.nro, h.capacidad, h.estado, c.nombre as nombre_cat, h.categoria_id, h.comodidades, h.ubicacion
+            from habitacion h join categoria c on h.categoria_id = c.id 
+            order by h.nro');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 

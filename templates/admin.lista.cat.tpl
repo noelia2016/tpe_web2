@@ -15,6 +15,9 @@
                     <p>{$mensajeBien}</p>
                 </div>
             {/if}
+            <div class="btn-group m-3">
+                 <a class='btn btn-success btn-sm' href='insertar_cat'>Nueva categoria</a>
+             </div>
              <div class="table-responsive">
                  <table class="table mt-3 text-left" id="tablaCategorias">
                      <thead>
@@ -46,9 +49,6 @@
              </div>
 
          </div>
-     </div>
-     <div class="btn-group m-5">
-         <a class='btn btn-success btn-sm' href='insertar_cat'>Nueva categoria</a>
      </div>
  </section>
  </main>
