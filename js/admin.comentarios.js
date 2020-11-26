@@ -15,9 +15,7 @@ const app = new Vue({
                     'method': 'DELETE'
                 }).then(res => {
                     res.text();
-                    let i = app.comentarios.indexOf( id );
-                    app.comentarios.splice( i, 1);
-                    console.log(app.comentarios);
+                    getComentarios();
                 }
                 ) ;
             

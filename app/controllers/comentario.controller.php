@@ -22,7 +22,7 @@ class ComentarioController {
      */
     function listarComentarios(){
         // verifico que el usuario esté logueado siempre
-        $this->sessionHelper->checkLogged();
+        $this->sesionHelper->checkLogged();
         $this->view->listarComentarios();      
     }
 

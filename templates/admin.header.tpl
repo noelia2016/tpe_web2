@@ -14,7 +14,7 @@
             <a class="nav-link" href="listar_usuarios">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cargar_imagen">Cargar Imagen</a>
+            <a class="nav-link" href="cargar_imagen">Imagenes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="comentarios_adm">Comentarios</a>

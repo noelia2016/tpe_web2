@@ -238,11 +238,6 @@ class HabitacionController
      */
     function guardarImagen(){
         
-        // obtiene todas las habitaciones disponibles
-        $habitaciones = $this->model->obtenerHabitaciones();
-		// obtengo las imagenes cargadas
-		$imagenes = $this->model->obtenerTodasLasImagenes();
-            
         // obtiene la imagen y la habitacion ingresada en el form
         $hab=$_POST['id_habitacion'];
         if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png"){
@@ -257,6 +252,10 @@ class HabitacionController
         }else{
             $mensaje='La imagen cargada no es de las extensiones permitidas';
         }
+        // obtiene todas las habitaciones disponibles
+        $habitaciones = $this->model->obtenerHabitaciones();
+		// obtengo las imagenes cargadas
+		$imagenes = $this->model->obtenerTodasLasImagenes();
 		$this->viewAdmin->cargarImagen($mensaje, $habitaciones, $imagenes);
     }
 	
