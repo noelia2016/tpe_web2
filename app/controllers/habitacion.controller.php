@@ -23,7 +23,7 @@ class HabitacionController
         $this->viewAdmin = new AdminHabitacionView();
         $this->view = new HabitacionView();
         $this->sessionHelper = new SesionHelper();
-        $this->errorHelper = new SesionHelper();
+        $this->errorHelper = new ErrorHelper();
 
         // verifico que el usuario esté logueado siempre
         $this->sessionHelper->checkLogged();
@@ -285,3 +285,4 @@ class HabitacionController
 		}
     }
 }
+?>
