@@ -10,7 +10,7 @@
     <form class="my-4" action="guardar_imagen" method="POST" enctype="multipart/form-data">
         <div class="col-12 col-sm-6">
             <div class="form-group-row">
-                <label>Habitacion:</label>  
+                <label>Habitación:</label>  
                 <select name="id_habitacion" class="form-control" required>
                     <option value=''>elegi habitación</option> 
                     {foreach from=$habitaciones item=habitacion} 

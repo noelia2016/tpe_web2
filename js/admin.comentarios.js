@@ -9,16 +9,15 @@ const app = new Vue({
         eliminarComentario: async function (id) {
             
             let url = 'api/comentarios/' + id ;
-            console.log(url);
+            
             try {
                 const response = await fetch(url, {
                     'method': 'DELETE'
                 }).then(res => {
                     res.text();
-                    let i = app.comentarios.indexOf( id );
-                    app.comentarios.splice( i, 1);
-                    console.log(app.comentarios);
+                    getComentarios();
                 }
+              
                 ) ;
             
             } catch(e) {
