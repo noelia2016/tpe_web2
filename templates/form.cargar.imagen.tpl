@@ -1,7 +1,7 @@
 <!-- ADMINISTRADOR: formulario de alta de habitación en el hotel -->
 {include file= 'admin.header.tpl'}
 <section class="container-fluid center fondo_container">
-    <h2>Cargar imagen a una habitacion:</h2>
+    <h2>Cargar imagen a una habitación:</h2>
     {if isset($mensaje) && !empty($mensaje)}
         <div class="alert alert-dismissible alert-info mt-3">
           <strong>{$mensaje}</strong>

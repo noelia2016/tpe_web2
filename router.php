@@ -163,9 +163,9 @@ switch ($params[0]) {
         $controller->eliminarImagen($id);
         break; 
     case 'comentarios_adm':
-            $controller = new ComentarioController();
-            $controller->listarComentarios();
-            break;    
+        $controller = new ComentarioController();
+        $controller->listarComentarios();
+        break;    
      
     default:
         $error=new ErrorHelper();

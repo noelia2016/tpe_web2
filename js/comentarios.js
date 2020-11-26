@@ -7,12 +7,11 @@ const app = new Vue({
     }, 
 });
 
+// obtengo el id de habitacion
+let hab=window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1);
+
 document.addEventListener('DOMContentLoaded', e => {
     // obtengo todos los comentarios de la habitacion
-	
-	// obtengo el id de habitacion
-    let hab=window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1);
-	
     getComentarios(hab);
     document.querySelector('#opinion-form').addEventListener('submit', e => {
         e.preventDefault();
@@ -66,6 +65,7 @@ async function addComentario() {
         const t = await response.json();
         // agrega el comentario a la lista de comentarios
         app.comentarios.push(t);
+     
   
     } catch(e) {
         console.log(e);

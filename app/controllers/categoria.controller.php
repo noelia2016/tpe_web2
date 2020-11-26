@@ -24,7 +24,7 @@ class CategoriaController
         $this->errorHelper = new ErrorHelper();
 
         // verifico que el usuario esté logueado siempre
-        //$this->authHelper->checkLogged();
+        $this->sesionHelper->checkLogged();
         //Verifico usuario administrador, si no, redirige al login
         $this->sesionHelper->esta_logueadoAdministrador() ;
     }
