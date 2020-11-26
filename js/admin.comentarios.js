@@ -5,6 +5,28 @@ const app = new Vue({
     data: {
         comentarios: [], // esto es como un assign de smarty
     }, 
+    methods: {
+        eliminarComentario: async function (id) {
+            
+            let url = 'api/comentarios/' + id ;
+            console.log(url);
+            try {
+                const response = await fetch(url, {
+                    'method': 'DELETE'
+                }).then(res => {
+                    res.text();
+                    let i = app.comentarios.indexOf( id );
+                    app.comentarios.splice( i, 1);
+                    console.log(app.comentarios);
+                }
+                ) ;
+            
+            } catch(e) {
+                console.log(e);
+            }
+        }
+        
+}
 });
 
 document.addEventListener('DOMContentLoaded', e => {
@@ -13,7 +35,7 @@ document.addEventListener('DOMContentLoaded', e => {
     getComentarios();
 });
 
-//async function getComentarios(hab) {
+
 async function getComentarios() {
 
     // obtengo todos los comentarios para la habitacion pasada por parametro
@@ -28,6 +50,5 @@ async function getComentarios() {
         console.log(e);
     }
 }
-
 
 
