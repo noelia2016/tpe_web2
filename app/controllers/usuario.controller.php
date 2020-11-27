@@ -174,7 +174,7 @@ class UsuarioController
                     header("Location: " . BASE_URL . 'home');
                 } else {
                     // si no se registra en la base de datos
-                    $this->view->registrar("Ups!! Ocurrio un error vuelva a intentarlo.");
+                    $this->view->registrar("Ups!! Ocurrió un error vuelva a intentarlo.");
                 }
             } // fin del else de existe_email
         } // fin del else de existe_user
@@ -215,10 +215,10 @@ class UsuarioController
             // comprobamos que el número de filas afectadas que devuelve la consulta sea mayor que 0
             if ($id) {
                 // si se registro el cambio correctamente lo direcciono al login
-                $this->view->login('El cambio se registro correctamente. Ingrese con su nuevo password');
+                $this->view->login('El cambio se registró correctamente. Ingrese con su nuevo password');
             } else {
                 // si no se registro el cambio lo notifico
-                $this->view->actualizarPass("Ups! Ocurrio un error intente mas tarde.");
+                $this->view->actualizarPass("Ups! Ocurrió un error intente mas tarde.");
             }
         } else {
             // si el email y usuario no coinciden para los datos registrados de un usuario
@@ -244,7 +244,7 @@ class UsuarioController
                 $exito = true;
             } else {
                 //echo "entro por error";
-                $mensaje = "Ups!! Ocurrio un error vuelva a intentar";
+                $mensaje = "Ups!! Ocurrió un error vuelva a intentar";
             }
             
             $this->mostrarUsuariosPaginado($pagina, $mensaje, $exito);

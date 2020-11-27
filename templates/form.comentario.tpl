@@ -1,4 +1,4 @@
-    <h1 class='h3 mb-3 font-weight-normal'>Danos tu opinion:</h1>
+    <h1 class='h3 mb-3 font-weight-normal'>Danos tu opinión:</h1>
     {if isset($mensaje) && !empty($mensaje)}
         <div class="alert alert-dismissible alert-info">
           <strong>{$mensaje}</strong>

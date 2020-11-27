@@ -60,7 +60,8 @@ table,
 td,
 #tablaHabitaciones.table thead th,
 #tablaCategorias.table thead th ,
-#tablaComentarios.table thead th 
+#tablaComentarios.table thead th,
+#tablaImagenes.table thead th
 {
   border: 1px solid black !important;
 }

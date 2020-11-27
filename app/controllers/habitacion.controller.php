@@ -244,10 +244,10 @@ class HabitacionController
            $id=$this->model->guardarImagen($hab, $_FILES['input_name']['tmp_name']);
            // si agrego la imagen asociada muestro el mensaje de exito
            if($id > 0){
-               $mensaje='La imagen se agrego correctamente';
+               $mensaje='La imagen se agregó correctamente';
            }else{
                // sino se agrego notifico
-               $mensaje='Ups!! Ocurrio un error, nose puedo cargar la imagen';
+               $mensaje='Ups!! Ocurrió un error, no se pudo cargar la imagen';
            } 
         }else{
             $mensaje='La imagen cargada no es de las extensiones permitidas';
@@ -268,9 +268,9 @@ class HabitacionController
 		if (is_numeric($id)) {
 			$img = $this->model->eliminarImagenDeHab($id);
 			if ($img > 0){
-				$mensaje="La imagen se elimino correctamente";
+				$mensaje="La imagen se eliminó correctamente";
 			}else{
-				$mensaje="Ups!! Ocurrio un error, nose puedo borrar la imagen.";
+				$mensaje="Ups!! Ocurrió un error, no se pudo borrar la imagen.";
 			}
             // obtiene todas las habitaciones disponibles
             $habitaciones = $this->model->obtenerHabitaciones();

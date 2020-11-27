@@ -184,7 +184,10 @@ class HabitacionModel {
      */
     function obtenerTodasLasImagenes(){
         
-        $query = $this->db->prepare('SELECT ig.id as id_img, ig.imagen, h.id, h.nro as nro_hab FROM imagen_galeria as ig inner join habitacion as h on ig.habitacion_id = h.id');
+        $query = $this->db->prepare('
+        SELECT ig.id as id_img, ig.imagen, h.id, h.nro as nro_hab 
+        FROM imagen_galeria as ig 
+        inner join habitacion as h on ig.habitacion_id = h.id order by h.nro');
         $query->execute();
 
         // Obtengo la respuesta con un fetchAll 

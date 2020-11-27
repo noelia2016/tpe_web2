@@ -108,7 +108,7 @@ class ApiComentarioController
         } else {
             // si ocurrio un error notifico
 
-            $this->view->response("Ups!! ocurrio un error al intentar insertar comentario.", 500);
+            $this->view->response("Ups!! ocurrió un error al intentar insertar comentario.", 500);
         }
     }
 

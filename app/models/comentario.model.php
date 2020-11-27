@@ -48,8 +48,12 @@ class ComentarioModel
     {
 
         // Enviar la consulta 
-        $query = $this->db->prepare('SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab 
-                                     FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id inner join usuario as u on u.id = c.usuario_id where c.id = ? order by c.fecha_realizado asc');
+        $query = $this->db->prepare('
+        SELECT c.id, c.puntuacion, c.mensaje, c.puntuacion, u.id as id_user, 
+          u.user, c.fecha_realizado, h.id as id_hab, h.nro as nro_hab 
+          FROM `comentario` as c inner join habitacion as h on h.id = c.habitacion_id 
+          inner join usuario as u on u.id = c.usuario_id where c.id = ? 
+          order by c.fecha_realizado asc');
         $query->execute([$id]);
 
         // Obtengo la respuesta con un fetchAll 

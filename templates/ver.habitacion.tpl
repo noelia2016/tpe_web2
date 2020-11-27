@@ -30,7 +30,7 @@
             {* en caso que no se dispongan de datos a mostrar notifico *}
             <div class="alert alert-dismissible alert-warning">
                 <h4 class="alert-heading">Importante!</h4>
-                <p>No hay detalles especificos para la habitacion elegida.</p>
+                <p>No hay detalles específicos para la habitación elegida.</p>
             </div>
         {/if}
     </div>
@@ -38,7 +38,7 @@
         {* agregarlo solo si es usuario registrado *}
         {if (isset($mostrar) && (!$mostrar))}
             <div class="alert alert-info" role="alert">
-                <span>Tu opinion nos interesa!!</span>
+                <span>Tu opinión nos interesa!!</span>
                 <p>Si queres comentar como fue tu estadia y todavía no sos usuario. Por favor registrate
                     <a href="registrar" id="link-registrar">aquí
                     </a>
